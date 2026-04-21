@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nana's Mama</title>
+  <meta
+    name="description"
+    content="Pure Care. Purely African. Handcrafted shea butters, black soap, and natural wellness treasures made in Ghana."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../stylesheet.css/stylesheet.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="#top" aria-label="Nana's Mama home">
+          <img src="../assets/nanasmama-logo.png" alt="Nana's Mama logo">
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          Menu
+        </button>
+        <button class="basket-toggle" type="button" aria-expanded="false" aria-controls="basket-panel">
+          Basket
+          <span class="basket-count" data-basket-count>0</span>
+        </button>
+        <nav id="site-nav" class="site-nav" aria-label="Primary">
+          <a href="#hero">Home</a>
+          <a href="#categories">Bath &amp; Body</a>
+          <a href="#categories">Hair Care</a>
+          <a href="#categories">Skin Care</a>
+          <a href="#faq">FAQ</a>
+          <a href="#story">About Us</a>
+          <a href="#contact">Contact Us</a>
+        </nav>
+      </div>
+    </header>
+
+    <aside id="basket-panel" class="basket-panel" aria-label="Shopping basket">
+      <div class="basket-panel-header">
+        <div>
+          <p class="eyebrow">Your order</p>
+          <h2>Basket</h2>
+        </div>
+        <button class="basket-close" type="button" aria-label="Close basket">Close</button>
+      </div>
+      <div class="basket-items" data-basket-items>
+        <p class="basket-empty">Your basket is empty.</p>
+      </div>
+      <div class="basket-summary">
+        <div class="basket-row">
+          <span>Subtotal</span>
+          <strong data-basket-subtotal>$0.00</strong>
+        </div>
+        <div class="basket-row">
+          <span>Shipping</span>
+          <strong data-basket-shipping>$7.00</strong>
+        </div>
+        <div class="basket-row basket-row-total">
+          <span>Total</span>
+          <strong data-basket-total>$0.00</strong>
+        </div>
+        <a class="button button-primary basket-checkout-link" href="#checkout">Proceed to checkout</a>
+      </div>
+    </aside>
+
+    <main id="top">
+      <section id="hero" class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">New Arrival</p>
+            <h1>Pure Care. Purely African.</h1>
+            <p class="lede">
+              Handcrafted shea butters, black soap, and natural wellness treasures made in Ghana
+              for glowing skin, strong hair, and peaceful living.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#bestsellers">Shop now</a>
+              <a class="button button-secondary" href="#story">Our Story</a>
+            </div>
+          </div>
+          <div class="hero-media">
+            <div class="hero-card hero-card-main">
+              <img src="../assets/Nanas%20Mama/20250324-20250324_193255.jpg" alt="Nana's Mama shea butter jar">
+            </div>
+            <div class="hero-card hero-card-accent">
+              <img src="../assets/Nanas%20Mama/20250324-20250324_193335.jpg" alt="Nana's Mama wooden lid detail">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="values">
+        <div class="container values-grid">
+          <article class="value-card">
+            <span class="value-icon">01</span>
+            <h2>Natural Ingredients</h2>
+            <p>Made with pure ingredients chosen for gentle daily care.</p>
+          </article>
+          <article class="value-card">
+            <span class="value-icon">02</span>
+            <h2>Cruelty Free</h2>
+            <p>Small-batch products created without animal testing.</p>
+          </article>
+          <article class="value-card">
+            <span class="value-icon">03</span>
+            <h2>Eco-Friendly &amp; Low Carbon</h2>
+            <p>Packaging and sourcing centered on thoughtful, lower-impact choices.</p>
+          </article>
+          <article class="value-card">
+            <span class="value-icon">04</span>
+            <h2>Recyclable Packaging</h2>
+            <p>Reusable jars and recyclable components where possible.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="bestsellers" class="products">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Shop the favorites</p>
+            <h2>Bestsellers</h2>
+          </div>
+          <div class="product-grid">
+            <article class="product-card" data-product-id="hair-shea" data-product-name="Hair Shea" data-product-price="15.99">
+              <img src="../assets/Nanas%20Mama/20250324-20250324_193608.jpg" alt="Hair Shea">
+              <div class="product-copy">
+                <h3>Hair Shea</h3>
+                <p>Moisture-rich daily nourishment for scalp and strands.</p>
+                <strong>$15.99</strong>
+                <button class="button button-primary add-to-basket" type="button">Add to basket</button>
+              </div>
+            </article>
+            <article class="product-card" data-product-id="shea-butter" data-product-name="Shea Butter" data-product-price="15.99">
+              <img src="../assets/Nanas%20Mama/20250324-20250324_194015.jpg" alt="Shea butter">
+              <div class="product-copy">
+                <h3>Shea Butter</h3>
+                <p>Original unrefined shea butter for face, body, and family care.</p>
+                <strong>$15.99</strong>
+                <button class="button button-primary add-to-basket" type="button">Add to basket</button>
+              </div>
+            </article>
+            <article class="product-card" data-product-id="relaxing-shea" data-product-name="Relaxing Shea" data-product-price="15.99">
+              <img src="../assets/Nanas%20Mama/20250324-20250324_194016.jpg" alt="Relaxing Shea">
+              <div class="product-copy">
+                <h3>Relaxing Shea</h3>
+                <p>A calming blend designed for soft skin and a slower ritual.</p>
+                <strong>$15.99</strong>
+                <button class="button button-primary add-to-basket" type="button">Add to basket</button>
+              </div>
+            </article>
+            <article class="product-card" data-product-id="clearing-shea" data-product-name="Clearing Shea" data-product-price="15.99">
+              <img src="../assets/Nanas%20Mama/20250324-20250324_194049.jpg" alt="Clearing Shea">
+              <div class="product-copy">
+                <h3>Clearing Shea</h3>
+                <p>Clarifying moisture support for breakout-prone skin.</p>
+                <strong>$15.99</strong>
+                <button class="button button-primary add-to-basket" type="button">Add to basket</button>
+              </div>
+            </article>
+            <article class="product-card" data-product-id="african-black-soap" data-product-name="African Black Soap" data-product-price="16.00">
+              <img src="../assets/Nanas%20Mama/20250324-20250324_194122.jpg" alt="African black soap">
+              <div class="product-copy">
+                <h3>African Black Soap</h3>
+                <p>Traditional cleansing with a balanced, skin-loving finish.</p>
+                <strong>$16.00</strong>
+                <button class="button button-primary add-to-basket" type="button">Add to basket</button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="categories" class="categories">
+        <div class="container category-grid">
+          <article class="category-card">
+            <p>Skin Care Products</p>
+            <h2>Skin Care</h2>
+          </article>
+          <article class="category-card">
+            <p>Skin Care Products</p>
+            <h2>Hair Care</h2>
+          </article>
+          <article class="category-card">
+            <p>Skin Care Products</p>
+            <h2>Bath &amp; Body</h2>
+          </article>
+        </div>
+      </section>
+
+      <section id="story" class="story">
+        <div class="container story-grid">
+          <div class="story-media">
+            <img src="../assets/Nanas%20Mama/20250324-20250324_193511.jpg" alt="Nana's Mama product set">
+          </div>
+          <div class="story-copy">
+            <p class="eyebrow">Rooted in heritage</p>
+            <h2>Our Story</h2>
+            <p>
+              Nana’s Mama was born from a mother’s desire to care for her family using natural,
+              time-honored African remedies.
+            </p>
+            <p>
+              When modern products failed to provide gentle, lasting results, she turned back to
+              traditional shea butter using the same methods passed down through generations.
+            </p>
+            <p>
+              What began as a personal solution became a mission to share pure, handcrafted
+              skincare rooted in Ghanaian heritage with families everywhere.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="faq">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Support</p>
+            <h2>Have questions?</h2>
+          </div>
+          <div class="faq-list">
+            <article class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="true">
+                Are your products 100% natural?
+              </button>
+              <div class="faq-answer">
+                <p>Yes. Nana’s Mama products are made using pure, natural ingredients with no harsh chemicals, artificial fragrances, or preservatives.</p>
+              </div>
+            </article>
+            <article class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                Is your shea butter unrefined?
+              </button>
+              <div class="faq-answer" hidden>
+                <p>Yes. We use Grade A, unrefined shea butter handcrafted in Ghana using traditional methods to preserve its nutrients and natural benefits.</p>
+              </div>
+            </article>
+            <article class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                Can babies use your shea butter?
+              </button>
+              <div class="faq-answer" hidden>
+                <p>Our Original Shea Butter is gentle and commonly used for baby skin. A small patch test is still a good idea first.</p>
+              </div>
+            </article>
+            <article class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                What skin types are your products suitable for?
+              </button>
+              <div class="faq-answer" hidden>
+                <p>They are suitable for most skin types, including dry, sensitive, and combination skin.</p>
+              </div>
+            </article>
+            <article class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                Where do you ship to?
+              </button>
+              <div class="faq-answer" hidden>
+                <p>Shipping is available internationally, with delivery timing depending on location.</p>
+              </div>
+            </article>
+            <article class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                Can I return my order?
+              </button>
+              <div class="faq-answer" hidden>
+                <p>Unopened skincare products may be returned within 30 days. Food and snack items are final sale for hygiene reasons.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="checkout" class="checkout">
+        <div class="container checkout-grid">
+          <div class="checkout-copy">
+            <p class="eyebrow">Secure order</p>
+            <h2>Checkout</h2>
+            <p class="lede">Review your basket, add delivery details, and place your order.</p>
+            <div class="checkout-summary-card">
+              <div class="basket-row">
+                <span>Items</span>
+                <strong data-checkout-items>0</strong>
+              </div>
+              <div class="basket-row">
+                <span>Subtotal</span>
+                <strong data-checkout-subtotal>$0.00</strong>
+              </div>
+              <div class="basket-row">
+                <span>Shipping</span>
+                <strong data-checkout-shipping>$7.00</strong>
+              </div>
+              <div class="basket-row basket-row-total">
+                <span>Total</span>
+                <strong data-checkout-total>$0.00</strong>
+              </div>
+            </div>
+          </div>
+          <form class="checkout-form" data-checkout-form>
+            <div class="form-grid">
+              <label>
+                Full name
+                <input type="text" name="name" required>
+              </label>
+              <label>
+                Email
+                <input type="email" name="email" required>
+              </label>
+              <label>
+                Phone
+                <input type="tel" name="phone" required>
+              </label>
+              <label>
+                Country
+                <input type="text" name="country" required>
+              </label>
+              <label class="field-full">
+                Shipping address
+                <input type="text" name="address" required>
+              </label>
+              <label>
+                City
+                <input type="text" name="city" required>
+              </label>
+              <label>
+                Postal code
+                <input type="text" name="postal" required>
+              </label>
+              <label>
+                Payment method
+                <select name="payment" required>
+                  <option value="card">Credit or debit card</option>
+                  <option value="paypal">PayPal</option>
+                  <option value="delivery">Pay on delivery</option>
+                </select>
+              </label>
+              <label>
+                Card ending
+                <input type="text" name="card" maxlength="4" inputmode="numeric" placeholder="1234">
+              </label>
+              <label class="field-full">
+                Order notes
+                <textarea name="notes" rows="4" placeholder="Leave delivery instructions or gift notes here."></textarea>
+              </label>
+            </div>
+            <button class="button button-primary checkout-submit" type="submit">Place order</button>
+            <p class="checkout-note">Demo checkout only. Payments are not processed in this static version.</p>
+            <p class="checkout-message" data-checkout-message hidden></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact" class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <img class="footer-logo" src="../assets/nanasmama-logo.png" alt="Nana's Mama logo">
+          <p>Pure, handcrafted care rooted in Ghanaian heritage.</p>
+        </div>
+        <div>
+          <h2>Useful Links</h2>
+          <a href="#story">About Us</a>
+          <a href="#contact">Contact Us</a>
+          <a href="#faq">FAQs</a>
+        </div>
+        <div>
+          <h2>Categories</h2>
+          <a href="#categories">Bath &amp; Body</a>
+          <a href="#categories">Skin Care</a>
+          <a href="#categories">Hair Care</a>
+        </div>
+      </div>
+      <div class="footer-bar">
+        <p>Copyright &copy; 2026 nanasmama.com</p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="../mama.js/mama.js"></script>
+</body>
+</html>
