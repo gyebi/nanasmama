@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nana's Mama Favorites</title>
+  <meta
+    name="description"
+    content="Sign in to view your Nana's Mama favorites and come back to the products you want to save for later."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="./index.html#top" aria-label="Nana's Mama home">
+          <img src="./assets/nanasmama-logo.png" alt="Nana's Mama logo">
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          Menu
+        </button>
+
+        <nav id="site-nav" class="site-nav" aria-label="Primary">
+          <a href="./index.html#hero">Home</a>
+          <a href="./products.html#skin-care">Shop</a>
+          <a href="./index.html#story">About Us</a>
+          <a href="./index.html#contact">Contact Us</a>
+        </nav>
+        <div class="header-actions">
+          <a class="favorites-link icon-link" href="./favorites.html" aria-current="page" aria-label="View favorites">
+            <span class="icon-glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 20.25c-4.48-2.58-7.25-5.32-7.25-8.93A4.3 4.3 0 0 1 9 7a4.5 4.5 0 0 1 3 1.49A4.5 4.5 0 0 1 15 7a4.3 4.3 0 0 1 4.25 4.32c0 3.61-2.77 6.35-7.25 8.93Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
+              </svg>
+            </span>
+            <span class="sr-only">Favorites</span>
+            <span class="favorites-count" data-favorites-count>0</span>
+          </a>
+          <button class="basket-toggle icon-button" type="button" aria-label="Open basket" aria-expanded="false" aria-controls="basket-panel">
+            <span class="icon-glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 10V8.5a4 4 0 1 1 8 0V10" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
+                <path d="M5.5 10h13l-1 9.5a1.75 1.75 0 0 1-1.74 1.5H8.24A1.75 1.75 0 0 1 6.5 19.5Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"/>
+              </svg>
+            </span>
+            <span class="sr-only">Basket</span>
+            <span class="basket-count" data-basket-count>0</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <aside id="basket-panel" class="basket-panel" aria-label="Shopping basket">
+      <div class="basket-panel-header">
+        <div>
+          <p class="eyebrow">Your order</p>
+          <h2>Basket</h2>
+        </div>
+        <button class="basket-close" type="button" aria-label="Close basket">Close</button>
+      </div>
+      <div class="basket-items" data-basket-items>
+        <p class="basket-empty">Your basket is empty.</p>
+      </div>
+      <div class="basket-summary">
+        <div class="basket-row">
+          <span>Subtotal</span>
+          <strong data-basket-subtotal>$0.00</strong>
+        </div>
+        <div class="basket-row">
+          <span>Shipping</span>
+          <strong data-basket-shipping>$7.00</strong>
+        </div>
+        <div class="basket-row basket-row-total">
+          <span>Total</span>
+          <strong data-basket-total>$0.00</strong>
+        </div>
+        <a class="button button-primary basket-checkout-link" href="./index.html#checkout">Proceed to checkout</a>
+      </div>
+    </aside>
+
+    <main id="top">
+      <section class="page-intro">
+        <div class="container page-intro-grid">
+          <div class="page-intro-panel">
+            <p class="eyebrow">Your saved list</p>
+            <h1>Favorites</h1>
+            <p class="lede">
+              Sign in to keep track of the products you love, revisit them later, and move them into your basket whenever you're ready.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="./products.html">Keep shopping</a>
+              <button class="button button-secondary favorites-signout" type="button" data-favorites-signout hidden>Sign out</button>
+            </div>
+          </div>
+          <div class="section-note favorites-account-note" data-favorites-account-note>
+            <p>
+              Your favorites list is saved to this browser after sign-in, making it easy to bring interested visitors back to the products they were considering.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="favorites-page">
+        <div class="container favorites-layout">
+          <section class="favorites-auth-card" data-favorites-auth-card>
+            <p class="eyebrow">Member sign in</p>
+            <h2>Save and revisit your picks</h2>
+            <p class="lede">
+              Create a quick account to unlock your favorites page. We only ask for a name and email in this demo.
+            </p>
+            <form class="favorite-login-form" data-favorites-login-form>
+              <label>
+                First name
+                <input type="text" name="name" autocomplete="given-name" required>
+              </label>
+              <label>
+                Email
+                <input type="email" name="email" autocomplete="email" required>
+              </label>
+              <button class="button button-primary" type="submit">Sign in to view favorites</button>
+            </form>
+            <p class="favorite-modal-note">Returning visitors can sign in on this page to reopen their saved list.</p>
+          </section>
+
+          <section class="favorites-board" data-favorites-board hidden>
+            <div class="section-heading favorites-heading">
+              <div>
+                <p class="eyebrow">Saved for later</p>
+                <h2 data-favorites-greeting>Your favorites</h2>
+              </div>
+              <a class="button button-secondary" href="./products.html">Browse more products</a>
+            </div>
+            <div class="favorites-grid product-section-grid" data-favorites-grid></div>
+            <div class="favorites-empty-state" data-favorites-empty hidden>
+              <h3>No favorites yet</h3>
+              <p>Tap the heart on any product to save it here and encourage visitors to come back.</p>
+              <a class="button button-primary" href="./products.html">Go to products</a>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact" class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <img class="footer-logo" src="./assets/nanasmama-logo.png" alt="Nana's Mama logo">
+          <p>Pure, handcrafted care rooted in Ghanaian heritage.</p>
+        </div>
+        <div>
+          <h2>Useful Links</h2>
+          <a href="./index.html#story">About Us</a>
+          <a href="./favorites.html">Favorites</a>
+          <a href="./index.html#contact">Contact Us</a>
+        </div>
+        <div>
+          <h2>Categories</h2>
+          <a href="./products.html#bath-body">Bath &amp; Body</a>
+          <a href="./products.html#skin-care">Skin Care</a>
+          <a href="./products.html#hair-care">Hair Care</a>
+        </div>
+      </div>
+      <div class="footer-bar">
+        <p>Copyright &copy; 2026 nanasmama.com</p>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

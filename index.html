@@ -11,7 +11,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./stylesheet.css">
 </head>
 <body>
   <div class="page-shell">
@@ -23,19 +22,37 @@
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
           Menu
         </button>
-        <button class="basket-toggle" type="button" aria-expanded="false" aria-controls="basket-panel">
-          Basket
-          <span class="basket-count" data-basket-count>0</span>
-        </button>
+        
         <nav id="site-nav" class="site-nav" aria-label="Primary">
           <a href="#hero">Home</a>
-          <a href="#categories">Bath &amp; Body</a>
-          <a href="#categories">Hair Care</a>
-          <a href="#categories">Skin Care</a>
+          <a href="./products.html#bath-body">Bath &amp; Body</a>
+          <a href="./products.html#hair-care">Hair Care</a>
+          <a href="./products.html#skin-care">Skin Care</a>
           <a href="#faq">FAQ</a>
           <a href="#story">About Us</a>
           <a href="#contact">Contact Us</a>
         </nav>
+        <div class="header-actions">
+          <a class="favorites-link icon-link" href="./favorites.html" aria-label="View favorites">
+            <span class="icon-glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 20.25c-4.48-2.58-7.25-5.32-7.25-8.93A4.3 4.3 0 0 1 9 7a4.5 4.5 0 0 1 3 1.49A4.5 4.5 0 0 1 15 7a4.3 4.3 0 0 1 4.25 4.32c0 3.61-2.77 6.35-7.25 8.93Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
+              </svg>
+            </span>
+            <span class="sr-only">Favorites</span>
+            <span class="favorites-count" data-favorites-count>0</span>
+          </a>
+          <button class="basket-toggle icon-button" type="button" aria-label="Open basket" aria-expanded="false" aria-controls="basket-panel">
+            <span class="icon-glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 10V8.5a4 4 0 1 1 8 0V10" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
+                <path d="M5.5 10h13l-1 9.5a1.75 1.75 0 0 1-1.74 1.5H8.24A1.75 1.75 0 0 1 6.5 19.5Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"/>
+              </svg>
+            </span>
+            <span class="sr-only">Basket</span>
+            <span class="basket-count" data-basket-count>0</span>
+          </button>
+        </div>
       </div>
     </header>
 
@@ -84,10 +101,10 @@
           </div>
           <div class="hero-media">
             <div class="hero-card hero-card-main">
-              <img src="./assets/Nanas%20Mama/20250324-20250324_193255.jpg" alt="Nana's Mama shea butter jar">
+              <img src="./assets/Nanas%20Mama/shea-butter-jar-1.jpg" alt="Nana's Mama shea butter jar">
             </div>
             <div class="hero-card hero-card-accent">
-              <img src="./assets/Nanas%20Mama/20250324-20250324_193335.jpg" alt="Nana's Mama wooden lid detail">
+              <img src="./assets/Nanas%20Mama/nanas-mama-lid-detail-1.jpg" alt="Nana's Mama wooden lid detail">
             </div>
           </div>
         </div>
@@ -95,23 +112,19 @@
 
       <section class="values">
         <div class="container values-grid">
-          <article class="value-card">
-            <span class="value-icon">01</span>
+          <article class="value-card value-card-natural" style="--value-watermark: url('./assets/Nanas%20Mama/natural-ingredients.png');">
             <h2>Natural Ingredients</h2>
             <p>Made with pure ingredients chosen for gentle daily care.</p>
           </article>
-          <article class="value-card">
-            <span class="value-icon">02</span>
+          <article class="value-card value-card-cruelty" style="--value-watermark: url('./assets/Nanas%20Mama/cruelty-free.png');">
             <h2>Cruelty Free</h2>
             <p>Small-batch products created without animal testing.</p>
           </article>
-          <article class="value-card">
-            <span class="value-icon">03</span>
+          <article class="value-card value-card-eco" style="--value-watermark: url('./assets/Nanas%20Mama/eco-friendly.png');">
             <h2>Eco-Friendly &amp; Low Carbon</h2>
             <p>Packaging and sourcing centered on thoughtful, lower-impact choices.</p>
           </article>
-          <article class="value-card">
-            <span class="value-icon">04</span>
+          <article class="value-card value-card-recyclable" style="--value-watermark: url('./assets/Nanas%20Mama/recycling.png');">
             <h2>Recyclable Packaging</h2>
             <p>Reusable jars and recyclable components where possible.</p>
           </article>
@@ -124,50 +137,45 @@
             <p class="eyebrow">Shop the favorites</p>
             <h2>Bestsellers</h2>
           </div>
-          <div class="product-grid">
+          <div class="product-grid bestseller-grid">
             <article class="product-card" data-product-id="hair-shea" data-product-name="Hair Shea" data-product-price="15.99">
-              <img src="./assets/Nanas%20Mama/20250324-20250324_193608.jpg" alt="Hair Shea">
+              <button class="favorite-button" type="button" aria-label="Add Hair Shea to favorites">♡</button>
+              <img src="./assets/Nanas%20Mama/hair-shea-jar-4.jpg" alt="Hair Shea">
               <div class="product-copy">
+                <p class="product-brand">Nana's Mama</p>
                 <h3>Hair Shea</h3>
-                <p>Moisture-rich daily nourishment for scalp and strands.</p>
-                <strong>$15.99</strong>
-                <button class="button button-primary add-to-basket" type="button">Add to basket</button>
+                <strong class="product-price">$15.99</strong>
+                <button class="button add-to-basket add-to-bag" type="button">Add to basket</button>
               </div>
             </article>
             <article class="product-card" data-product-id="shea-butter" data-product-name="Shea Butter" data-product-price="15.99">
-              <img src="./assets/Nanas%20Mama/20250324-20250324_194015.jpg" alt="Shea butter">
+              <button class="favorite-button" type="button" aria-label="Add Shea Butter to favorites">♡</button>
+              <img src="./assets/Nanas%20Mama/shea-butter-jar-2.jpg" alt="Shea butter">
               <div class="product-copy">
+                <p class="product-brand">Nana's Mama</p>
                 <h3>Shea Butter</h3>
-                <p>Original unrefined shea butter for face, body, and family care.</p>
-                <strong>$15.99</strong>
-                <button class="button button-primary add-to-basket" type="button">Add to basket</button>
+                <strong class="product-price">$15.99</strong>
+                <button class="button add-to-basket add-to-bag" type="button">Add to basket</button>
               </div>
             </article>
             <article class="product-card" data-product-id="relaxing-shea" data-product-name="Relaxing Shea" data-product-price="15.99">
-              <img src="./assets/Nanas%20Mama/20250324-20250324_194016.jpg" alt="Relaxing Shea">
+              <button class="favorite-button" type="button" aria-label="Add Relaxing Shea to favorites">♡</button>
+              <img src="./assets/Nanas%20Mama/relaxing-shea-jar-3.jpg" alt="Relaxing Shea">
               <div class="product-copy">
+                <p class="product-brand">Nana's Mama</p>
                 <h3>Relaxing Shea</h3>
-                <p>A calming blend designed for soft skin and a slower ritual.</p>
-                <strong>$15.99</strong>
-                <button class="button button-primary add-to-basket" type="button">Add to basket</button>
+                <strong class="product-price">$15.99</strong>
+                <button class="button add-to-basket add-to-bag" type="button">Add to basket</button>
               </div>
             </article>
             <article class="product-card" data-product-id="clearing-shea" data-product-name="Clearing Shea" data-product-price="15.99">
-              <img src="./assets/Nanas%20Mama/20250324-20250324_194049.jpg" alt="Clearing Shea">
+              <button class="favorite-button" type="button" aria-label="Add Clearing Shea to favorites">♡</button>
+              <img src="./assets/Nanas%20Mama/clearing-shea-jar-3.jpg" alt="Clearing Shea">
               <div class="product-copy">
+                <p class="product-brand">Nana's Mama</p>
                 <h3>Clearing Shea</h3>
-                <p>Clarifying moisture support for breakout-prone skin.</p>
-                <strong>$15.99</strong>
-                <button class="button button-primary add-to-basket" type="button">Add to basket</button>
-              </div>
-            </article>
-            <article class="product-card" data-product-id="african-black-soap" data-product-name="African Black Soap" data-product-price="16.00">
-              <img src="./assets/Nanas%20Mama/20250324-20250324_194122.jpg" alt="African black soap">
-              <div class="product-copy">
-                <h3>African Black Soap</h3>
-                <p>Traditional cleansing with a balanced, skin-loving finish.</p>
-                <strong>$16.00</strong>
-                <button class="button button-primary add-to-basket" type="button">Add to basket</button>
+                <strong class="product-price">$15.99</strong>
+                <button class="button add-to-basket add-to-bag" type="button">Add to basket</button>
               </div>
             </article>
           </div>
@@ -176,25 +184,28 @@
 
       <section id="categories" class="categories">
         <div class="container category-grid">
-          <article class="category-card">
+          <a class="category-card" href="./products.html#skin-care">
             <p>Skin Care Products</p>
             <h2>Skin Care</h2>
-          </article>
-          <article class="category-card">
-            <p>Skin Care Products</p>
+            <span class="category-link">Shop section</span>
+          </a>
+          <a class="category-card" href="./products.html#hair-care">
+            <p>Hair Care Products</p>
             <h2>Hair Care</h2>
-          </article>
-          <article class="category-card">
-            <p>Skin Care Products</p>
+            <span class="category-link">Shop section</span>
+          </a>
+          <a class="category-card" href="./products.html#bath-body">
+            <p>Bath &amp; Body Products</p>
             <h2>Bath &amp; Body</h2>
-          </article>
+            <span class="category-link">Shop section</span>
+          </a>
         </div>
       </section>
 
       <section id="story" class="story">
         <div class="container story-grid">
           <div class="story-media">
-            <img src="./assets/Nanas%20Mama/20250324-20250324_193511.jpg" alt="Nana's Mama product set">
+            <img src="./assets/Nanas%20Mama/hair-shea-lifestyle-1.jpg" alt="Nana's Mama product set">
           </div>
           <div class="story-copy">
             <p class="eyebrow">Rooted in heritage</p>
@@ -363,14 +374,15 @@
         <div>
           <h2>Useful Links</h2>
           <a href="#story">About Us</a>
+          <a href="./favorites.html">Favorites</a>
           <a href="#contact">Contact Us</a>
           <a href="#faq">FAQs</a>
         </div>
         <div>
           <h2>Categories</h2>
-          <a href="#categories">Bath &amp; Body</a>
-          <a href="#categories">Skin Care</a>
-          <a href="#categories">Hair Care</a>
+          <a href="./products.html#bath-body">Bath &amp; Body</a>
+          <a href="./products.html#skin-care">Skin Care</a>
+          <a href="./products.html#hair-care">Hair Care</a>
         </div>
       </div>
       <div class="footer-bar">
@@ -379,6 +391,6 @@
     </footer>
   </div>
 
-  <script src="./mama.js"></script>
+  <script type="module" src="./main.js"></script>
 </body>
 </html>

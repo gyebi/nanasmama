@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nana's Mama Products</title>
+  <meta
+    name="description"
+    content="Browse Nana's Mama products by Skin Care, Hair Care, and Bath and Body. Explore handcrafted shea blends and everyday essentials."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="./index.html#top" aria-label="Nana's Mama home">
+          <img src="./assets/nanasmama-logo.png" alt="Nana's Mama logo">
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          Menu
+        </button>
+
+        <nav id="site-nav" class="site-nav" aria-label="Primary">
+          <a href="./index.html#hero">Home</a>
+          <a href="./index.html#faq">FAQ</a>
+          <a href="./index.html#story">About Us</a>
+          <a href="./index.html#contact">Contact Us</a>
+        </nav>
+        <div class="header-actions">
+          <a class="favorites-link icon-link" href="./favorites.html" aria-label="View favorites">
+            <span class="icon-glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 20.25c-4.48-2.58-7.25-5.32-7.25-8.93A4.3 4.3 0 0 1 9 7a4.5 4.5 0 0 1 3 1.49A4.5 4.5 0 0 1 15 7a4.3 4.3 0 0 1 4.25 4.32c0 3.61-2.77 6.35-7.25 8.93Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
+              </svg>
+            </span>
+            <span class="sr-only">Favorites</span>
+            <span class="favorites-count" data-favorites-count>0</span>
+          </a>
+          <button class="basket-toggle icon-button" type="button" aria-label="Open basket" aria-expanded="false" aria-controls="basket-panel">
+            <span class="icon-glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 10V8.5a4 4 0 1 1 8 0V10" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
+                <path d="M5.5 10h13l-1 9.5a1.75 1.75 0 0 1-1.74 1.5H8.24A1.75 1.75 0 0 1 6.5 19.5Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"/>
+              </svg>
+            </span>
+            <span class="sr-only">Basket</span>
+            <span class="basket-count" data-basket-count>0</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <aside id="basket-panel" class="basket-panel" aria-label="Shopping basket">
+      <div class="basket-panel-header">
+        <div>
+          <p class="eyebrow">Your order</p>
+          <h2>Basket</h2>
+        </div>
+        <button class="basket-close" type="button" aria-label="Close basket">Close</button>
+      </div>
+      <div class="basket-items" data-basket-items>
+        <p class="basket-empty">Your basket is empty.</p>
+      </div>
+      <div class="basket-summary">
+        <div class="basket-row">
+          <span>Subtotal</span>
+          <strong data-basket-subtotal>$0.00</strong>
+        </div>
+        <div class="basket-row">
+          <span>Shipping</span>
+          <strong data-basket-shipping>$7.00</strong>
+        </div>
+        <div class="basket-row basket-row-total">
+          <span>Total</span>
+          <strong data-basket-total>$0.00</strong>
+        </div>
+        <a class="button button-primary basket-checkout-link" href="./index.html#checkout">Proceed to checkout</a>
+      </div>
+    </aside>
+
+    <main id="top">
+      <section class="page-intro">
+        <div class="container page-intro-grid">
+          <div class="page-intro-panel">
+            <p class="eyebrow">Shop by collection</p>
+            <h1>Explore Every Nana's Mama Product</h1>
+            <p class="lede">
+              Browse our collection in clear sections so customers can move straight to what they need:
+              skin nourishment, hair care, or bath and body essentials.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#skin-care">Start with Skin Care</a>
+              <a class="button button-secondary" href="./index.html#story">Read Our Story</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="products">
+        <div class="container section-stack">
+          <section id="skin-care" class="product-section">
+            <div class="section-intro">
+              <p class="eyebrow">Skin Care</p>
+              <h2>Daily moisture, glow, and gentle support</h2>
+              <p class="lede">For softening dry skin, supporting clarity, and building a simple ritual around rich shea-based care.</p>
+            </div>
+            <div class="product-grid product-section-grid">
+              <article class="product-card" data-product-id="shea-butter" data-product-name="Shea Butter" data-product-price="15.99">
+                <button class="favorite-button" type="button" aria-label="Add Shea Butter to favorites">♡</button>
+                <img src="./assets/Nanas%20Mama/shea-butter-jar-2.jpg" alt="Shea Butter">
+                <div class="product-copy">
+                  <p class="product-brand">Nana's Mama</p>
+                  <h3>Shea Butter</h3>
+                  <p class="product-summary">A rich everyday moisturizer for dry skin, rough patches, and lasting softness.</p>
+                  <strong class="product-price">$15.99</strong>
+                  <button class="button add-to-basket add-to-bag" type="button">Add to basket</button>
+                </div>
+              </article>
+              <article class="product-card" data-product-id="relaxing-shea" data-product-name="Relaxing Shea" data-product-price="15.99">
+                <button class="favorite-button" type="button" aria-label="Add Relaxing Shea to favorites">♡</button>
+                <img src="./assets/Nanas%20Mama/relaxing-shea-jar-3.jpg" alt="Relaxing Shea">
+                <div class="product-copy">
+                  <p class="product-brand">Nana's Mama</p>
+                  <h3>Relaxing Shea</h3>
+                  <p class="product-summary">A calming shea blend made to support evening routines and deeply comfort skin.</p>
+                  <strong class="product-price">$15.99</strong>
+                  <button class="button add-to-basket add-to-bag" type="button">Add to basket</button>
+                </div>
+              </article>
+              <article class="product-card" data-product-id="clearing-shea" data-product-name="Clearing Shea" data-product-price="15.99">
+                <button class="favorite-button" type="button" aria-label="Add Clearing Shea to favorites">♡</button>
+                <img src="./assets/Nanas%20Mama/clearing-shea-jar-3.jpg" alt="Clearing Shea">
+                <div class="product-copy">
+                  <p class="product-brand">Nana's Mama</p>
+                  <h3>Clearing Shea</h3>
+                  <p class="product-summary">A lightweight-feeling moisture blend created for clearer-looking, balanced skin.</p>
+                  <strong class="product-price">$15.99</strong>
+                  <button class="button add-to-basket add-to-bag" type="button">Add to basket</button>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section id="hair-care" class="product-section">
+            <div class="section-intro">
+              <p class="eyebrow">Hair Care</p>
+              <h2>Moisture-first care for scalp and strands</h2>
+              <p class="lede">Built around rich nourishment for textured hair, protective styles, and everyday scalp comfort.</p>
+            </div>
+            <div class="product-grid product-section-grid">
+              <article class="product-card" data-product-id="hair-shea" data-product-name="Hair Shea" data-product-price="15.99">
+                <button class="favorite-button" type="button" aria-label="Add Hair Shea to favorites">♡</button>
+                <img src="./assets/Nanas%20Mama/hair-shea-jar-4.jpg" alt="Hair Shea">
+                <div class="product-copy">
+                  <p class="product-brand">Nana's Mama</p>
+                  <h3>Hair Shea</h3>
+                  <p class="product-summary">Helps lock in moisture for textured hair, dry ends, and a more comfortable scalp.</p>
+                  <strong class="product-price">$15.99</strong>
+                  <button class="button add-to-basket add-to-bag" type="button">Add to basket</button>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section id="bath-body" class="product-section">
+            <div class="section-intro">
+              <p class="eyebrow">Bath &amp; Body</p>
+              <h2>Cleansing essentials for the full-body routine</h2>
+              <p class="lede">Traditional staples designed to leave skin clean, comfortable, and ready for moisture.</p>
+            </div>
+            <div class="product-grid product-section-grid">
+              <article class="product-card" data-product-id="african-black-soap" data-product-name="African Black Soap" data-product-price="16.00">
+                <button class="favorite-button" type="button" aria-label="Add African Black Soap to favorites">♡</button>
+                <img src="./assets/Nanas%20Mama/african-black-soap.webp" alt="African Black Soap">
+                <div class="product-copy">
+                  <p class="product-brand">Nana's Mama</p>
+                  <h3>African Black Soap</h3>
+                  <p class="product-summary">A cleansing staple that leaves skin feeling refreshed, clean, and ready for moisture.</p>
+                  <strong class="product-price">$16.00</strong>
+                  <button class="button add-to-basket add-to-bag" type="button">Add to basket</button>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact" class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <img class="footer-logo" src="./assets/nanasmama-logo.png" alt="Nana's Mama logo">
+          <p>Pure, handcrafted care rooted in Ghanaian heritage.</p>
+        </div>
+        <div>
+          <h2>Useful Links</h2>
+          <a href="./index.html#story">About Us</a>
+          <a href="./index.html#contact">Contact Us</a>
+          <a href="./favorites.html">Favorites</a>
+          <a href="./index.html#faq">FAQs</a>
+        </div>
+        <div>
+          <h2>Categories</h2>
+          <a href="#bath-body">Bath &amp; Body</a>
+          <a href="#skin-care">Skin Care</a>
+          <a href="#hair-care">Hair Care</a>
+        </div>
+      </div>
+      <div class="footer-bar">
+        <p>Copyright &copy; 2026 nanasmama.com</p>
+      </div>
+    </footer>
+  </div>
+
+  <div class="favorite-modal" data-favorite-modal hidden>
+    <div class="favorite-modal-backdrop" data-favorite-close></div>
+    <div class="favorite-modal-card" role="dialog" aria-modal="true" aria-labelledby="favorite-modal-title">
+      <button class="favorite-modal-close" type="button" aria-label="Close sign in dialog" data-favorite-close>Close</button>
+      <p class="eyebrow">Save your picks</p>
+      <h2 id="favorite-modal-title">Sign in to keep your favorites</h2>
+      <p class="favorite-modal-copy">
+        Save <strong data-favorite-product-name>this product</strong> to your favorites so you can come back to it later.
+      </p>
+      <form class="favorite-login-form" data-favorite-login-form>
+        <label>
+          First name
+          <input type="text" name="name" autocomplete="given-name" required>
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+        <button class="button button-primary" type="submit">Sign in and save favorite</button>
+      </form>
+      <p class="favorite-modal-note">Demo sign-in only. This helps turn interest into a saved favorites list.</p>
+    </div>
+  </div>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
