@@ -1034,7 +1034,6 @@ h1 {
   line-height: 1;
 }
 
-.social-link > i,
 .social-icon {
   display: inline-flex;
   align-items: center;
@@ -1047,7 +1046,6 @@ h1 {
   line-height: 1;
 }
 
-.social-link > i,
 .social-icon i {
   display: block;
   line-height: 1;
