@@ -26,12 +26,11 @@
         <a class="brand" href="./index.html#top" aria-label="Nana's Mama home">
           <img src="./assets/nanasmama-logo.png" alt="Nana's Mama logo">
         </a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-          Menu
-        </button>
 
         <nav id="site-nav" class="site-nav" aria-label="Primary">
           <a href="./index.html#hero">Home</a>
+          <a href="./products.html">Products</a>
+          <a href="./gifts.html">Gifts</a>
           <a href="./index.html#faq">FAQ</a>
           <a href="./index.html#story">About Us</a>
           <a href="./index.html#contact">Contact Us</a>
@@ -55,6 +54,16 @@
             </span>
             <span class="sr-only">Basket</span>
             <span class="basket-count" data-basket-count>0</span>
+          </button>
+          <button class="menu-toggle icon-button" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-nav">
+            <span class="icon-glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 7h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"/>
+                <path d="M4 12h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"/>
+                <path d="M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"/>
+              </svg>
+            </span>
+            <span class="sr-only">Menu</span>
           </button>
         </div>
       </div>
@@ -95,8 +104,7 @@
             <p class="eyebrow">Shop by collection</p>
             <h1>Explore Every Nana's Mama Product</h1>
             <p class="lede">
-              Browse our collection in clear sections so customers can move straight to what they need:
-              skin nourishment, hair care, or bath and body essentials.
+              Browse our collection of skin nourishment, hair care, or bath and body essentials.
             </p>
             <div class="hero-actions">
               <a class="button button-primary" href="#skin-care">Start with Skin Care</a>
@@ -122,40 +130,99 @@
               <h2>Daily moisture, glow, and gentle support</h2>
               <p class="lede">For softening dry skin, supporting clarity, and building a simple ritual around rich shea-based care.</p>
             </div>
-            <div class="product-grid product-section-grid">
-              <article class="product-card" data-product-id="shea-butter" data-product-name="Shea Butter" data-product-price="15.99">
-                <button class="favorite-button" type="button" aria-label="Add Shea Butter to favorites">♡</button>
+            <div class="size-group">
+              <button class="size-group-label" type="button" disabled>Big Size</button>
+              <div class="product-grid product-section-grid">
+              <article class="product-card" data-product-id="shea-butter-big" data-product-name="Shea Butter 8.5 oz" data-product-price="15.99">
+                <button class="favorite-button" type="button" aria-label="Add Shea Butter 8.5 oz to favorites">♡</button>
                 <img src="./assets/Nanas%20Mama/shea-butter-jar-2.jpg" alt="Shea Butter">
                 <div class="product-copy">
                   <p class="product-brand">Nana's Mama</p>
                   <h3>Shea Butter</h3>
                   <p class="product-summary">A rich everyday moisturizer for dry skin, rough patches, and lasting softness.</p>
-                  <strong class="product-price">$15.99</strong>
+                  <div class="price-weight-row">
+                    <strong class="product-price">$15.99</strong>
+                    <strong class="product-weight">Net Wt. 8.5oz</strong>
+                  </div>
                   <button class="button add-to-basket add-to-bag" type="button">Add to basket</button>
                 </div>
               </article>
-              <article class="product-card" data-product-id="relaxing-shea" data-product-name="Relaxing Shea" data-product-price="15.99">
-                <button class="favorite-button" type="button" aria-label="Add Relaxing Shea to favorites">♡</button>
+              <article class="product-card" data-product-id="relaxing-shea-big" data-product-name="Relaxing Shea 8.5 oz" data-product-price="15.99">
+                <button class="favorite-button" type="button" aria-label="Add Relaxing Shea 8.5 oz to favorites">♡</button>
                 <img src="./assets/Nanas%20Mama/relaxing-shea-jar-3.jpg" alt="Relaxing Shea">
                 <div class="product-copy">
                   <p class="product-brand">Nana's Mama</p>
                   <h3>Relaxing Shea</h3>
                   <p class="product-summary">A calming shea blend made to support evening routines and deeply comfort skin.</p>
-                  <strong class="product-price">$15.99</strong>
+                  <div class="price-weight-row">
+                    <strong class="product-price">$15.99</strong>
+                    <strong class="product-weight">Net Wt. 8.5oz</strong>
+                  </div>
                   <button class="button add-to-basket add-to-bag" type="button">Add to basket</button>
                 </div>
               </article>
-              <article class="product-card" data-product-id="clearing-shea" data-product-name="Clearing Shea" data-product-price="15.99">
-                <button class="favorite-button" type="button" aria-label="Add Clearing Shea to favorites">♡</button>
+              <article class="product-card" data-product-id="clearing-shea-big" data-product-name="Clearing Shea 8.5 oz" data-product-price="15.99">
+                <button class="favorite-button" type="button" aria-label="Add Clearing Shea 8.5 oz to favorites">♡</button>
                 <img src="./assets/Nanas%20Mama/clearing-shea-jar-3.jpg" alt="Clearing Shea">
                 <div class="product-copy">
                   <p class="product-brand">Nana's Mama</p>
                   <h3>Clearing Shea</h3>
                   <p class="product-summary">A lightweight-feeling moisture blend created for clearer-looking, balanced skin.</p>
-                  <strong class="product-price">$15.99</strong>
+                  <div class="price-weight-row">
+                    <strong class="product-price">$15.99</strong>
+                    <strong class="product-weight">Net Wt. 8.5oz</strong>
+                  </div>
                   <button class="button add-to-basket add-to-bag" type="button">Add to basket</button>
                 </div>
               </article>
+              </div>
+            </div>
+            <div class="size-group">
+              <button class="size-group-label" type="button" disabled>Small Size</button>
+              <div class="product-grid product-section-grid">
+              <article class="product-card" data-product-id="shea-butter-small" data-product-name="Shea Butter 5.5 oz" data-product-price="8.50">
+                <button class="favorite-button" type="button" aria-label="Add Shea Butter 5.5 oz to favorites">♡</button>
+                <img src="./assets/Nanas%20Mama/shea-butter-jar-2.jpg" alt="Shea Butter">
+                <div class="product-copy">
+                  <p class="product-brand">Nana's Mama</p>
+                  <h3>Shea Butter</h3>
+                  <p class="product-summary">A rich everyday moisturizer for dry skin, rough patches, and lasting softness.</p>
+                  <div class="price-weight-row">
+                    <strong class="product-price">$8.50</strong>
+                    <strong class="product-weight">Net Wt. 5.5oz</strong>
+                  </div>
+                  <button class="button add-to-basket add-to-bag" type="button">Add to basket</button>
+                </div>
+              </article>
+              <article class="product-card" data-product-id="relaxing-shea-small" data-product-name="Relaxing Shea 5.5 oz" data-product-price="8.50">
+                <button class="favorite-button" type="button" aria-label="Add Relaxing Shea 5.5 oz to favorites">♡</button>
+                <img src="./assets/Nanas%20Mama/relaxing-shea-jar-3.jpg" alt="Relaxing Shea">
+                <div class="product-copy">
+                  <p class="product-brand">Nana's Mama</p>
+                  <h3>Relaxing Shea</h3>
+                  <p class="product-summary">A calming shea blend made to support evening routines and deeply comfort skin.</p>
+                  <div class="price-weight-row">
+                    <strong class="product-price">$8.50</strong>
+                    <strong class="product-weight">Net Wt. 5.5oz</strong>
+                  </div>
+                  <button class="button add-to-basket add-to-bag" type="button">Add to basket</button>
+                </div>
+              </article>
+              <article class="product-card" data-product-id="clearing-shea-small" data-product-name="Clearing Shea 5.5 oz" data-product-price="8.50">
+                <button class="favorite-button" type="button" aria-label="Add Clearing Shea 5.5 oz to favorites">♡</button>
+                <img src="./assets/Nanas%20Mama/clearing-shea-jar-3.jpg" alt="Clearing Shea">
+                <div class="product-copy">
+                  <p class="product-brand">Nana's Mama</p>
+                  <h3>Clearing Shea</h3>
+                  <p class="product-summary">A lightweight-feeling moisture blend created for clearer-looking, balanced skin.</p>
+                  <div class="price-weight-row">
+                    <strong class="product-price">$8.50</strong>
+                    <strong class="product-weight">Net Wt. 5.5oz</strong>
+                  </div>
+                  <button class="button add-to-basket add-to-bag" type="button">Add to basket</button>
+                </div>
+              </article>
+              </div>
             </div>
           </section>
 
@@ -166,18 +233,43 @@
               <h2>Moisture-first care for scalp and strands</h2>
               <p class="lede">Built around rich nourishment for textured hair, protective styles, and everyday scalp comfort.</p>
             </div>
-            <div class="product-grid product-section-grid">
-              <article class="product-card" data-product-id="hair-shea" data-product-name="Hair Shea" data-product-price="15.99">
-                <button class="favorite-button" type="button" aria-label="Add Hair Shea to favorites">♡</button>
+            <div class="size-group">
+              <button class="size-group-label" type="button" disabled>Big Size</button>
+              <div class="product-grid product-section-grid">
+              <article class="product-card" data-product-id="hair-shea-big" data-product-name="Hair Shea 8.5 oz" data-product-price="15.99">
+                <button class="favorite-button" type="button" aria-label="Add Hair Shea 8.5 oz to favorites">♡</button>
                 <img src="./assets/Nanas%20Mama/hair-shea-jar-4.jpg" alt="Hair Shea">
                 <div class="product-copy">
                   <p class="product-brand">Nana's Mama</p>
                   <h3>Hair Shea</h3>
                   <p class="product-summary">Helps lock in moisture for textured hair, dry ends, and a more comfortable scalp.</p>
-                  <strong class="product-price">$15.99</strong>
+                  <div class="price-weight-row">
+                    <strong class="product-price">$15.99</strong>
+                    <strong class="product-weight">Net Wt. 8.5oz</strong>
+                  </div>
                   <button class="button add-to-basket add-to-bag" type="button">Add to basket</button>
                 </div>
               </article>
+              </div>
+            </div>
+            <div class="size-group">
+              <button class="size-group-label" type="button" disabled>Small Size</button>
+              <div class="product-grid product-section-grid">
+              <article class="product-card" data-product-id="hair-shea-small" data-product-name="Hair Shea 5.5 oz" data-product-price="8.50">
+                <button class="favorite-button" type="button" aria-label="Add Hair Shea 5.5 oz to favorites">♡</button>
+                <img src="./assets/Nanas%20Mama/hair-shea-jar-4.jpg" alt="Hair Shea">
+                <div class="product-copy">
+                  <p class="product-brand">Nana's Mama</p>
+                  <h3>Hair Shea</h3>
+                  <p class="product-summary">Helps lock in moisture for textured hair, dry ends, and a more comfortable scalp.</p>
+                  <div class="price-weight-row">
+                    <strong class="product-price">$8.50</strong>
+                    <strong class="product-weight">Net Wt. 5.5oz</strong>
+                  </div>
+                  <button class="button add-to-basket add-to-bag" type="button">Add to basket</button>
+                </div>
+              </article>
+              </div>
             </div>
           </section>
 
@@ -188,18 +280,43 @@
               <h2>Cleansing essentials for the full-body routine</h2>
               <p class="lede">Traditional staples designed to leave skin clean, comfortable, and ready for moisture.</p>
             </div>
-            <div class="product-grid product-section-grid">
-              <article class="product-card" data-product-id="african-black-soap" data-product-name="African Black Soap" data-product-price="16.00">
-                <button class="favorite-button" type="button" aria-label="Add African Black Soap to favorites">♡</button>
+            <div class="size-group">
+              <button class="size-group-label" type="button" disabled>Big Size</button>
+              <div class="product-grid product-section-grid">
+              <article class="product-card" data-product-id="african-black-soap-big" data-product-name="African Black Soap 8.5 oz" data-product-price="16.00">
+                <button class="favorite-button" type="button" aria-label="Add African Black Soap 8.5 oz to favorites">♡</button>
                 <img src="./assets/Nanas%20Mama/african-black-soap.webp" alt="African Black Soap">
                 <div class="product-copy">
                   <p class="product-brand">Nana's Mama</p>
                   <h3>African Black Soap</h3>
                   <p class="product-summary">A cleansing staple that leaves skin feeling refreshed, clean, and ready for moisture.</p>
-                  <strong class="product-price">$16.00</strong>
+                  <div class="price-weight-row">
+                    <strong class="product-price">$16.00</strong>
+                    <strong class="product-weight">Net Wt. 8.5oz</strong>
+                  </div>
                   <button class="button add-to-basket add-to-bag" type="button">Add to basket</button>
                 </div>
               </article>
+              </div>
+            </div>
+            <div class="size-group">
+              <button class="size-group-label" type="button" disabled>Small Size</button>
+              <div class="product-grid product-section-grid">
+              <article class="product-card" data-product-id="african-black-soap-small" data-product-name="African Black Soap 5.5 oz" data-product-price="8.50">
+                <button class="favorite-button" type="button" aria-label="Add African Black Soap 5.5 oz to favorites">♡</button>
+                <img src="./assets/Nanas%20Mama/african-black-soap.webp" alt="African Black Soap">
+                <div class="product-copy">
+                  <p class="product-brand">Nana's Mama</p>
+                  <h3>African Black Soap</h3>
+                  <p class="product-summary">A cleansing staple that leaves skin feeling refreshed, clean, and ready for moisture.</p>
+                  <div class="price-weight-row">
+                    <strong class="product-price">$8.50</strong>
+                    <strong class="product-weight">Net Wt. 5.5oz</strong>
+                  </div>
+                  <button class="button add-to-basket add-to-bag" type="button">Add to basket</button>
+                </div>
+              </article>
+              </div>
             </div>
           </section>
         </div>
@@ -224,16 +341,17 @@
           <a href="#bath-body">Bath &amp; Body</a>
           <a href="#skin-care">Skin Care</a>
           <a href="#hair-care">Hair Care</a>
+          <a href="./gifts.html">Gifts</a>
           <div class="footer-icon-row">
             <div class="social-links" aria-label="Social media links">
-              <span class="social-link" title="Phone">
+              <a class="social-link" href="tel:+16156935409" title="Call +1 (615) 693-5409" aria-label="Call +1 (615) 693-5409">
                 <span class="social-icon" aria-hidden="true"><i class="fa-solid fa-phone"></i></span>
                 <span class="sr-only">Phone</span>
-              </span>
-              <span class="social-link" title="Email">
+              </a>
+              <a class="social-link" href="mailto:Nanasmamashea@gmail.com" title="Email Nanasmamashea@gmail.com" aria-label="Email Nanasmamashea@gmail.com">
                 <span class="social-icon" aria-hidden="true"><i class="fa-regular fa-envelope"></i></span>
                 <span class="sr-only">Email</span>
-              </span>
+              </a>
               <a class="social-link" href="https://www.instagram.com/nanas_mama.3?igsh=ajlncDlsejd2dno5" target="_blank" rel="noreferrer noopener" aria-label="Instagram">
                 <span class="social-icon" aria-hidden="true"><i class="fa-brands fa-instagram"></i></span>
               </a>

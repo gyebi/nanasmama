@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nana's Mama Favorites</title>
+  <title>Nana's Mama Gifts</title>
   <link rel="icon" type="image/png" href="./assets/nanasmama-logo.png">
   <meta
     name="description"
-    content="Sign in to view your Nana's Mama favorites and come back to the products you want to save for later."
+    content="Explore thoughtful Nana's Mama gifts, self-care sets, and meaningful bundles crafted to make everyday care feel special."
   >
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,6 +18,157 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   >
+  <style>
+    .gifts-hero-section {
+      padding: 0;
+    }
+
+    .gifts-hero-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 560px;
+      padding: 0;
+      border-radius: 0;
+      border: 0;
+      box-shadow: none;
+      background: rgba(255, 250, 244, 0.82);
+      isolation: isolate;
+    }
+
+    .gifts-hero-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      object-fit: cover;
+    }
+
+    .gifts-hero-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(38, 27, 18, 0.18) 0%, rgba(38, 27, 18, 0.1) 45%, rgba(38, 27, 18, 0.78) 100%),
+        radial-gradient(circle at center, rgba(255, 255, 255, 0.08), transparent 48%);
+      z-index: 1;
+    }
+
+    .gifts-hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 1.6rem 3rem 2.5rem;
+      color: #fffaf4;
+    }
+
+    .gifts-hero-content {
+      width: min(460px, 100%);
+      text-align: left;
+    }
+
+    .gifts-hero-content .eyebrow {
+      color: rgba(255, 250, 244, 0.86);
+      margin-bottom: 1rem;
+    }
+
+    .gifts-hero-title {
+      max-width: 11ch;
+      font-size: clamp(2.6rem, 5vw, 4.9rem);
+      margin-bottom: 1rem;
+      text-shadow: 0 12px 30px rgba(27, 18, 12, 0.28);
+      transform-origin: center;
+      animation: gifts-title-bloom 14s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+
+    .gifts-hero-copy {
+      margin: 0;
+      color: rgba(255, 250, 244, 0.92);
+      font-size: 1.1rem;
+      line-height: 1.7;
+      text-shadow: 0 10px 28px rgba(27, 18, 12, 0.22);
+      transform: translateY(20%);
+    }
+
+    .gifts-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1.5rem;
+      transform: translateY(20%);
+    }
+
+    .gifts-hero-actions .button-secondary {
+      border-color: rgba(255, 250, 244, 0.35);
+      background: rgba(255, 250, 244, 0.12);
+      color: #fffaf4;
+    }
+
+    @keyframes gifts-title-bloom {
+      0% {
+        transform: scale(1);
+      }
+
+      100% {
+        transform: scale(1.18);
+      }
+    }
+
+    @media (max-width: 860px) {
+      .gifts-hero-card img {
+        min-height: 460px;
+      }
+
+      .gifts-hero-overlay {
+        align-items: flex-start;
+        justify-content: flex-end;
+        padding: 1.6rem 2rem 2.2rem;
+      }
+
+      .gifts-hero-content {
+        width: min(420px, 100%);
+        text-align: left;
+      }
+
+      .gifts-hero-copy {
+        transform: translateY(20%);
+      }
+
+      .gifts-hero-actions {
+        justify-content: flex-start;
+        transform: translateY(20%);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .gifts-hero-section {
+        padding: 0;
+      }
+
+      .gifts-hero-overlay {
+        padding: 1.4rem;
+      }
+
+      .gifts-hero-card {
+        min-height: 420px;
+      }
+
+      .gifts-hero-title {
+        font-size: clamp(2.3rem, 9vw, 3.5rem);
+      }
+
+      .gifts-hero-actions {
+        justify-content: center;
+        transform: none;
+      }
+
+      .gifts-hero-copy {
+        transform: none;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="page-shell">
@@ -31,11 +182,12 @@
           <a href="./index.html#hero">Home</a>
           <a href="./products.html">Products</a>
           <a href="./gifts.html">Gifts</a>
+          <a href="./index.html#faq">FAQ</a>
           <a href="./index.html#story">About Us</a>
           <a href="./index.html#contact">Contact Us</a>
         </nav>
         <div class="header-actions">
-          <a class="favorites-link icon-link" href="./favorites.html" aria-current="page" aria-label="View favorites">
+          <a class="favorites-link icon-link" href="./favorites.html" aria-label="View favorites">
             <span class="icon-glyph" aria-hidden="true">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 20.25c-4.48-2.58-7.25-5.32-7.25-8.93A4.3 4.3 0 0 1 9 7a4.5 4.5 0 0 1 3 1.49A4.5 4.5 0 0 1 15 7a4.3 4.3 0 0 1 4.25 4.32c0 3.61-2.77 6.35-7.25 8.93Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
@@ -97,64 +249,73 @@
     </aside>
 
     <main id="top">
-      <section class="page-intro">
-        <div class="container page-intro-grid">
-          <div class="page-intro-panel">
-            <p class="eyebrow">Your saved list</p>
-            <h1>Favorites</h1>
-            <p class="lede">
-              Sign in to keep track of the products you love, revisit them later, and move them into your basket whenever you're ready.
-            </p>
-            <div class="hero-actions">
-              <a class="button button-primary" href="./products.html">Keep shopping</a>
-              <button class="button button-secondary favorites-signout" type="button" data-favorites-signout hidden>Sign out</button>
+      <section class="gifts-hero-section">
+        <aside class="gifts-hero-card" aria-label="Featured Nana's Mama gift image">
+          <img src="./assets/gifts/gift-hero-3.png" alt="Nana's Mama gift set styled for gifting">
+          <div class="gifts-hero-overlay">
+            <div class="gifts-hero-content">
+              <h1 class="gifts-hero-title">Gifts That Feel Personal</h1>
+              <p class="gifts-hero-copy">
+                Discover warm, thoughtful Nana's Mama picks for birthdays, thank-yous, care packages,
+                and everyday surprises rooted in handmade Ghanaian care.
+              </p>
+              <div class="gifts-hero-actions">
+                <a class="button button-primary" href="#gift-ideas">Browse gift ideas</a>
+              </div>
             </div>
           </div>
-          <div class="section-note favorites-account-note" data-favorites-account-note>
-            <p>
-              Your favorites list is saved to this browser after sign-in, making it easy to bring interested visitors back to the products they were considering.
-            </p>
+        </aside>
+      </section>
+
+      <section id="gift-ideas" class="gift-ideas">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Shop by mood</p>
+              <h2>Thoughtful gift ideas</h2>
+            </div>
+          </div>
+          <div class="gift-ideas-grid">
+            <a class="gift-idea-card" href="./products.html#skin-care">
+              <img src="./assets/Nanas%20Mama/shea-butter-jar-2.jpg" alt="Skin care gift idea">
+              <div class="gift-idea-copy">
+                <p>For glowing skin</p>
+                <h3>Radiance Gift Pick</h3>
+                <span class="gift-idea-link">Shop skin care</span>
+              </div>
+            </a>
+            <a class="gift-idea-card" href="./products.html#hair-care">
+              <img src="./assets/Nanas%20Mama/hair-shea-jar-4.jpg" alt="Hair care gift idea">
+              <div class="gift-idea-copy">
+                <p>For healthy hair rituals</p>
+                <h3>Hair Care Gift Pick</h3>
+                <span class="gift-idea-link">Shop hair care</span>
+              </div>
+            </a>
+            <a class="gift-idea-card" href="./products.html#bath-body">
+              <img src="./assets/Nanas%20Mama/african-black-soap.webp" alt="Bath and body gift idea">
+              <div class="gift-idea-copy">
+                <p>For quiet reset moments</p>
+                <h3>Bath &amp; Body Gift Pick</h3>
+                <span class="gift-idea-link">Shop bath &amp; body</span>
+              </div>
+            </a>
           </div>
         </div>
       </section>
 
-      <section class="favorites-page">
-        <div class="container favorites-layout">
-          <section class="favorites-auth-card" data-favorites-auth-card>
-            <p class="eyebrow">Member sign in</p>
-            <h2>Save and revisit your picks</h2>
-            <p class="lede">
-              Create a quick account to unlock your favorites page. We only ask for a name and email in this demo.
-            </p>
-            <form class="favorite-login-form" data-favorites-login-form>
-              <label>
-                First name
-                <input type="text" name="name" autocomplete="given-name" required>
-              </label>
-              <label>
-                Email
-                <input type="email" name="email" autocomplete="email" required>
-              </label>
-              <button class="button button-primary" type="submit">Sign in to view favorites</button>
-            </form>
-            <p class="favorite-modal-note">Returning visitors can sign in on this page to reopen their saved list.</p>
-          </section>
-
-          <section class="favorites-board" data-favorites-board hidden>
-            <div class="section-heading favorites-heading">
-              <div>
-                <p class="eyebrow">Saved for later</p>
-                <h2 data-favorites-greeting>Your favorites</h2>
-              </div>
-              <a class="button button-secondary" href="./products.html">Browse more products</a>
+      <section class="gift-note-strip">
+        <div class="container">
+          <div class="gift-note-card">
+            <div>
+              <p class="eyebrow">Make it special</p>
+              <h2>Add a note and send a little love</h2>
+              <p class="lede">
+                Use our checkout notes on the home page to turn any order into a heartfelt gift.
+              </p>
             </div>
-            <div class="favorites-grid product-section-grid" data-favorites-grid></div>
-            <div class="favorites-empty-state" data-favorites-empty hidden>
-              <h3>No favorites yet</h3>
-              <p>Tap the heart on any product to save it here and encourage visitors to come back.</p>
-              <a class="button button-primary" href="./products.html">Go to products</a>
-            </div>
-          </section>
+            <a class="button button-primary" href="./index.html#checkout">Go to gift checkout</a>
+          </div>
         </div>
       </section>
     </main>
@@ -168,14 +329,16 @@
         <div>
           <h2>Useful Links</h2>
           <a href="./index.html#story">About Us</a>
+          <a href="./products.html">Products</a>
+          <a href="./gifts.html">Gifts</a>
           <a href="./favorites.html">Favorites</a>
-          <a href="./index.html#contact">Contact Us</a>
         </div>
         <div>
           <h2>Categories</h2>
           <a href="./products.html#bath-body">Bath &amp; Body</a>
           <a href="./products.html#skin-care">Skin Care</a>
           <a href="./products.html#hair-care">Hair Care</a>
+          <a href="./index.html#checkout">Gift Checkout</a>
           <div class="footer-icon-row">
             <div class="social-links" aria-label="Social media links">
               <a class="social-link" href="tel:+16156935409" title="Call +1 (615) 693-5409" aria-label="Call +1 (615) 693-5409">

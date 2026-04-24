@@ -26,15 +26,11 @@
         <a class="brand" href="#top" aria-label="Nana's Mama home">
           <img src="./assets/nanasmama-logo.png" alt="Nana's Mama logo">
         </a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-          Menu
-        </button>
-        
+
         <nav id="site-nav" class="site-nav" aria-label="Primary">
           <a href="#hero">Home</a>
-          <a href="./products.html#bath-body">Bath &amp; Body</a>
-          <a href="./products.html#hair-care">Hair Care</a>
-          <a href="./products.html#skin-care">Skin Care</a>
+          <a href="./products.html">Products</a>
+          <a href="./gifts.html">Gifts</a>
           <a href="#faq">FAQ</a>
           <a href="#story">About Us</a>
           <a href="#contact">Contact Us</a>
@@ -58,6 +54,16 @@
             </span>
             <span class="sr-only">Basket</span>
             <span class="basket-count" data-basket-count>0</span>
+          </button>
+          <button class="menu-toggle icon-button" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-nav">
+            <span class="icon-glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 7h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"/>
+                <path d="M4 12h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"/>
+                <path d="M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"/>
+              </svg>
+            </span>
+            <span class="sr-only">Menu</span>
           </button>
         </div>
       </div>
@@ -87,7 +93,7 @@
           <span>Total</span>
           <strong data-basket-total>$0.00</strong>
         </div>
-        <a class="button button-primary basket-checkout-link" href="#checkout">Proceed to checkout</a>
+        <a class="button button-primary basket-checkout-link" href="./products.html">Continue shopping</a>
       </div>
     </aside>
 
@@ -209,6 +215,28 @@
         </div>
       </section>
 
+      <section class="gift-banner-section">
+        <div class="container">
+          <a class="gift-banner" href="./gifts.html" aria-label="Explore Nana's Mama gifts">
+            <div class="gift-banner-figure gift-banner-figure-left" aria-hidden="true">
+              <img src="./assets/Nanas%20Mama/relaxing-shea-jar-1.jpg" alt="">
+            </div>
+            <div class="gift-banner-copy">
+              <p class="eyebrow">Curated gifting</p>
+              <h2>Gifts They'll Love</h2>
+              <p>
+                Thoughtful self-care bundles and meaningful wellness picks from Nana's Mama,
+                made to feel personal from the first look to the final note.
+              </p>
+              <span class="gift-banner-link">Visit the gifts page</span>
+            </div>
+            <div class="gift-banner-figure gift-banner-figure-right" aria-hidden="true">
+              <img src="./assets/Nanas%20Mama/nanas-mama-lid-detail-6.jpg" alt="">
+            </div>
+          </a>
+        </div>
+      </section>
+
       <section id="story" class="story">
         <div class="container story-grid">
           <div class="story-media">
@@ -292,84 +320,6 @@
         </div>
       </section>
 
-      <section id="checkout" class="checkout">
-        <div class="container checkout-grid">
-          <div class="checkout-copy">
-            <p class="eyebrow">Secure order</p>
-            <h2>Checkout</h2>
-            <p class="lede">Review your basket, add delivery details, and place your order.</p>
-            <div class="checkout-summary-card">
-              <div class="basket-row">
-                <span>Items</span>
-                <strong data-checkout-items>0</strong>
-              </div>
-              <div class="basket-row">
-                <span>Subtotal</span>
-                <strong data-checkout-subtotal>$0.00</strong>
-              </div>
-              <div class="basket-row">
-                <span>Shipping</span>
-                <strong data-checkout-shipping>$7.00</strong>
-              </div>
-              <div class="basket-row basket-row-total">
-                <span>Total</span>
-                <strong data-checkout-total>$0.00</strong>
-              </div>
-            </div>
-          </div>
-          <form class="checkout-form" data-checkout-form>
-            <div class="form-grid">
-              <label>
-                Full name
-                <input type="text" name="name" required>
-              </label>
-              <label>
-                Email
-                <input type="email" name="email" required>
-              </label>
-              <label>
-                Phone
-                <input type="tel" name="phone" required>
-              </label>
-              <label>
-                Country
-                <input type="text" name="country" required>
-              </label>
-              <label class="field-full">
-                Shipping address
-                <input type="text" name="address" required>
-              </label>
-              <label>
-                City
-                <input type="text" name="city" required>
-              </label>
-              <label>
-                Postal code
-                <input type="text" name="postal" required>
-              </label>
-              <label>
-                Payment method
-                <select name="payment" required>
-                  <option value="card">Credit or debit card</option>
-                  <option value="paypal">PayPal</option>
-                  <option value="delivery">Pay on delivery</option>
-                </select>
-              </label>
-              <label>
-                Card ending
-                <input type="text" name="card" maxlength="4" inputmode="numeric" placeholder="1234">
-              </label>
-              <label class="field-full">
-                Order notes
-                <textarea name="notes" rows="4" placeholder="Leave delivery instructions or gift notes here."></textarea>
-              </label>
-            </div>
-            <button class="button button-primary checkout-submit" type="submit">Place order</button>
-            <p class="checkout-note">Demo checkout only. Payments are not processed in this static version.</p>
-            <p class="checkout-message" data-checkout-message hidden></p>
-          </form>
-        </div>
-      </section>
     </main>
 
     <footer id="contact" class="site-footer">
@@ -390,16 +340,17 @@
           <a href="./products.html#bath-body">Bath &amp; Body</a>
           <a href="./products.html#skin-care">Skin Care</a>
           <a href="./products.html#hair-care">Hair Care</a>
+          <a href="./gifts.html">Gifts</a>
           <div class="footer-icon-row">
             <div class="social-links" aria-label="Social media links">
-              <span class="social-link" title="Phone">
+              <a class="social-link" href="tel:+16156935409" title="Call +1 (615) 693-5409" aria-label="Call +1 (615) 693-5409">
                 <span class="social-icon" aria-hidden="true"><i class="fa-solid fa-phone"></i></span>
                 <span class="sr-only">Phone</span>
-              </span>
-              <span class="social-link" title="Email">
+              </a>
+              <a class="social-link" href="mailto:Nanasmamashea@gmail.com" title="Email Nanasmamashea@gmail.com" aria-label="Email Nanasmamashea@gmail.com">
                 <span class="social-icon" aria-hidden="true"><i class="fa-regular fa-envelope"></i></span>
                 <span class="sr-only">Email</span>
-              </span>
+              </a>
               <a class="social-link" href="https://www.instagram.com/nanas_mama.3?igsh=ajlncDlsejd2dno5" target="_blank" rel="noreferrer noopener" aria-label="Instagram">
                 <span class="social-icon" aria-hidden="true"><i class="fa-brands fa-instagram"></i></span>
               </a>
@@ -421,7 +372,6 @@
       </div>
     </footer>
   </div>
-
   <script type="module" src="./main.js"></script>
 </body>
 </html>
