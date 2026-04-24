@@ -7,7 +7,8 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, "index.html"),
         products: resolve(__dirname, "products.html"),
-        favorites: resolve(__dirname, "favorites.html")
+        favorites: resolve(__dirname, "favorites.html"),
+        gifts: resolve(__dirname, "gifts.html")
       }
     }
   }
