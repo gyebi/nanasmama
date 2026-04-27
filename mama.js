@@ -4,11 +4,28 @@ const basketToggle = document.querySelector(".basket-toggle");
 const basketPanel = document.querySelector(".basket-panel");
 const basketClose = document.querySelector(".basket-close");
 const basketItems = document.querySelector("[data-basket-items]");
+const cartPageItems = document.querySelector("[data-cart-page-items]");
+const cartPageSummary = document.querySelector("[data-cart-page-summary]");
 const basketCount = document.querySelector("[data-basket-count]");
 const favoritesCount = document.querySelector("[data-favorites-count]");
 const basketSubtotal = document.querySelector("[data-basket-subtotal]");
 const basketShipping = document.querySelector("[data-basket-shipping]");
 const basketTotal = document.querySelector("[data-basket-total]");
+const freeShippingMessage = document.querySelector("[data-free-shipping-message]");
+const checkoutStartButton = document.querySelector("[data-checkout-start]");
+const checkoutPanel = document.querySelector("[data-checkout-close]")?.closest(".checkout-panel");
+const checkoutPanelClose = document.querySelector("[data-checkout-close]");
+const shippingForm = document.querySelector("[data-shipping-form]");
+const shippingMessage = document.querySelector("[data-shipping-message]");
+const reviewPanel = document.querySelector("[data-review-items]")?.closest(".checkout-panel");
+const reviewPanelClose = document.querySelector("[data-review-close]");
+const reviewItems = document.querySelector("[data-review-items]");
+const reviewShipping = document.querySelector("[data-review-shipping]");
+const reviewSubtotal = document.querySelector("[data-review-subtotal]");
+const reviewShippingCost = document.querySelector("[data-review-shipping-cost]");
+const reviewTotal = document.querySelector("[data-review-total]");
+const paymentStartButton = document.querySelector("[data-payment-start]");
+const paymentMessage = document.querySelector("[data-payment-message]");
 const checkoutItems = document.querySelector("[data-checkout-items]");
 const checkoutSubtotal = document.querySelector("[data-checkout-subtotal]");
 const checkoutShipping = document.querySelector("[data-checkout-shipping]");
@@ -27,10 +44,13 @@ const favoritesGreeting = document.querySelector("[data-favorites-greeting]");
 const favoritesAccountNote = document.querySelector("[data-favorites-account-note]");
 const favoritesSignoutButton = document.querySelector("[data-favorites-signout]");
 const SHIPPING_COST = 7;
+const FREE_SHIPPING_THRESHOLD = 75;
+const CART_STORAGE_KEY = "nanasmama-cart";
 const FAVORITES_STORAGE_KEY = "nanasmama-favorites";
 const FAVORITES_USER_STORAGE_KEY = "nanasmama-favorites-user";
 const basket = new Map();
 let pendingFavorite = null;
+let checkoutDetails = null;
 
 if (menuToggle && siteNav) {
   menuToggle.addEventListener("click", () => {
@@ -90,10 +110,35 @@ const saveFavorites = (favorites) => {
   writeStoredValue(FAVORITES_STORAGE_KEY, favorites);
 };
 
+const loadCart = () => {
+  readStoredList(CART_STORAGE_KEY).forEach((item) => {
+    if (item?.id && item?.name && Number.isFinite(Number(item.price)) && Number.isFinite(Number(item.quantity))) {
+      basket.set(item.id, {
+        id: item.id,
+        name: item.name,
+        price: Number(item.price),
+        quantity: Math.max(1, Number(item.quantity)),
+        image: item.image ?? "",
+        imageAlt: item.imageAlt ?? item.name
+      });
+    }
+  });
+};
+
+const saveCart = () => {
+  writeStoredValue(CART_STORAGE_KEY, Array.from(basket.values()));
+};
+
 const getProductData = (card) => {
-  const id = card.dataset.productId;
-  const name = card.dataset.productName;
-  const price = Number(card.dataset.productPrice);
+  const selectedVariant = card.querySelector("[data-product-variant].is-selected");
+  const variantId = selectedVariant?.getAttribute("data-variant-id");
+  const variantLabel = selectedVariant?.getAttribute("data-variant-label");
+  const variantPrice = Number(selectedVariant?.getAttribute("data-variant-price"));
+  const baseId = card.dataset.productId;
+  const baseName = card.dataset.productName;
+  const id = variantId ?? baseId;
+  const name = variantLabel && baseName ? `${baseName} ${variantLabel}` : baseName;
+  const price = Number.isNaN(variantPrice) ? Number(card.dataset.productPrice) : variantPrice;
   const image = card.querySelector("img")?.getAttribute("src") ?? "";
   const imageAlt = card.querySelector("img")?.getAttribute("alt") ?? name ?? "";
   const summary = card.querySelector(".product-summary")?.textContent?.trim() ?? "";
@@ -112,18 +157,27 @@ const getProductData = (card) => {
   };
 };
 
+const getProductQuantity = (card) => {
+  const quantityValue = Number(card.querySelector("[data-quantity-value]")?.textContent);
+  if (!Number.isFinite(quantityValue) || quantityValue < 1) {
+    return 1;
+  }
+  return Math.min(quantityValue, 99);
+};
+
 const isFavorite = (productId) => getFavorites().some((item) => item.id === productId);
 
 const syncFavoriteButtons = () => {
   document.querySelectorAll(".favorite-button").forEach((button) => {
     const card = button.closest(".product-card");
-    const productId = card?.dataset.productId;
+    const product = card ? getProductData(card) : null;
+    const productId = product?.id;
     const active = Boolean(productId) && isFavorite(productId);
     button.classList.toggle("is-active", active);
     button.textContent = active ? "♥" : "♡";
-    if (productId && card?.dataset.productName) {
+    if (productId && product?.name) {
       const action = active ? "Saved in" : "Add";
-      button.setAttribute("aria-label", `${action} ${card.dataset.productName} ${active ? "favorites" : "to favorites"}`);
+      button.setAttribute("aria-label", `${action} ${product.name} ${active ? "favorites" : "to favorites"}`);
     }
   });
 };
@@ -231,8 +285,42 @@ const setBasketOpen = (isOpen) => {
     return;
   }
 
+  basketPanel.hidden = false;
   basketPanel.classList.toggle("is-open", isOpen);
   basketToggle.setAttribute("aria-expanded", String(isOpen));
+  if (!isOpen) {
+    window.setTimeout(() => {
+      basketPanel.hidden = true;
+    }, 200);
+  }
+};
+
+const setCheckoutPanelOpen = (isOpen) => {
+  if (!checkoutPanel) {
+    return;
+  }
+
+  checkoutPanel.hidden = false;
+  checkoutPanel.classList.toggle("is-open", isOpen);
+  if (!isOpen) {
+    window.setTimeout(() => {
+      checkoutPanel.hidden = true;
+    }, 250);
+  }
+};
+
+const setReviewPanelOpen = (isOpen) => {
+  if (!reviewPanel) {
+    return;
+  }
+
+  reviewPanel.hidden = false;
+  reviewPanel.classList.toggle("is-open", isOpen);
+  if (!isOpen) {
+    window.setTimeout(() => {
+      reviewPanel.hidden = true;
+    }, 250);
+  }
 };
 
 if (basketToggle) {
@@ -257,7 +345,7 @@ const getBasketTotals = () => {
     subtotal += item.price * item.quantity;
   });
 
-  const shipping = itemCount > 0 ? SHIPPING_COST : 0;
+  const shipping = itemCount > 0 && subtotal < FREE_SHIPPING_THRESHOLD ? SHIPPING_COST : 0;
   return {
     itemCount,
     subtotal,
@@ -266,33 +354,96 @@ const getBasketTotals = () => {
   };
 };
 
-const renderBasket = () => {
-  if (!basketItems) {
-    return;
+const getBasketLineItems = () => Array.from(basket.values()).map((item) => ({
+  id: item.id,
+  name: item.name,
+  price: item.price,
+  quantity: item.quantity
+}));
+
+const getShippingDetailsFromForm = (form) => {
+  const formData = new FormData(form);
+  return {
+    email: String(formData.get("email") ?? "").trim(),
+    phone: String(formData.get("phone") ?? "").trim(),
+    firstName: String(formData.get("firstName") ?? "").trim(),
+    lastName: String(formData.get("lastName") ?? "").trim(),
+    street: String(formData.get("street") ?? "").trim(),
+    apartment: String(formData.get("apartment") ?? "").trim(),
+    city: String(formData.get("city") ?? "").trim(),
+    state: String(formData.get("state") ?? "").trim(),
+    zip: String(formData.get("zip") ?? "").trim(),
+    country: String(formData.get("country") ?? "United States").trim() || "United States",
+    shippingMethod: String(formData.get("shippingMethod") ?? "standard"),
+    paymentMethod: String(formData.get("paymentMethod") ?? "secure-card")
+  };
+};
+
+const renderReviewPanel = () => {
+  const totals = getBasketTotals();
+  const lineItems = getBasketLineItems();
+
+  if (reviewItems) {
+    reviewItems.innerHTML = lineItems.map((item) => `
+      <div class="review-line-item">
+        <span>${item.quantity} x ${item.name}</span>
+        <strong>${formatMoney(item.price * item.quantity)}</strong>
+      </div>
+    `).join("");
   }
 
-  basketItems.innerHTML = "";
+  if (reviewShipping && checkoutDetails) {
+    const apartment = checkoutDetails.apartment ? `${checkoutDetails.apartment}<br>` : "";
+    const phone = checkoutDetails.phone ? `<br>${checkoutDetails.phone}` : "";
+    reviewShipping.innerHTML = `
+      <p><strong>${checkoutDetails.firstName} ${checkoutDetails.lastName}</strong><br>
+      ${checkoutDetails.email}${phone}</p>
+      <p>${checkoutDetails.street}<br>
+      ${apartment}${checkoutDetails.city}, ${checkoutDetails.state} ${checkoutDetails.zip}<br>
+      ${checkoutDetails.country}</p>
+      <p>Standard Shipping</p>
+    `;
+  }
 
-  if (basket.size === 0) {
-    basketItems.innerHTML = '<p class="basket-empty">Your basket is empty.</p>';
-  } else {
-    basket.forEach((item) => {
-      const basketItem = document.createElement("article");
-      basketItem.className = "basket-item";
-      basketItem.innerHTML = `
-        <div>
-          <div class="basket-item-name">${item.name}</div>
-          <div class="basket-item-price">${formatMoney(item.price)} each</div>
-        </div>
-        <div class="basket-item-controls">
-          <button class="qty-button" type="button" data-action="decrease" data-product-id="${item.id}">-</button>
-          <span>${item.quantity}</span>
-          <button class="qty-button" type="button" data-action="increase" data-product-id="${item.id}">+</button>
-          <button class="remove-item" type="button" data-action="remove" data-product-id="${item.id}">Remove</button>
-        </div>
-      `;
-      basketItems.appendChild(basketItem);
-    });
+  if (reviewSubtotal) {
+    reviewSubtotal.textContent = formatMoney(totals.subtotal);
+  }
+  if (reviewShippingCost) {
+    reviewShippingCost.textContent = totals.itemCount > 0 && totals.shipping === 0 ? "Free" : formatMoney(totals.shipping);
+  }
+  if (reviewTotal) {
+    reviewTotal.textContent = formatMoney(totals.total);
+  }
+};
+
+const renderBasket = () => {
+  if (basketItems) {
+    basketItems.innerHTML = "";
+
+    if (basket.size === 0) {
+      const emptyLabel = basketPanel?.getAttribute("aria-label") === "Shopping cart"
+        ? "Your cart is empty."
+        : "Your basket is empty.";
+      basketItems.innerHTML = `<p class="basket-empty">${emptyLabel}</p>`;
+    } else {
+      basket.forEach((item) => {
+        const basketItem = document.createElement("article");
+        basketItem.className = "basket-item";
+        basketItem.innerHTML = `
+          <div>
+            <div class="basket-item-name">${item.name}</div>
+            <div class="basket-item-price">${formatMoney(item.price)} each</div>
+          </div>
+          <div class="basket-item-controls">
+            <button class="qty-button" type="button" data-action="decrease" data-product-id="${item.id}">-</button>
+            <span>${item.quantity}</span>
+            <button class="qty-button" type="button" data-action="increase" data-product-id="${item.id}">+</button>
+            <button class="remove-item" type="button" data-action="remove" data-product-id="${item.id}">Remove</button>
+          </div>
+        `;
+        basketItems.appendChild(basketItem);
+      });
+    }
   }
 
   const totals = getBasketTotals();
@@ -303,10 +454,28 @@ const renderBasket = () => {
     basketSubtotal.textContent = formatMoney(totals.subtotal);
   }
   if (basketShipping) {
-    basketShipping.textContent = formatMoney(totals.shipping);
+    basketShipping.textContent = totals.itemCount > 0 && totals.shipping === 0 ? "Free" : formatMoney(totals.shipping);
   }
   if (basketTotal) {
     basketTotal.textContent = formatMoney(totals.total);
+  }
+  if (freeShippingMessage) {
+    if (totals.itemCount === 0) {
+      freeShippingMessage.textContent = `Add ${formatMoney(FREE_SHIPPING_THRESHOLD)} for free shipping.`;
+    } else if (totals.subtotal >= FREE_SHIPPING_THRESHOLD) {
+      freeShippingMessage.textContent = "You unlocked free shipping.";
+    } else {
+      freeShippingMessage.textContent = `Add ${formatMoney(FREE_SHIPPING_THRESHOLD - totals.subtotal)} more for free shipping.`;
+    }
+  }
+  if (checkoutStartButton instanceof HTMLButtonElement) {
+    const isEmpty = totals.itemCount === 0;
+    checkoutStartButton.disabled = isEmpty;
+    checkoutStartButton.setAttribute("aria-disabled", String(isEmpty));
+  } else if (checkoutStartButton instanceof HTMLAnchorElement) {
+    const isEmpty = totals.itemCount === 0;
+    checkoutStartButton.setAttribute("aria-disabled", String(isEmpty));
+    checkoutStartButton.classList.toggle("is-disabled", isEmpty);
   }
   if (checkoutItems) {
     checkoutItems.textContent = String(totals.itemCount);
@@ -315,11 +484,50 @@ const renderBasket = () => {
     checkoutSubtotal.textContent = formatMoney(totals.subtotal);
   }
   if (checkoutShipping) {
-    checkoutShipping.textContent = formatMoney(totals.shipping);
+    checkoutShipping.textContent = totals.itemCount > 0 && totals.shipping === 0 ? "Free" : formatMoney(totals.shipping);
   }
   if (checkoutTotal) {
     checkoutTotal.textContent = formatMoney(totals.total);
   }
+};
+
+const renderCartPage = () => {
+  if (!cartPageItems) {
+    return;
+  }
+
+  cartPageItems.innerHTML = "";
+  if (basket.size === 0) {
+    cartPageItems.innerHTML = `
+      <div class="cart-empty-state">
+        <h2>Your cart is empty</h2>
+        <a class="button button-primary" href="./products.html">Continue Shopping</a>
+      </div>
+    `;
+    cartPageSummary?.setAttribute("hidden", "");
+    return;
+  }
+
+  cartPageSummary?.removeAttribute("hidden");
+
+  basket.forEach((item) => {
+    const cartItem = document.createElement("article");
+    cartItem.className = "cart-page-item";
+    cartItem.innerHTML = `
+      <img src="${item.image}" alt="${item.imageAlt}">
+      <div>
+        <h2>${item.name}</h2>
+        <p>${formatMoney(item.price)} each</p>
+      </div>
+      <div class="basket-item-controls">
+        <button class="qty-button" type="button" data-action="decrease" data-product-id="${item.id}">-</button>
+        <span>${item.quantity}</span>
+        <button class="qty-button" type="button" data-action="increase" data-product-id="${item.id}">+</button>
+        <button class="remove-item" type="button" data-action="remove" data-product-id="${item.id}">Remove</button>
+      </div>
+    `;
+    cartPageItems.appendChild(cartItem);
+  });
 };
 
 document.addEventListener("click", (event) => {
@@ -328,30 +536,99 @@ document.addEventListener("click", (event) => {
     return;
   }
 
-  const addToBasketButton = target.closest(".add-to-basket");
-  if (addToBasketButton instanceof HTMLElement) {
-    const card = addToBasketButton.closest(".product-card");
+  const variantButton = target.closest("[data-product-variant]");
+  if (variantButton instanceof HTMLElement) {
+    const card = variantButton.closest(".product-card");
     if (!card) {
       return;
     }
 
-    const id = card.dataset.productId;
-    const name = card.dataset.productName;
-    const price = Number(card.dataset.productPrice);
+    card.querySelectorAll("[data-product-variant]").forEach((button) => {
+      const isSelected = button === variantButton;
+      button.classList.toggle("is-selected", isSelected);
+      button.setAttribute("aria-pressed", String(isSelected));
+    });
 
-    if (!id || !name || Number.isNaN(price)) {
+    const price = Number(variantButton.getAttribute("data-variant-price"));
+    const priceDisplay = card.querySelector("[data-product-price-display]");
+    if (priceDisplay && !Number.isNaN(price)) {
+      priceDisplay.textContent = formatMoney(price);
+      card.dataset.productPrice = String(price);
+    }
+
+    const productName = card.dataset.productName;
+    const variantLabel = variantButton.getAttribute("data-variant-label");
+    const favoriteButton = card.querySelector(".favorite-button");
+    if (favoriteButton && productName && variantLabel) {
+      favoriteButton.setAttribute("aria-label", `Add ${productName} ${variantLabel} to favorites`);
+    }
+    syncFavoriteButtons();
+    return;
+  }
+
+  const quantityButton = target.closest("[data-quantity-action]");
+  if (quantityButton instanceof HTMLElement) {
+    const card = quantityButton.closest(".product-card");
+    const quantityValue = card?.querySelector("[data-quantity-value]");
+    if (!card || !quantityValue) {
       return;
     }
 
-    const existingItem = basket.get(id);
-    if (existingItem) {
-      existingItem.quantity += 1;
-    } else {
-      basket.set(id, { id, name, price, quantity: 1 });
+    const currentQuantity = getProductQuantity(card);
+    const action = quantityButton.getAttribute("data-quantity-action");
+    const nextQuantity = action === "decrease"
+      ? Math.max(1, currentQuantity - 1)
+      : Math.min(99, currentQuantity + 1);
+
+    quantityValue.textContent = String(nextQuantity);
+    return;
+  }
+
+  const purchaseButton = target.closest(".add-to-basket, [data-buy-now]");
+  if (purchaseButton instanceof HTMLElement) {
+    const card = purchaseButton.closest(".product-card");
+    if (!card) {
+      return;
     }
 
+    const product = getProductData(card);
+    const quantity = getProductQuantity(card);
+
+    if (!product) {
+      return;
+    }
+
+    const existingItem = basket.get(product.id);
+    if (existingItem) {
+      existingItem.quantity += quantity;
+    } else {
+      basket.set(product.id, {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        quantity,
+        image: product.image,
+        imageAlt: product.imageAlt
+      });
+    }
+
+    saveCart();
     renderBasket();
-    setBasketOpen(true);
+    if (purchaseButton.hasAttribute("data-buy-now")) {
+      window.location.href = "./cart.html";
+    }
+    return;
+  }
+
+  const checkoutStart = target.closest("[data-checkout-start]");
+  if (checkoutStart instanceof HTMLElement) {
+    const totals = getBasketTotals();
+    if (totals.itemCount === 0) {
+      return;
+    }
+
+    setBasketOpen(false);
+    setCheckoutPanelOpen(true);
     return;
   }
 
@@ -424,7 +701,145 @@ if (basketItems) {
       basket.delete(productId);
     }
 
+    saveCart();
     renderBasket();
+  });
+}
+
+if (cartPageItems) {
+  cartPageItems.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) {
+      return;
+    }
+
+    const productId = target.dataset.productId;
+    const action = target.dataset.action;
+    if (!productId || !action || !basket.has(productId)) {
+      return;
+    }
+
+    const item = basket.get(productId);
+    if (!item) {
+      return;
+    }
+
+    if (action === "increase") {
+      item.quantity += 1;
+    }
+
+    if (action === "decrease") {
+      item.quantity -= 1;
+      if (item.quantity <= 0) {
+        basket.delete(productId);
+      }
+    }
+
+    if (action === "remove") {
+      basket.delete(productId);
+    }
+
+    saveCart();
+    renderBasket();
+    renderCartPage();
+  });
+}
+
+if (checkoutPanelClose) {
+  checkoutPanelClose.addEventListener("click", () => {
+    setCheckoutPanelOpen(false);
+  });
+}
+
+if (reviewPanelClose) {
+  reviewPanelClose.addEventListener("click", () => {
+    setReviewPanelOpen(false);
+  });
+}
+
+if (shippingForm) {
+  shippingForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const totals = getBasketTotals();
+    if (totals.itemCount === 0) {
+      if (shippingMessage) {
+        shippingMessage.hidden = false;
+        shippingMessage.textContent = "Add at least one product to the cart before reviewing your order.";
+      }
+      return;
+    }
+
+    checkoutDetails = getShippingDetailsFromForm(shippingForm);
+    if (shippingMessage) {
+      shippingMessage.hidden = false;
+      shippingMessage.textContent = "Shipping details saved. Next step: Payment.";
+    }
+  });
+}
+
+if (paymentStartButton) {
+  paymentStartButton.addEventListener("click", async () => {
+    const totals = getBasketTotals();
+    if (!checkoutDetails || totals.itemCount === 0) {
+      if (paymentMessage) {
+        paymentMessage.hidden = false;
+        paymentMessage.textContent = "Review your cart and shipping details before payment.";
+      }
+      return;
+    }
+
+    paymentStartButton.setAttribute("aria-busy", "true");
+    paymentStartButton.textContent = "Opening secure payment...";
+    if (paymentMessage) {
+      paymentMessage.hidden = true;
+      paymentMessage.textContent = "";
+    }
+
+    try {
+      const response = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          items: getBasketLineItems(),
+          customer: {
+            email: checkoutDetails.email,
+            phone: checkoutDetails.phone,
+            name: `${checkoutDetails.firstName} ${checkoutDetails.lastName}`.trim()
+          },
+          shippingAddress: {
+            line1: checkoutDetails.street,
+            line2: checkoutDetails.apartment,
+            city: checkoutDetails.city,
+            state: checkoutDetails.state,
+            postal_code: checkoutDetails.zip,
+            country: "US"
+          },
+          shippingMethod: checkoutDetails.shippingMethod,
+          successUrl: `${window.location.origin}/products.html?checkout=success`,
+          cancelUrl: `${window.location.origin}/products.html?checkout=cancelled`
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error("Payment endpoint unavailable");
+      }
+
+      const session = await response.json();
+      if (!session.url) {
+        throw new Error("Payment endpoint did not return a checkout URL");
+      }
+
+      window.location.href = session.url;
+    } catch (error) {
+      if (paymentMessage) {
+        paymentMessage.hidden = false;
+        paymentMessage.textContent = "Secure payment is ready in the UI, but the Stripe checkout endpoint still needs to be connected.";
+      }
+      paymentStartButton.textContent = "Place Order & Pay Securely";
+      paymentStartButton.removeAttribute("aria-busy");
+    }
   });
 }
 
@@ -510,6 +925,12 @@ document.addEventListener("keydown", (event) => {
     setFavoriteModalOpen(false);
     pendingFavorite = null;
   }
+  if (event.key === "Escape" && checkoutPanel && !checkoutPanel.hidden) {
+    setCheckoutPanelOpen(false);
+  }
+  if (event.key === "Escape" && reviewPanel && !reviewPanel.hidden) {
+    setReviewPanelOpen(false);
+  }
 });
 
 document.querySelectorAll(".faq-question").forEach((button) => {
@@ -550,7 +971,9 @@ document.querySelectorAll(".value-card, .product-card, .category-card, .story-me
   observer.observe(element);
 });
 
+loadCart();
 renderBasket();
+renderCartPage();
 renderFavoritesCount();
 syncFavoriteButtons();
 renderFavoritesPage();

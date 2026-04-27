@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nana's Mama Favorites</title>
+  <title>Nana's Mama FAQ</title>
   <link rel="icon" type="image/png" href="./assets/nanasmama-logo.png">
   <meta
     name="description"
-    content="Sign in to view your Nana's Mama favorites and come back to the products you want to save for later."
+    content="Find answers about Nana's Mama ingredients, shea butter, shipping, returns, and product care."
   >
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,7 +44,7 @@
           <a href="./index.html#contact">Contact</a>
         </nav>
         <div class="header-actions">
-          <a class="favorites-link icon-link" href="./favorites.html" aria-current="page" aria-label="View favorites">
+          <a class="favorites-link icon-link" href="./favorites.html" aria-label="View favorites">
             <span class="icon-glyph" aria-hidden="true">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 20.25c-4.48-2.58-7.25-5.32-7.25-8.93A4.3 4.3 0 0 1 9 7a4.5 4.5 0 0 1 3 1.49A4.5 4.5 0 0 1 15 7a4.3 4.3 0 0 1 4.25 4.32c0 3.61-2.77 6.35-7.25 8.93Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
@@ -53,16 +53,16 @@
             <span class="sr-only">Favorites</span>
             <span class="favorites-count" data-favorites-count>0</span>
           </a>
-          <button class="basket-toggle icon-button" type="button" aria-label="Open basket" aria-expanded="false" aria-controls="basket-panel">
+          <a class="basket-toggle icon-button" href="./cart.html" aria-label="View cart">
             <span class="icon-glyph" aria-hidden="true">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M8 10V8.5a4 4 0 1 1 8 0V10" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
                 <path d="M5.5 10h13l-1 9.5a1.75 1.75 0 0 1-1.74 1.5H8.24A1.75 1.75 0 0 1 6.5 19.5Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"/>
               </svg>
             </span>
-            <span class="sr-only">Basket</span>
+            <span class="sr-only">Cart</span>
             <span class="basket-count" data-basket-count>0</span>
-          </button>
+          </a>
           <button class="menu-toggle icon-button" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-nav">
             <span class="icon-glyph" aria-hidden="true">
               <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -77,93 +77,69 @@
       </div>
     </header>
 
-    <aside id="basket-panel" class="basket-panel" aria-label="Shopping basket">
-      <div class="basket-panel-header">
-        <div>
-          <p class="eyebrow">Your order</p>
-          <h2>Basket</h2>
-        </div>
-        <button class="basket-close" type="button" aria-label="Close basket">Close</button>
-      </div>
-      <div class="basket-items" data-basket-items>
-        <p class="basket-empty">Your basket is empty.</p>
-      </div>
-      <div class="basket-summary">
-        <div class="basket-row">
-          <span>Subtotal</span>
-          <strong data-basket-subtotal>$0.00</strong>
-        </div>
-        <div class="basket-row">
-          <span>Shipping</span>
-          <strong data-basket-shipping>$7.00</strong>
-        </div>
-        <div class="basket-row basket-row-total">
-          <span>Total</span>
-          <strong data-basket-total>$0.00</strong>
-        </div>
-        <a class="button button-primary basket-checkout-link" href="./index.html#checkout">Proceed to checkout</a>
-      </div>
-    </aside>
-
     <main id="top">
       <section class="page-intro">
         <div class="container page-intro-grid">
           <div class="page-intro-panel">
-            <p class="eyebrow">Your saved list</p>
-            <h1>Favorites</h1>
-            <p class="lede">
-              Sign in to keep track of the products you love, revisit them later, and move them into your basket whenever you're ready.
-            </p>
-            <div class="hero-actions">
-              <a class="button button-primary" href="./products.html">Keep shopping</a>
-              <button class="button button-secondary favorites-signout" type="button" data-favorites-signout hidden>Sign out</button>
-            </div>
-          </div>
-          <div class="section-note favorites-account-note" data-favorites-account-note>
-            <p>
-              Your favorites list is saved to this browser after sign-in, making it easy to bring interested visitors back to the products they were considering.
-            </p>
+            <p class="eyebrow">Support</p>
+            <h1>Frequently Asked Questions</h1>
+            <p class="lede">Helpful answers about Nana's Mama ingredients, product use, shipping, and returns.</p>
           </div>
         </div>
       </section>
 
-      <section class="favorites-page">
-        <div class="container favorites-layout">
-          <section class="favorites-auth-card" data-favorites-auth-card>
-            <p class="eyebrow">Member sign in</p>
-            <h2>Save and revisit your picks</h2>
-            <p class="lede">
-              Create a quick account to unlock your favorites page. We only ask for a name and email in this demo.
-            </p>
-            <form class="favorite-login-form" data-favorites-login-form>
-              <label>
-                First name
-                <input type="text" name="name" autocomplete="given-name" required>
-              </label>
-              <label>
-                Email
-                <input type="email" name="email" autocomplete="email" required>
-              </label>
-              <button class="button button-primary" type="submit">Sign in to view favorites</button>
-            </form>
-            <p class="favorite-modal-note">Returning visitors can sign in on this page to reopen their saved list.</p>
-          </section>
-
-          <section class="favorites-board" data-favorites-board hidden>
-            <div class="section-heading favorites-heading">
-              <div>
-                <p class="eyebrow">Saved for later</p>
-                <h2 data-favorites-greeting>Your favorites</h2>
+      <section class="faq">
+        <div class="container">
+          <div class="faq-list">
+            <article class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="true">
+                Are your products 100% natural?
+              </button>
+              <div class="faq-answer">
+                <p>Yes. Nana's Mama products are made using pure, natural ingredients with no harsh chemicals, artificial fragrances, or preservatives.</p>
               </div>
-              <a class="button button-secondary" href="./products.html">Browse more products</a>
-            </div>
-            <div class="favorites-grid product-section-grid" data-favorites-grid></div>
-            <div class="favorites-empty-state" data-favorites-empty hidden>
-              <h3>No favorites yet</h3>
-              <p>Tap the heart on any product to save it here and encourage visitors to come back.</p>
-              <a class="button button-primary" href="./products.html">Go to products</a>
-            </div>
-          </section>
+            </article>
+            <article class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                Is your shea butter unrefined?
+              </button>
+              <div class="faq-answer" hidden>
+                <p>Yes. We use Grade A, unrefined shea butter handcrafted in Ghana using traditional methods to preserve its nutrients and natural benefits.</p>
+              </div>
+            </article>
+            <article class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                Can babies use your shea butter?
+              </button>
+              <div class="faq-answer" hidden>
+                <p>Our Original Shea Butter is gentle and commonly used for baby skin. A small patch test is still a good idea first.</p>
+              </div>
+            </article>
+            <article class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                What skin types are your products suitable for?
+              </button>
+              <div class="faq-answer" hidden>
+                <p>They are suitable for most skin types, including dry, sensitive, and combination skin.</p>
+              </div>
+            </article>
+            <article class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                Where do you ship to?
+              </button>
+              <div class="faq-answer" hidden>
+                <p>Shipping is available within the United States, with tracking details sent by email once your order ships.</p>
+              </div>
+            </article>
+            <article class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                Can I return my order?
+              </button>
+              <div class="faq-answer" hidden>
+                <p>Unopened skincare products may be returned within 30 days. If your order arrives damaged or incorrect, contact us so we can help.</p>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
     </main>
@@ -177,14 +153,16 @@
         <div>
           <h2>Useful Links</h2>
           <a href="./AboutUs.html">About Us</a>
-          <a href="./favorites.html">Favorites</a>
           <a href="./index.html#contact">Contact Us</a>
+          <a href="./favorites.html">Favorites</a>
+          <a href="./faq.html">FAQs</a>
         </div>
         <div>
           <h2>Categories</h2>
           <a href="./products.html#bath-body">Bath &amp; Body</a>
           <a href="./products.html#skin-care">Skin Care</a>
           <a href="./products.html#hair-care">Hair Care</a>
+          <a href="./gifts.html">Gifts</a>
           <div class="footer-icon-row">
             <div class="social-links" aria-label="Social media links">
               <a class="social-link" href="tel:+16156935409" title="Call +1 (615) 693-5409" aria-label="Call +1 (615) 693-5409">
@@ -216,7 +194,6 @@
       </div>
     </footer>
   </div>
-
   <a class="floating-sms-chat" href="sms:+16156935409" aria-label="Text Nana's Mama support">
     <i class="fa-regular fa-comment-dots" aria-hidden="true"></i>
     <span class="sr-only">Text Nana's Mama support</span>

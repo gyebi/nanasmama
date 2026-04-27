@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nana's Mama Favorites</title>
+  <title>Nana's Mama Cart</title>
   <link rel="icon" type="image/png" href="./assets/nanasmama-logo.png">
   <meta
     name="description"
-    content="Sign in to view your Nana's Mama favorites and come back to the products you want to save for later."
+    content="Review your Nana's Mama cart before secure checkout."
   >
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,7 +44,7 @@
           <a href="./index.html#contact">Contact</a>
         </nav>
         <div class="header-actions">
-          <a class="favorites-link icon-link" href="./favorites.html" aria-current="page" aria-label="View favorites">
+          <a class="favorites-link icon-link" href="./favorites.html" aria-label="View favorites">
             <span class="icon-glyph" aria-hidden="true">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 20.25c-4.48-2.58-7.25-5.32-7.25-8.93A4.3 4.3 0 0 1 9 7a4.5 4.5 0 0 1 3 1.49A4.5 4.5 0 0 1 15 7a4.3 4.3 0 0 1 4.25 4.32c0 3.61-2.77 6.35-7.25 8.93Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
@@ -53,16 +53,16 @@
             <span class="sr-only">Favorites</span>
             <span class="favorites-count" data-favorites-count>0</span>
           </a>
-          <button class="basket-toggle icon-button" type="button" aria-label="Open basket" aria-expanded="false" aria-controls="basket-panel">
+          <a class="basket-toggle icon-button" href="./cart.html" aria-current="page" aria-label="View cart">
             <span class="icon-glyph" aria-hidden="true">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M8 10V8.5a4 4 0 1 1 8 0V10" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
                 <path d="M5.5 10h13l-1 9.5a1.75 1.75 0 0 1-1.74 1.5H8.24A1.75 1.75 0 0 1 6.5 19.5Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"/>
               </svg>
             </span>
-            <span class="sr-only">Basket</span>
+            <span class="sr-only">Cart</span>
             <span class="basket-count" data-basket-count>0</span>
-          </button>
+          </a>
           <button class="menu-toggle icon-button" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-nav">
             <span class="icon-glyph" aria-hidden="true">
               <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -77,93 +77,115 @@
       </div>
     </header>
 
-    <aside id="basket-panel" class="basket-panel" aria-label="Shopping basket">
-      <div class="basket-panel-header">
-        <div>
-          <p class="eyebrow">Your order</p>
-          <h2>Basket</h2>
-        </div>
-        <button class="basket-close" type="button" aria-label="Close basket">Close</button>
-      </div>
-      <div class="basket-items" data-basket-items>
-        <p class="basket-empty">Your basket is empty.</p>
-      </div>
-      <div class="basket-summary">
-        <div class="basket-row">
-          <span>Subtotal</span>
-          <strong data-basket-subtotal>$0.00</strong>
-        </div>
-        <div class="basket-row">
-          <span>Shipping</span>
-          <strong data-basket-shipping>$7.00</strong>
-        </div>
-        <div class="basket-row basket-row-total">
-          <span>Total</span>
-          <strong data-basket-total>$0.00</strong>
-        </div>
-        <a class="button button-primary basket-checkout-link" href="./index.html#checkout">Proceed to checkout</a>
-      </div>
-    </aside>
-
     <main id="top">
-      <section class="page-intro">
+      <section class="page-intro cart-page-intro">
         <div class="container page-intro-grid">
           <div class="page-intro-panel">
-            <p class="eyebrow">Your saved list</p>
-            <h1>Favorites</h1>
-            <p class="lede">
-              Sign in to keep track of the products you love, revisit them later, and move them into your basket whenever you're ready.
-            </p>
-            <div class="hero-actions">
-              <a class="button button-primary" href="./products.html">Keep shopping</a>
-              <button class="button button-secondary favorites-signout" type="button" data-favorites-signout hidden>Sign out</button>
-            </div>
-          </div>
-          <div class="section-note favorites-account-note" data-favorites-account-note>
-            <p>
-              Your favorites list is saved to this browser after sign-in, making it easy to bring interested visitors back to the products they were considering.
-            </p>
+            <p class="eyebrow">Step 1 of 3</p>
+            <h1>Cart Review</h1>
+            <p class="lede">Review your products, quantities, and totals before entering shipping and payment.</p>
           </div>
         </div>
       </section>
 
-      <section class="favorites-page">
-        <div class="container favorites-layout">
-          <section class="favorites-auth-card" data-favorites-auth-card>
-            <p class="eyebrow">Member sign in</p>
-            <h2>Save and revisit your picks</h2>
-            <p class="lede">
-              Create a quick account to unlock your favorites page. We only ask for a name and email in this demo.
-            </p>
-            <form class="favorite-login-form" data-favorites-login-form>
+      <section class="cart-page">
+        <div class="container cart-page-grid">
+          <div class="cart-page-items" data-cart-page-items>
+            <p class="basket-empty">Your cart is empty.</p>
+          </div>
+
+          <aside class="cart-page-summary" data-cart-page-summary>
+            <h2>Order Summary</h2>
+            <div class="basket-row">
+              <span>Subtotal</span>
+              <strong data-basket-subtotal>$0.00</strong>
+            </div>
+            <p class="free-shipping-note" data-free-shipping-message>Add $75.00 for free shipping.</p>
+            <div class="basket-row">
+              <span>Shipping</span>
+              <strong data-basket-shipping>$7.00</strong>
+            </div>
+            <div class="basket-row basket-row-total">
+              <span>Total</span>
+              <strong data-basket-total>$0.00</strong>
+            </div>
+            <div class="basket-reassurance">
+              <p>Ships within 1-2 business days from the USA.</p>
+              <p>Returns accepted on unopened products within 30 days.</p>
+            </div>
+            <a class="button button-primary basket-checkout-link" href="#shipping" data-checkout-start aria-disabled="true">Continue to Shipping Details</a>
+            <a class="button button-secondary" href="./products.html">Keep Shopping</a>
+          </aside>
+        </div>
+      </section>
+
+      <section id="shipping" class="cart-shipping-section">
+        <div class="container cart-checkout-grid">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Step 2 of 3</p>
+              <h2>Shipping Details</h2>
+            </div>
+          </div>
+          <form class="checkout-step-form cart-shipping-form" data-shipping-form>
+            <fieldset>
+              <legend>Contact</legend>
+              <p class="checkout-security-note">Guest checkout. No account required.</p>
               <label>
-                First name
-                <input type="text" name="name" autocomplete="given-name" required>
-              </label>
-              <label>
-                Email
+                Email Address
                 <input type="email" name="email" autocomplete="email" required>
               </label>
-              <button class="button button-primary" type="submit">Sign in to view favorites</button>
-            </form>
-            <p class="favorite-modal-note">Returning visitors can sign in on this page to reopen their saved list.</p>
-          </section>
+              <label>
+                Phone Number <span>optional</span>
+                <input type="tel" name="phone" autocomplete="tel">
+              </label>
+            </fieldset>
 
-          <section class="favorites-board" data-favorites-board hidden>
-            <div class="section-heading favorites-heading">
-              <div>
-                <p class="eyebrow">Saved for later</p>
-                <h2 data-favorites-greeting>Your favorites</h2>
+            <fieldset>
+              <legend>Shipping Address</legend>
+              <div class="checkout-field-row">
+                <label>
+                  First Name
+                  <input type="text" name="firstName" autocomplete="given-name" required>
+                </label>
+                <label>
+                  Last Name
+                  <input type="text" name="lastName" autocomplete="family-name" required>
+                </label>
               </div>
-              <a class="button button-secondary" href="./products.html">Browse more products</a>
-            </div>
-            <div class="favorites-grid product-section-grid" data-favorites-grid></div>
-            <div class="favorites-empty-state" data-favorites-empty hidden>
-              <h3>No favorites yet</h3>
-              <p>Tap the heart on any product to save it here and encourage visitors to come back.</p>
-              <a class="button button-primary" href="./products.html">Go to products</a>
-            </div>
-          </section>
+              <label>
+                Street Address
+                <input type="text" name="street" autocomplete="address-line1" required>
+              </label>
+              <label>
+                Apartment/Suite <span>optional</span>
+                <input type="text" name="apartment" autocomplete="address-line2">
+              </label>
+              <div class="checkout-field-row">
+                <label>
+                  City
+                  <input type="text" name="city" autocomplete="address-level2" required>
+                </label>
+                <label>
+                  State
+                  <input type="text" name="state" autocomplete="address-level1" required>
+                </label>
+              </div>
+              <div class="checkout-field-row">
+                <label>
+                  ZIP Code
+                  <input type="text" name="zip" autocomplete="postal-code" inputmode="numeric" required>
+                </label>
+                <label>
+                  Country
+                  <input type="text" name="country" autocomplete="country-name" value="United States" readonly>
+                </label>
+              </div>
+            </fieldset>
+
+            <button class="button button-primary checkout-step-submit" type="submit">Continue to Payment</button>
+            <p class="checkout-message" data-shipping-message hidden></p>
+          </form>
         </div>
       </section>
     </main>
@@ -177,14 +199,16 @@
         <div>
           <h2>Useful Links</h2>
           <a href="./AboutUs.html">About Us</a>
-          <a href="./favorites.html">Favorites</a>
           <a href="./index.html#contact">Contact Us</a>
+          <a href="./favorites.html">Favorites</a>
+          <a href="./faq.html">FAQs</a>
         </div>
         <div>
           <h2>Categories</h2>
           <a href="./products.html#bath-body">Bath &amp; Body</a>
           <a href="./products.html#skin-care">Skin Care</a>
           <a href="./products.html#hair-care">Hair Care</a>
+          <a href="./gifts.html">Gifts</a>
           <div class="footer-icon-row">
             <div class="social-links" aria-label="Social media links">
               <a class="social-link" href="tel:+16156935409" title="Call +1 (615) 693-5409" aria-label="Call +1 (615) 693-5409">
@@ -216,7 +240,6 @@
       </div>
     </footer>
   </div>
-
   <a class="floating-sms-chat" href="sms:+16156935409" aria-label="Text Nana's Mama support">
     <i class="fa-regular fa-comment-dots" aria-hidden="true"></i>
     <span class="sr-only">Text Nana's Mama support</span>
