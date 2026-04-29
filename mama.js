@@ -43,6 +43,12 @@ const favoritesEmpty = document.querySelector("[data-favorites-empty]");
 const favoritesGreeting = document.querySelector("[data-favorites-greeting]");
 const favoritesAccountNote = document.querySelector("[data-favorites-account-note]");
 const favoritesSignoutButton = document.querySelector("[data-favorites-signout]");
+const workFilterButtons = document.querySelectorAll("[data-work-filter]");
+const workGalleryCards = document.querySelectorAll("[data-work-category]");
+const workLightbox = document.querySelector("[data-work-lightbox]");
+const workLightboxImage = document.querySelector("[data-work-lightbox-image]");
+const workLightboxTitle = document.querySelector("[data-work-lightbox-title]");
+const workLightboxCategory = document.querySelector("[data-work-lightbox-category]");
 const SHIPPING_COST = 7;
 const FREE_SHIPPING_THRESHOLD = 75;
 const CART_STORAGE_KEY = "nanasmama-cart";
@@ -207,6 +213,36 @@ const setFavoriteModalOpen = (isOpen) => {
 
   favoriteModal.hidden = !isOpen;
   document.body.classList.toggle("modal-open", isOpen);
+};
+
+const setWorkLightboxOpen = (isOpen) => {
+  if (!workLightbox) {
+    return;
+  }
+
+  workLightbox.hidden = !isOpen;
+  document.body.classList.toggle("modal-open", isOpen);
+};
+
+const openWorkLightbox = (card) => {
+  const image = card.querySelector("img");
+  const title = card.querySelector("h3")?.textContent?.trim() || "Project detail";
+  const category = card.querySelector("span")?.textContent?.trim() || "Project image";
+
+  if (!image || !workLightboxImage) {
+    return;
+  }
+
+  workLightboxImage.setAttribute("src", image.getAttribute("src") ?? "");
+  workLightboxImage.setAttribute("alt", image.getAttribute("alt") ?? title);
+  if (workLightboxTitle) {
+    workLightboxTitle.textContent = title;
+  }
+  if (workLightboxCategory) {
+    workLightboxCategory.textContent = category;
+  }
+
+  setWorkLightboxOpen(true);
 };
 
 const handleFavoriteIntent = (product) => {
@@ -666,6 +702,17 @@ document.addEventListener("click", (event) => {
     setFavoriteModalOpen(false);
     pendingFavorite = null;
   }
+
+  if (target.closest("[data-work-lightbox-close]")) {
+    setWorkLightboxOpen(false);
+    return;
+  }
+
+  const workGalleryCard = target.closest(".work-gallery-card");
+  if (workGalleryCard instanceof HTMLElement && !workGalleryCard.hidden) {
+    openWorkLightbox(workGalleryCard);
+    return;
+  }
 });
 
 if (basketItems) {
@@ -931,6 +978,9 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && reviewPanel && !reviewPanel.hidden) {
     setReviewPanelOpen(false);
   }
+  if (event.key === "Escape" && workLightbox && !workLightbox.hidden) {
+    setWorkLightboxOpen(false);
+  }
 });
 
 document.querySelectorAll(".faq-question").forEach((button) => {
@@ -954,6 +1004,37 @@ document.querySelectorAll(".faq-question").forEach((button) => {
   });
 });
 
+workFilterButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const activeFilter = button.getAttribute("data-work-filter") ?? "all";
+
+    workFilterButtons.forEach((filterButton) => {
+      const isActive = filterButton === button;
+      filterButton.classList.toggle("is-active", isActive);
+      filterButton.setAttribute("aria-pressed", String(isActive));
+    });
+
+    workGalleryCards.forEach((card) => {
+      const categories = card.getAttribute("data-work-category")?.split(" ") ?? [];
+      const shouldShow = activeFilter === "all" || categories.includes(activeFilter);
+      card.toggleAttribute("hidden", !shouldShow);
+    });
+  });
+});
+
+workGalleryCards.forEach((card) => {
+  card.setAttribute("tabindex", "0");
+  card.setAttribute("role", "button");
+  const title = card.querySelector("h3")?.textContent?.trim() || "project image";
+  card.setAttribute("aria-label", `Enlarge ${title}`);
+  card.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openWorkLightbox(card);
+    }
+  });
+});
+
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -966,7 +1047,7 @@ const observer = new IntersectionObserver(
   { threshold: 0.2 }
 );
 
-document.querySelectorAll(".value-card, .product-card, .category-card, .story-media, .story-copy, .faq-item, .page-intro-panel, .section-note, .section-intro").forEach((element) => {
+document.querySelectorAll(".value-card, .product-card, .category-card, .story-media, .story-copy, .faq-item, .page-intro-panel, .section-note, .section-intro, .work-gallery-card").forEach((element) => {
   element.classList.add("reveal");
   observer.observe(element);
 });

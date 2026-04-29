@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Work | Nana's Mama</title>
+  <link rel="icon" type="image/png" href="./assets/nanasmama-logo.png">
+  <meta
+    name="description"
+    content="Explore Nana's Mama project gallery for curated gift boxes, custom packaging, personalized gifts, corporate orders, African beauty sets, and special occasions."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  >
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="./index.html#top" aria-label="Nana's Mama home">
+          <img src="./assets/nanasmama-logo.png" alt="Nana's Mama logo">
+        </a>
+
+        <nav id="site-nav" class="site-nav" aria-label="Primary">
+          <a href="./index.html#hero">Home</a>
+          <a href="./gifts.html">Shop Gifts</a>
+          <a href="./index.html#custom-packaging">Custom Packaging</a>
+          <a href="./gifts.html#wedding-gifts">Wedding Gifts</a>
+          <a href="./products.html">The Shop</a>
+          <a href="./our-work.html" aria-current="page">Our Work</a>
+          <div class="nav-dropdown">
+            <a class="nav-dropdown-trigger" href="./AboutUs.html">About Us</a>
+            <div class="nav-dropdown-menu" aria-label="About Us submenu">
+              <a href="./AboutUs.html#our-values">Our Values</a>
+              <a href="./AboutUs.html#african-connection">African Connection</a>
+            </div>
+          </div>
+          <a href="./contact.html">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <a class="favorites-link icon-link" href="./favorites.html" aria-label="View favorites">
+            <span class="icon-glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 20.25c-4.48-2.58-7.25-5.32-7.25-8.93A4.3 4.3 0 0 1 9 7a4.5 4.5 0 0 1 3 1.49A4.5 4.5 0 0 1 15 7a4.3 4.3 0 0 1 4.25 4.32c0 3.61-2.77 6.35-7.25 8.93Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
+              </svg>
+            </span>
+            <span class="sr-only">Favorites</span>
+            <span class="favorites-count" data-favorites-count>0</span>
+          </a>
+          <a class="basket-toggle icon-button" href="./cart.html" aria-label="View cart">
+            <span class="icon-glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 10V8.5a4 4 0 1 1 8 0V10" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
+                <path d="M5.5 10h13l-1 9.5a1.75 1.75 0 0 1-1.74 1.5H8.24A1.75 1.75 0 0 1 6.5 19.5Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"/>
+              </svg>
+            </span>
+            <span class="sr-only">Cart</span>
+            <span class="basket-count" data-basket-count>0</span>
+          </a>
+          <button class="menu-toggle icon-button" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-nav">
+            <span class="icon-glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 7h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"/>
+                <path d="M4 12h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"/>
+                <path d="M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"/>
+              </svg>
+            </span>
+            <span class="sr-only">Menu</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="page-intro our-work-hero">
+        <div class="container page-intro-grid">
+          <div class="page-intro-panel">
+            <p class="eyebrow">Our work gallery</p>
+            <h1>Real gifts, packaging details, and event-ready moments.</h1>
+            <p class="lede">Browse a growing collection of Nana's Mama projects across curated gift boxes, custom packaging, personalized gifts, corporate orders, African beauty sets, and special occasions.</p>
+          </div>
+          <div class="story-media">
+            <img src="./assets/custom-gifting/gallery/outdoor-pink-tulle-wide.jpg" alt="Outdoor pink tulle Nana's Mama gift presentation">
+          </div>
+        </div>
+      </section>
+
+      <section class="home-section work-gallery">
+        <div class="container">
+          <div class="work-filter-bar" aria-label="Filter our work gallery">
+            <button class="work-filter is-active" type="button" data-work-filter="all" aria-pressed="true">All</button>
+            <button class="work-filter" type="button" data-work-filter="curated" aria-pressed="false">Curated Gift Boxes</button>
+            <button class="work-filter" type="button" data-work-filter="packaging" aria-pressed="false">Custom Packaging</button>
+            <button class="work-filter" type="button" data-work-filter="personalized" aria-pressed="false">Personalized Gifts</button>
+            <button class="work-filter" type="button" data-work-filter="corporate" aria-pressed="false">Corporate Orders</button>
+            <button class="work-filter" type="button" data-work-filter="beauty" aria-pressed="false">African Beauty Sets</button>
+            <button class="work-filter" type="button" data-work-filter="events" aria-pressed="false">Events &amp; Occasions</button>
+          </div>
+          <div class="work-gallery-grid work-gallery-grid-expanded" data-work-gallery>
+            <article class="work-gallery-card" data-work-category="curated events">
+              <img src="./assets/custom-gifting/collections/pink-floral-wedding-hamper.jpg" alt="Pink floral curated wedding gift hamper">
+              <div><span>Curated Gift Boxes</span><h3>Floral Wedding Hamper</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="packaging">
+              <img src="./assets/custom-gifting/packaging/green-bow-butterfly-detail.jpg" alt="Green bow and gold butterfly packaging detail">
+              <div><span>Custom Packaging</span><h3>Butterfly Bow Detail</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="personalized events">
+              <img src="./assets/custom-gifting/baby-gifts/daisy-baby-gift-basket.jpg" alt="Personalized Daisy baby gift basket">
+              <div><span>Personalized Gifts</span><h3>Daisy Baby Gift Basket</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="corporate curated">
+              <img src="./assets/custom-gifting/collections/yellow-bee-floral-basket.jpg" alt="Yellow bee floral curated gift basket">
+              <div><span>Corporate Orders</span><h3>Bright Client Gift Basket</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty curated">
+              <img src="./assets/Nanas%20Mama/shea-butter-jar-2.jpg" alt="Nana's Mama shea butter jar">
+              <div><span>African Beauty Sets</span><h3>Shea Butter Care Set</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="packaging events">
+              <img src="./assets/custom-gifting/gallery/outdoor-pink-tulle-wide.jpg" alt="Outdoor pink tulle gift box detail">
+              <div><span>Events &amp; Occasions</span><h3>Outdoor Tulle Presentation</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="packaging">
+              <img src="./assets/custom-gifting/packaging/gold-butterfly-package-detail.jpg" alt="Gold butterfly custom package detail">
+              <div><span>Custom Packaging</span><h3>Gold Accent Wrap</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="personalized curated">
+              <img src="./assets/custom-gifting/baby-gifts/toy-baby-gift-box.jpg" alt="Toy baby gift box">
+              <div><span>Personalized Gifts</span><h3>Playful Baby Gift Box</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty">
+              <img src="./assets/Nanas%20Mama/african-black-soap.webp" alt="African black soap beauty product">
+              <div><span>African Beauty Sets</span><h3>Black Soap Ritual Set</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="corporate packaging">
+              <img src="./assets/custom-gifting/packaging/wrapped-basket-tulle-detail.jpg" alt="Wrapped basket packaging with tulle detail">
+              <div><span>Corporate Orders</span><h3>Premium Wrapped Basket</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty curated">
+              <img src="./assets/gifts-home-page/gift-home-6-hair-lifestyle.jpg" alt="African beauty hair care gift set">
+              <div><span>African Beauty Sets</span><h3>Natural Hair Care Gift</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="events packaging">
+              <img src="./assets/custom-gifting/gallery/pink-tulle-outdoor-detail.jpg" alt="Pink tulle outdoor event gift detail">
+              <div><span>Events &amp; Occasions</span><h3>Celebration Gift Detail</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty">
+              <img src="./assets/Nanas%20Mama/relaxing-shea-jar-3.jpg" alt="Relaxing shea butter jar">
+              <div><span>African Beauty Sets</span><h3>Relaxing Shea Butter Gift</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty">
+              <img src="./assets/Nanas%20Mama/hair-shea-lifestyle-1.jpg" alt="Hair shea butter lifestyle product">
+              <div><span>African Beauty Sets</span><h3>Hair Care Ritual Bundle</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty">
+              <img src="./assets/Nanas%20Mama/clearing-shea-jar-3.jpg" alt="Clearing shea butter jar">
+              <div><span>African Beauty Sets</span><h3>Clearing Shea Butter Set</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty curated">
+              <img src="./assets/gifts-home-page/gift-home-5-black-soap.webp" alt="African black soap gift set">
+              <div><span>African Beauty Sets</span><h3>Black Soap Gift Pairing</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="curated beauty">
+              <img src="./assets/gifts-home-page/gift-home-1-relaxing-shea.jpg" alt="Relaxing shea butter curated gift">
+              <div><span>Curated Gift Boxes</span><h3>Self-Care Gift Selection</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="curated beauty">
+              <img src="./assets/gifts-home-page/gift-home-2-shea-butter.jpg" alt="Shea butter curated gift">
+              <div><span>Curated Gift Boxes</span><h3>Everyday Care Gift</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="curated beauty">
+              <img src="./assets/gifts-home-page/gift-home-3-hair-shea.jpg" alt="Hair shea butter curated gift">
+              <div><span>Curated Gift Boxes</span><h3>Hair Care Gift Edit</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="curated beauty">
+              <img src="./assets/gifts-home-page/gift-home-4-clearing-lifestyle.jpg" alt="Clearing shea butter lifestyle gift">
+              <div><span>Curated Gift Boxes</span><h3>Glow Care Gift Edit</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="events curated">
+              <img src="./assets/custom-gifting/hero/pink-wedding-gift-hamper.jpg" alt="Pink wedding gift hamper with floral detail">
+              <div><span>Events &amp; Occasions</span><h3>Pink Wedding Gift Moment</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="packaging personalized">
+              <img src="./assets/custom-gifting/hero/outdoor-butterfly-gift-box.jpg" alt="Outdoor butterfly gift box packaging">
+              <div><span>Custom Packaging</span><h3>Butterfly Gift Box Finish</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty">
+              <img src="./assets/Nanas%20Mama/shea-butter-jar-1.jpg" alt="Original shea butter jar">
+              <div><span>African Beauty Sets</span><h3>Classic Shea Butter Jar</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty">
+              <img src="./assets/Nanas%20Mama/relaxing-shea-jar-1.jpg" alt="Relaxing shea butter jar front view">
+              <div><span>African Beauty Sets</span><h3>Relaxing Care Jar</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty">
+              <img src="./assets/Nanas%20Mama/relaxing-shea-jar-2.jpg" alt="Relaxing shea butter product detail">
+              <div><span>African Beauty Sets</span><h3>Relaxing Shea Detail</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty">
+              <img src="./assets/Nanas%20Mama/hair-shea-jar-1.jpg" alt="Hair shea butter jar front view">
+              <div><span>African Beauty Sets</span><h3>Hair Shea Front Detail</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty">
+              <img src="./assets/Nanas%20Mama/hair-shea-jar-2.jpg" alt="Hair shea butter jar product detail">
+              <div><span>African Beauty Sets</span><h3>Hair Shea Product Detail</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty">
+              <img src="./assets/Nanas%20Mama/hair-shea-jar-3.jpg" alt="Hair shea butter jar closeup">
+              <div><span>African Beauty Sets</span><h3>Hair Shea Closeup</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty">
+              <img src="./assets/Nanas%20Mama/hair-shea-jar-4.jpg" alt="Hair shea butter jar packaging angle">
+              <div><span>African Beauty Sets</span><h3>Hair Shea Packaging Angle</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty">
+              <img src="./assets/Nanas%20Mama/hair-shea-jar-5.jpg" alt="Hair shea butter jar set detail">
+              <div><span>African Beauty Sets</span><h3>Hair Shea Set Detail</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty">
+              <img src="./assets/Nanas%20Mama/clearing-shea-jar-1.jpg" alt="Clearing shea butter jar front view">
+              <div><span>African Beauty Sets</span><h3>Clearing Shea Front Detail</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty">
+              <img src="./assets/Nanas%20Mama/clearing-shea-jar-2.jpg" alt="Clearing shea butter jar product detail">
+              <div><span>African Beauty Sets</span><h3>Clearing Shea Product Detail</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty">
+              <img src="./assets/Nanas%20Mama/clearing-shea-jar-4.jpg" alt="Clearing shea butter jar packaging angle">
+              <div><span>African Beauty Sets</span><h3>Clearing Shea Packaging Angle</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty">
+              <img src="./assets/Nanas%20Mama/clearing-shea-jar-5.jpg" alt="Clearing shea butter jar texture detail">
+              <div><span>African Beauty Sets</span><h3>Clearing Shea Texture Detail</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty">
+              <img src="./assets/Nanas%20Mama/clearing-shea-jar-6.jpg" alt="Clearing shea butter jar set">
+              <div><span>African Beauty Sets</span><h3>Clearing Shea Set</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty events">
+              <img src="./assets/Nanas%20Mama/clearing-shea-lifestyle-1.jpg" alt="Clearing shea butter lifestyle image">
+              <div><span>African Beauty Sets</span><h3>Clearing Shea Lifestyle</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty packaging">
+              <img src="./assets/Nanas%20Mama/nanas-mama-lid-detail-1.jpg" alt="Nana's Mama lid detail">
+              <div><span>Custom Packaging</span><h3>Product Lid Detail</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty packaging">
+              <img src="./assets/Nanas%20Mama/nanas-mama-lid-detail-2.jpg" alt="Nana's Mama product lid closeup">
+              <div><span>Custom Packaging</span><h3>Beauty Jar Finish</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty packaging">
+              <img src="./assets/Nanas%20Mama/nanas-mama-lid-detail-3.jpg" alt="Nana's Mama lid packaging angle">
+              <div><span>Custom Packaging</span><h3>Jar Label Detail</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty packaging">
+              <img src="./assets/Nanas%20Mama/nanas-mama-lid-detail-4.jpg" alt="Nana's Mama jar lid design">
+              <div><span>Custom Packaging</span><h3>Lid Design Closeup</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty packaging">
+              <img src="./assets/Nanas%20Mama/nanas-mama-lid-detail-5.jpg" alt="Nana's Mama product lid detail">
+              <div><span>Custom Packaging</span><h3>Beauty Packaging Detail</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty packaging">
+              <img src="./assets/Nanas%20Mama/nanas-mama-lid-detail-6.jpg" alt="Nana's Mama jar lid close detail">
+              <div><span>Custom Packaging</span><h3>Jar Presentation Detail</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="beauty packaging">
+              <img src="./assets/Nanas%20Mama/nanas-mama-lid-detail-7.jpg" alt="Nana's Mama jar lid final detail">
+              <div><span>Custom Packaging</span><h3>Finished Jar Detail</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="curated corporate">
+              <img src="./assets/gifts/gift-hero-1.png" alt="Curated gift hero arrangement">
+              <div><span>Corporate Orders</span><h3>Curated Gift Arrangement</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="curated corporate events">
+              <img src="./assets/gifts/gift-hero-3.png" alt="Gift arrangement with curated products">
+              <div><span>Curated Gift Boxes</span><h3>Signature Gift Layout</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="personalized packaging">
+              <img src="./assets/custom-gifting/source-sheets/batch-aa.jpg" alt="Custom gifting source sheet with gift project images">
+              <div><span>Personalized Gifts</span><h3>Project Inspiration Board</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="curated events">
+              <img src="./assets/custom-gifting/source-sheets/batch-ab.jpg" alt="Curated gift source sheet with event gift images">
+              <div><span>Events &amp; Occasions</span><h3>Occasion Gift Concepts</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="packaging corporate">
+              <img src="./assets/custom-gifting/source-sheets/batch-ac.jpg" alt="Custom packaging source sheet with project images">
+              <div><span>Custom Packaging</span><h3>Packaging Concept Board</h3></div>
+            </article>
+            <article class="work-gallery-card" data-work-category="corporate events">
+              <img src="./assets/custom-gifting/source-sheets/batch-ad.jpg" alt="Corporate gifting source sheet with gift project images">
+              <div><span>Corporate Orders</span><h3>Bulk Gift Inspiration Board</h3></div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="work-lightbox" data-work-lightbox hidden>
+      <button class="work-lightbox-backdrop" type="button" data-work-lightbox-close aria-label="Close enlarged project image"></button>
+      <div class="work-lightbox-card" role="dialog" aria-modal="true" aria-labelledby="work-lightbox-title">
+        <button class="work-lightbox-close" type="button" data-work-lightbox-close>Close</button>
+        <img src="" alt="" data-work-lightbox-image>
+        <div class="work-lightbox-caption">
+          <p class="eyebrow" data-work-lightbox-category>Project image</p>
+          <h2 id="work-lightbox-title" data-work-lightbox-title>Project detail</h2>
+        </div>
+      </div>
+    </div>
+
+    <footer id="contact" class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <img class="footer-logo" src="./assets/nanasmama-logo.png" alt="Nana's Mama logo">
+          <p>Pure, handcrafted care rooted in Ghanaian heritage.</p>
+        </div>
+        <div>
+          <h2>Site Map</h2>
+          <a href="./index.html#hero">Home</a>
+          <a href="./gifts.html">Shop Gifts</a>
+          <a href="./index.html#custom-packaging">Custom Packaging</a>
+          <a href="./gifts.html#wedding-gifts">Wedding Gifts</a>
+          <a href="./products.html">The Shop</a>
+          <a href="./our-work.html">Our Work</a>
+          <a href="./AboutUs.html">About Us</a>
+          <a href="./contact.html">Contact</a>
+          <a href="./faq.html">FAQ</a>
+        </div>
+        <div>
+          <h2>Contact</h2>
+          <a href="tel:+16156935409">+1 (615) 693-5409</a>
+          <a href="tel:+16159682293">+1 (615) 968-2293</a>
+          <a href="mailto:Nanasmamashea@gmail.com">Nanasmamashea@gmail.com</a>
+          <a href="sms:+16156935409">Text Nana's Mama</a>
+          <div class="footer-icon-row">
+            <div class="social-links" aria-label="Social media links">
+              <a class="social-link" href="tel:+16156935409" title="Call +1 (615) 693-5409" aria-label="Call +1 (615) 693-5409">
+                <span class="social-icon" aria-hidden="true"><i class="fa-solid fa-phone"></i></span>
+                <span class="sr-only">Phone</span>
+              </a>
+              <a class="social-link" href="mailto:Nanasmamashea@gmail.com" title="Email Nanasmamashea@gmail.com" aria-label="Email Nanasmamashea@gmail.com">
+                <span class="social-icon" aria-hidden="true"><i class="fa-regular fa-envelope"></i></span>
+                <span class="sr-only">Email</span>
+              </a>
+              <a class="social-link" href="https://www.instagram.com/nanas_mama.3?igsh=ajlncDlsejd2dno5" target="_blank" rel="noreferrer noopener" aria-label="Instagram">
+                <span class="social-icon" aria-hidden="true"><i class="fa-brands fa-instagram"></i></span>
+              </a>
+              <a class="social-link" href="https://www.youtube.com/@Nanas_mama" target="_blank" rel="noreferrer noopener" aria-label="YouTube">
+                <span class="social-icon" aria-hidden="true"><i class="fa-brands fa-youtube"></i></span>
+              </a>
+              <a class="social-link" href="https://www.snapchat.com/add/nanasmamahse?" target="_blank" rel="noreferrer noopener" aria-label="Snapchat">
+                <span class="social-icon" aria-hidden="true"><i class="fa-brands fa-snapchat"></i></span>
+              </a>
+              <a class="social-link" href="sms:+16156935409" aria-label="Text Nana's Mama support">
+                <span class="social-icon" aria-hidden="true"><i class="fa-regular fa-comment-dots"></i></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bar">
+        <p>Copyright &copy; 2026 nanasmama.com</p>
+      </div>
+    </footer>
+  </div>
+
+  <a class="floating-sms-chat" href="sms:+16156935409" aria-label="Text Nana's Mama support">
+    <i class="fa-regular fa-comment-dots" aria-hidden="true"></i>
+    <span class="sr-only">Text Nana's Mama support</span>
+  </a>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

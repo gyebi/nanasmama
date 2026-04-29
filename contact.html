@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nana's Mama Favorites</title>
+  <title>Contact | Nana's Mama</title>
   <link rel="icon" type="image/png" href="./assets/nanasmama-logo.png">
   <meta
     name="description"
-    content="Sign in to view your Nana's Mama favorites and come back to the products you want to save for later."
+    content="Contact Nana's Mama for custom gifts, personalized gift boxes, custom packaging, wedding gifts, corporate gifting, and beauty product requests."
   >
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,10 +41,10 @@
               <a href="./AboutUs.html#african-connection">African Connection</a>
             </div>
           </div>
-          <a href="./contact.html">Contact</a>
+          <a href="./contact.html" aria-current="page">Contact</a>
         </nav>
         <div class="header-actions">
-          <a class="favorites-link icon-link" href="./favorites.html" aria-current="page" aria-label="View favorites">
+          <a class="favorites-link icon-link" href="./favorites.html" aria-label="View favorites">
             <span class="icon-glyph" aria-hidden="true">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 20.25c-4.48-2.58-7.25-5.32-7.25-8.93A4.3 4.3 0 0 1 9 7a4.5 4.5 0 0 1 3 1.49A4.5 4.5 0 0 1 15 7a4.3 4.3 0 0 1 4.25 4.32c0 3.61-2.77 6.35-7.25 8.93Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
@@ -53,16 +53,16 @@
             <span class="sr-only">Favorites</span>
             <span class="favorites-count" data-favorites-count>0</span>
           </a>
-          <button class="basket-toggle icon-button" type="button" aria-label="Open basket" aria-expanded="false" aria-controls="basket-panel">
+          <a class="basket-toggle icon-button" href="./cart.html" aria-label="View cart">
             <span class="icon-glyph" aria-hidden="true">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M8 10V8.5a4 4 0 1 1 8 0V10" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"/>
                 <path d="M5.5 10h13l-1 9.5a1.75 1.75 0 0 1-1.74 1.5H8.24A1.75 1.75 0 0 1 6.5 19.5Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"/>
               </svg>
             </span>
-            <span class="sr-only">Basket</span>
+            <span class="sr-only">Cart</span>
             <span class="basket-count" data-basket-count>0</span>
-          </button>
+          </a>
           <button class="menu-toggle icon-button" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-nav">
             <span class="icon-glyph" aria-hidden="true">
               <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -77,93 +77,119 @@
       </div>
     </header>
 
-    <aside id="basket-panel" class="basket-panel" aria-label="Shopping basket">
-      <div class="basket-panel-header">
-        <div>
-          <p class="eyebrow">Your order</p>
-          <h2>Basket</h2>
-        </div>
-        <button class="basket-close" type="button" aria-label="Close basket">Close</button>
-      </div>
-      <div class="basket-items" data-basket-items>
-        <p class="basket-empty">Your basket is empty.</p>
-      </div>
-      <div class="basket-summary">
-        <div class="basket-row">
-          <span>Subtotal</span>
-          <strong data-basket-subtotal>$0.00</strong>
-        </div>
-        <div class="basket-row">
-          <span>Shipping</span>
-          <strong data-basket-shipping>$7.00</strong>
-        </div>
-        <div class="basket-row basket-row-total">
-          <span>Total</span>
-          <strong data-basket-total>$0.00</strong>
-        </div>
-        <a class="button button-primary basket-checkout-link" href="./index.html#checkout">Proceed to checkout</a>
-      </div>
-    </aside>
-
     <main id="top">
-      <section class="page-intro">
-        <div class="container page-intro-grid">
-          <div class="page-intro-panel">
-            <p class="eyebrow">Your saved list</p>
-            <h1>Favorites</h1>
-            <p class="lede">
-              Sign in to keep track of the products you love, revisit them later, and move them into your basket whenever you're ready.
-            </p>
+      <section class="contact-page-hero">
+        <div class="container contact-hero-grid">
+          <div class="contact-hero-copy">
+            <p class="eyebrow">Contact Nana's Mama</p>
+            <h1>Let’s Create Something Special for You</h1>
+            <p class="lede">Have a gift in mind? Need custom packaging or a personalized box? We’re here to help bring your idea to life.</p>
             <div class="hero-actions">
-              <a class="button button-primary" href="./products.html">Keep shopping</a>
-              <button class="button button-secondary favorites-signout" type="button" data-favorites-signout hidden>Sign out</button>
+              <a class="button button-primary" href="sms:+16156935409?body=Hi%20Nana%27s%20Mama%2C%20I%27d%20like%20help%20with%20a%20gift%20request.">Text Us</a>
+              <a class="button button-secondary" href="#contact-brief">Send a Gift Brief</a>
             </div>
           </div>
-          <div class="section-note favorites-account-note" data-favorites-account-note>
-            <p>
-              Your favorites list is saved to this browser after sign-in, making it easy to bring interested visitors back to the products they were considering.
-            </p>
+          <div class="contact-hero-media">
+            <img src="./assets/custom-gifting/hero/outdoor-butterfly-gift-box.jpg" alt="Custom Nana's Mama gift box with butterfly detail">
           </div>
         </div>
       </section>
 
-      <section class="favorites-page">
-        <div class="container favorites-layout">
-          <section class="favorites-auth-card" data-favorites-auth-card>
-            <p class="eyebrow">Member sign in</p>
-            <h2>Save and revisit your picks</h2>
-            <p class="lede">
-              Create a quick account to unlock your favorites page. We only ask for a name and email in this demo.
+      <section class="home-section contact-quick-actions" aria-labelledby="quick-actions-title">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Quick actions</p>
+              <h2 id="quick-actions-title">Choose the fastest way to start.</h2>
+            </div>
+          </div>
+          <div class="quick-action-grid">
+            <a class="quick-action-card" href="sms:+16156935409?body=Hi%20Nana%27s%20Mama%2C%20I%27d%20like%20to%20discuss%20a%20gift%20idea.">
+              <span class="quick-action-icon" aria-hidden="true"><i class="fa-regular fa-comment-dots"></i></span>
+              <h3>Text Us</h3>
+              <p>Get a quick response and discuss your gift directly.</p>
+            </a>
+            <a class="quick-action-card" href="#contact-brief">
+              <span class="quick-action-icon" aria-hidden="true"><i class="fa-solid fa-toolbox"></i></span>
+              <h3>Request a Custom Gift</h3>
+              <p>For curated gift boxes, events, or special requests.</p>
+            </a>
+            <a class="quick-action-card" href="#contact-brief">
+              <span class="quick-action-icon" aria-hidden="true"><i class="fa-solid fa-box-open"></i></span>
+              <h3>Corporate / Bulk Orders</h3>
+              <p>For companies, events, and large quantity gifting.</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact-brief" class="home-section contact-form-section">
+        <div class="container contact-brief-grid">
+          <div class="contact-brief-intro">
+            <p class="eyebrow">Mini brief</p>
+            <h2>Tell us what you have in mind.</h2>
+            <p>
+              Share the occasion, budget, and type of request so we can recommend the right gift box, packaging approach, or bulk order option quickly.
             </p>
-            <form class="favorite-login-form" data-favorites-login-form>
+            <div class="contact-support-note">
+              <p><strong>Prefer a direct chat?</strong></p>
+              <a href="sms:+16156935409">Text +1 (615) 693-5409</a>
+              <a href="tel:+16159682293">Call +1 (615) 968-2293</a>
+              <a href="mailto:Nanasmamashea@gmail.com">Nanasmamashea@gmail.com</a>
+            </div>
+          </div>
+          <form class="contact-brief-form" action="mailto:quansijei@yahoo.com,atiemomark@gmail.com?subject=Nana%27s%20Mama%20Gift%20Brief" method="post" enctype="text/plain">
+            <label>
+              Name
+              <input type="text" name="name" autocomplete="name" required>
+            </label>
+            <div class="checkout-field-row">
               <label>
-                First name
-                <input type="text" name="name" autocomplete="given-name" required>
+                Phone number
+                <input type="tel" name="phone" autocomplete="tel" required>
               </label>
               <label>
                 Email
                 <input type="email" name="email" autocomplete="email" required>
               </label>
-              <button class="button button-primary" type="submit">Sign in to view favorites</button>
-            </form>
-            <p class="favorite-modal-note">Returning visitors can sign in on this page to reopen their saved list.</p>
-          </section>
-
-          <section class="favorites-board" data-favorites-board hidden>
-            <div class="section-heading favorites-heading">
-              <div>
-                <p class="eyebrow">Saved for later</p>
-                <h2 data-favorites-greeting>Your favorites</h2>
-              </div>
-              <a class="button button-secondary" href="./products.html">Browse more products</a>
             </div>
-            <div class="favorites-grid product-section-grid" data-favorites-grid></div>
-            <div class="favorites-empty-state" data-favorites-empty hidden>
-              <h3>No favorites yet</h3>
-              <p>Tap the heart on any product to save it here and encourage visitors to come back.</p>
-              <a class="button button-primary" href="./products.html">Go to products</a>
+            <div class="checkout-field-row">
+              <label>
+                Type of request
+                <select name="requestType" required>
+                  <option value="">Select one</option>
+                  <option value="Gift box">Gift box</option>
+                  <option value="Custom packaging">Custom packaging</option>
+                  <option value="Corporate order">Corporate order</option>
+                  <option value="General inquiry">General inquiry</option>
+                </select>
+              </label>
+              <label>
+                Occasion
+                <select name="occasion" required>
+                  <option value="">Select one</option>
+                  <option value="Birthday">Birthday</option>
+                  <option value="Wedding">Wedding</option>
+                  <option value="Corporate">Corporate</option>
+                  <option value="Other">Other</option>
+                </select>
+              </label>
             </div>
-          </section>
+            <label>
+              Budget range
+              <select name="budget" required>
+                <option value="">Select budget</option>
+                <option value="$20-$50">$20–$50</option>
+                <option value="$50-$100">$50–$100</option>
+                <option value="$100+">$100+</option>
+              </select>
+            </label>
+            <label>
+              Message
+              <textarea name="message" rows="6" placeholder="Tell us what you have in mind" required></textarea>
+            </label>
+            <button class="button button-primary contact-submit" type="submit">Send Gift Brief</button>
+          </form>
         </div>
       </section>
     </main>

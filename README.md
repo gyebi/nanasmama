@@ -1,6 +1,17 @@
 # Nana's Mama
 
-Single-page storefront for Nana's Mama, now set up as a Vite project for easier development and future growth.
+Multi-page storefront for Nana's Mama, set up as a Vite project for easier development and future growth.
+
+## Site Management
+
+Shared page metadata lives in `src/site-pages.js`. Use that file when adding, removing, renaming, or changing SEO details for a page.
+
+The same registry powers:
+
+- Vite multi-page build inputs
+- canonical, Open Graph, Twitter, and robots meta tags
+- production image loading hints
+- sitemap generation
 
 ## Getting Started
 
@@ -16,13 +27,19 @@ npm install
 npm run dev
 ```
 
-3. Build for production:
+3. Regenerate the sitemap after route or SEO changes:
+
+```bash
+npm run manage:sitemap
+```
+
+4. Build for production:
 
 ```bash
 npm run build
 ```
 
-4. Preview the production build:
+5. Preview the production build:
 
 ```bash
 npm run preview
