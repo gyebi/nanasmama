@@ -43,7 +43,6 @@ const favoritesEmpty = document.querySelector("[data-favorites-empty]");
 const favoritesGreeting = document.querySelector("[data-favorites-greeting]");
 const favoritesAccountNote = document.querySelector("[data-favorites-account-note]");
 const favoritesSignoutButton = document.querySelector("[data-favorites-signout]");
-const workFilterButtons = document.querySelectorAll("[data-work-filter]");
 const workGalleryCards = document.querySelectorAll("[data-work-category]");
 const workLightbox = document.querySelector("[data-work-lightbox]");
 const workLightboxImage = document.querySelector("[data-work-lightbox-image]");
@@ -1001,24 +1000,6 @@ document.querySelectorAll(".faq-question").forEach((button) => {
     if (answer) {
       answer.hidden = expanded;
     }
-  });
-});
-
-workFilterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const activeFilter = button.getAttribute("data-work-filter") ?? "all";
-
-    workFilterButtons.forEach((filterButton) => {
-      const isActive = filterButton === button;
-      filterButton.classList.toggle("is-active", isActive);
-      filterButton.setAttribute("aria-pressed", String(isActive));
-    });
-
-    workGalleryCards.forEach((card) => {
-      const categories = card.getAttribute("data-work-category")?.split(" ") ?? [];
-      const shouldShow = activeFilter === "all" || categories.includes(activeFilter);
-      card.toggleAttribute("hidden", !shouldShow);
-    });
   });
 });
 
