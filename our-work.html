@@ -29,9 +29,8 @@
 
         <nav id="site-nav" class="site-nav" aria-label="Primary">
           <a href="./index.html#hero">Home</a>
-          <a href="./gifts.html">Shop Gifts</a>
           <a href="./index.html#custom-packaging">Custom Packaging</a>
-          <a href="./gifts.html#wedding-gifts">Wedding Gifts</a>
+          <a href="./gifts.html#upcoming">Upcoming</a>
           <a href="./products.html">The Shop</a>
           <a href="./our-work.html" aria-current="page">Our Work</a>
           <div class="nav-dropdown">
@@ -327,10 +326,19 @@
       <button class="work-lightbox-backdrop" type="button" data-work-lightbox-close aria-label="Close enlarged project image"></button>
       <div class="work-lightbox-card" role="dialog" aria-modal="true" aria-labelledby="work-lightbox-title">
         <button class="work-lightbox-close" type="button" data-work-lightbox-close>Close</button>
-        <img src="" alt="" data-work-lightbox-image>
+        <div class="work-lightbox-stage">
+          <button class="work-lightbox-nav work-lightbox-prev" type="button" data-work-lightbox-prev aria-label="Show previous project image">
+            <span aria-hidden="true">&#8249;</span>
+          </button>
+          <img src="" alt="" data-work-lightbox-image>
+          <button class="work-lightbox-nav work-lightbox-next" type="button" data-work-lightbox-next aria-label="Show next project image">
+            <span aria-hidden="true">&#8250;</span>
+          </button>
+        </div>
         <div class="work-lightbox-caption">
           <p class="eyebrow" data-work-lightbox-category>Project image</p>
           <h2 id="work-lightbox-title" data-work-lightbox-title>Project detail</h2>
+          <p class="work-lightbox-count" data-work-lightbox-count>1 of 1</p>
         </div>
       </div>
     </div>
@@ -346,7 +354,7 @@
           <a href="./index.html#hero">Home</a>
           <a href="./gifts.html">Shop Gifts</a>
           <a href="./index.html#custom-packaging">Custom Packaging</a>
-          <a href="./gifts.html#wedding-gifts">Wedding Gifts</a>
+          <a href="./gifts.html#upcoming">Upcoming</a>
           <a href="./products.html">The Shop</a>
           <a href="./our-work.html">Our Work</a>
           <a href="./AboutUs.html">About Us</a>

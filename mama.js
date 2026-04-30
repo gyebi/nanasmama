@@ -48,6 +48,9 @@ const workLightbox = document.querySelector("[data-work-lightbox]");
 const workLightboxImage = document.querySelector("[data-work-lightbox-image]");
 const workLightboxTitle = document.querySelector("[data-work-lightbox-title]");
 const workLightboxCategory = document.querySelector("[data-work-lightbox-category]");
+const workLightboxCount = document.querySelector("[data-work-lightbox-count]");
+const upcomingEventCards = document.querySelectorAll("[data-upcoming-event]");
+const upcomingEmpty = document.querySelector("[data-upcoming-empty]");
 const SHIPPING_COST = 7;
 const FREE_SHIPPING_THRESHOLD = 75;
 const CART_STORAGE_KEY = "nanasmama-cart";
@@ -56,6 +59,7 @@ const FAVORITES_USER_STORAGE_KEY = "nanasmama-favorites-user";
 const basket = new Map();
 let pendingFavorite = null;
 let checkoutDetails = null;
+let activeWorkGalleryIndex = 0;
 
 if (menuToggle && siteNav) {
   menuToggle.addEventListener("click", () => {
@@ -72,6 +76,29 @@ if (menuToggle && siteNav) {
 }
 
 const formatMoney = (value) => `$${value.toFixed(2)}`;
+
+const hidePastUpcomingEvents = () => {
+  if (!upcomingEventCards.length) {
+    return;
+  }
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  let visibleCount = 0;
+
+  upcomingEventCards.forEach((card) => {
+    const eventDateValue = card.getAttribute("data-event-date");
+    const eventDate = eventDateValue ? new Date(`${eventDateValue}T00:00:00`) : null;
+    const isPast = eventDate instanceof Date && !Number.isNaN(eventDate.getTime()) && eventDate < today;
+
+    card.toggleAttribute("hidden", isPast);
+    if (!isPast) {
+      visibleCount += 1;
+    }
+  });
+
+  upcomingEmpty?.toggleAttribute("hidden", visibleCount > 0);
+};
 
 const readStoredList = (key) => {
   try {
@@ -223,24 +250,65 @@ const setWorkLightboxOpen = (isOpen) => {
   document.body.classList.toggle("modal-open", isOpen);
 };
 
-const openWorkLightbox = (card) => {
+const getVisibleWorkGalleryCards = () => Array.from(workGalleryCards).filter((card) => !card.hidden);
+
+const getWorkGalleryCardDetails = (card) => {
   const image = card.querySelector("img");
   const title = card.querySelector("h3")?.textContent?.trim() || "Project detail";
   const category = card.querySelector("span")?.textContent?.trim() || "Project image";
 
-  if (!image || !workLightboxImage) {
+  if (!image) {
+    return null;
+  }
+
+  return {
+    src: image.getAttribute("src") ?? "",
+    alt: image.getAttribute("alt") ?? title,
+    title,
+    category
+  };
+};
+
+const renderWorkLightboxImage = (index) => {
+  const visibleCards = getVisibleWorkGalleryCards();
+
+  if (!visibleCards.length || !workLightboxImage) {
     return;
   }
 
-  workLightboxImage.setAttribute("src", image.getAttribute("src") ?? "");
-  workLightboxImage.setAttribute("alt", image.getAttribute("alt") ?? title);
-  if (workLightboxTitle) {
-    workLightboxTitle.textContent = title;
-  }
-  if (workLightboxCategory) {
-    workLightboxCategory.textContent = category;
+  activeWorkGalleryIndex = (index + visibleCards.length) % visibleCards.length;
+  const details = getWorkGalleryCardDetails(visibleCards[activeWorkGalleryIndex]);
+
+  if (!details) {
+    return;
   }
 
+  workLightboxImage.setAttribute("src", details.src);
+  workLightboxImage.setAttribute("alt", details.alt);
+  if (workLightboxTitle) {
+    workLightboxTitle.textContent = details.title;
+  }
+  if (workLightboxCategory) {
+    workLightboxCategory.textContent = details.category;
+  }
+  if (workLightboxCount) {
+    workLightboxCount.textContent = `${activeWorkGalleryIndex + 1} of ${visibleCards.length}`;
+  }
+};
+
+const showAdjacentWorkImage = (direction) => {
+  if (!workLightbox || workLightbox.hidden) {
+    return;
+  }
+
+  renderWorkLightboxImage(activeWorkGalleryIndex + direction);
+};
+
+const openWorkLightbox = (card) => {
+  const visibleCards = getVisibleWorkGalleryCards();
+  const cardIndex = visibleCards.indexOf(card);
+
+  renderWorkLightboxImage(cardIndex >= 0 ? cardIndex : 0);
   setWorkLightboxOpen(true);
 };
 
@@ -707,6 +775,16 @@ document.addEventListener("click", (event) => {
     return;
   }
 
+  if (target.closest("[data-work-lightbox-prev]")) {
+    showAdjacentWorkImage(-1);
+    return;
+  }
+
+  if (target.closest("[data-work-lightbox-next]")) {
+    showAdjacentWorkImage(1);
+    return;
+  }
+
   const workGalleryCard = target.closest(".work-gallery-card");
   if (workGalleryCard instanceof HTMLElement && !workGalleryCard.hidden) {
     openWorkLightbox(workGalleryCard);
@@ -980,6 +1058,14 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && workLightbox && !workLightbox.hidden) {
     setWorkLightboxOpen(false);
   }
+  if (event.key === "ArrowLeft" && workLightbox && !workLightbox.hidden) {
+    event.preventDefault();
+    showAdjacentWorkImage(-1);
+  }
+  if (event.key === "ArrowRight" && workLightbox && !workLightbox.hidden) {
+    event.preventDefault();
+    showAdjacentWorkImage(1);
+  }
 });
 
 document.querySelectorAll(".faq-question").forEach((button) => {
@@ -1034,6 +1120,7 @@ document.querySelectorAll(".value-card, .product-card, .category-card, .story-me
 });
 
 loadCart();
+hidePastUpcomingEvents();
 renderBasket();
 renderCartPage();
 renderFavoritesCount();

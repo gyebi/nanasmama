@@ -49,6 +49,17 @@ button {
   font: inherit;
 }
 
+a[href],
+button:not(:disabled),
+[role="button"] {
+  cursor: pointer;
+}
+
+button:disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
 .container {
   width: var(--container);
   margin: 0 auto;
@@ -110,6 +121,51 @@ button {
   color: var(--accent-dark);
   background: rgba(139, 94, 60, 0.12);
   box-shadow: inset 0 0 0 1px rgba(95, 60, 34, 0.08);
+}
+
+.site-nav a[href="./gifts.html#upcoming"] {
+  position: relative;
+  overflow: hidden;
+  color: var(--accent-dark);
+  background: rgba(228, 185, 92, 0.22);
+  box-shadow:
+    inset 0 0 0 1px rgba(139, 94, 60, 0.18),
+    0 8px 22px rgba(139, 94, 60, 0.12);
+}
+
+.site-nav a[href="./gifts.html#upcoming"]::after {
+  content: "";
+  position: absolute;
+  inset: -35% auto -35% -55%;
+  width: 45%;
+  background: linear-gradient(90deg, transparent, rgba(255, 250, 244, 0.82), transparent);
+  transform: skewX(-18deg);
+  animation: upcoming-flash 3.4s ease-in-out infinite;
+}
+
+.site-nav a[href="./gifts.html#upcoming"]:hover,
+.site-nav a[href="./gifts.html#upcoming"]:focus-visible {
+  background: rgba(228, 185, 92, 0.34);
+  transform: translateY(-1px);
+}
+
+@keyframes upcoming-flash {
+  0%,
+  52% {
+    left: -55%;
+  }
+
+  72%,
+  100% {
+    left: 112%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-nav a[href="./gifts.html#upcoming"]::after {
+    animation: none;
+    display: none;
+  }
 }
 
 .nav-dropdown {
@@ -750,7 +806,7 @@ button {
 .story,
 .faq,
 .checkout,
-.gift-ideas,
+.upcoming-gifts,
 .gift-note-strip {
   padding: 4.5rem 0;
 }
@@ -1489,12 +1545,53 @@ button {
   box-shadow: 0 24px 80px rgba(24, 17, 12, 0.38);
 }
 
-.work-lightbox-card img {
+.work-lightbox-stage {
+  position: relative;
+  display: grid;
+  align-items: center;
+}
+
+.work-lightbox-stage img {
   width: 100%;
   max-height: 70vh;
   object-fit: contain;
   background: rgba(47, 36, 24, 0.06);
   border-radius: calc(var(--radius-md) - 0.5rem);
+}
+
+.work-lightbox-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 3rem;
+  height: 3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 250, 244, 0.72);
+  border-radius: 999px;
+  background: rgba(47, 36, 24, 0.68);
+  color: #fffaf4;
+  cursor: pointer;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1;
+  transform: translateY(-50%);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.work-lightbox-nav:hover,
+.work-lightbox-nav:focus-visible {
+  background: rgba(95, 60, 34, 0.9);
+  transform: translateY(-50%) scale(1.04);
+}
+
+.work-lightbox-prev {
+  left: clamp(0.5rem, 2vw, 1rem);
+}
+
+.work-lightbox-next {
+  right: clamp(0.5rem, 2vw, 1rem);
 }
 
 .work-lightbox-close {
@@ -1516,6 +1613,13 @@ button {
 
 .work-lightbox-caption .eyebrow {
   margin: 0;
+}
+
+.work-lightbox-count {
+  margin: 0.15rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
 }
 
 .testimonial-grid {
@@ -2273,44 +2377,60 @@ h1 {
   margin-right: auto;
 }
 
-.gift-ideas-grid {
+.upcoming-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
 }
 
-.gift-idea-card,
-.gift-note-card {
+.gift-note-card,
+.upcoming-card {
   background: rgba(255, 250, 244, 0.84);
   border: 1px solid rgba(67, 43, 23, 0.08);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow);
 }
 
-.gift-idea-card {
-  overflow: hidden;
-}
-
-.gift-idea-card img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-}
-
-.gift-idea-copy {
+.upcoming-card {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  align-content: start;
+  gap: 0.85rem;
   padding: 1.35rem;
 }
 
-.gift-idea-copy p {
-  margin: 0 0 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 0.78rem;
-  color: var(--accent);
+.upcoming-card[hidden] {
+  display: none;
 }
 
-.gift-idea-copy h3 {
-  font-size: 1.6rem;
+.upcoming-date {
+  width: fit-content;
+  margin: 0;
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(139, 94, 60, 0.12);
+  color: var(--accent-dark);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.upcoming-card h3 {
+  font-size: 1.45rem;
+}
+
+.upcoming-card p:not(.upcoming-date) {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.upcoming-empty {
+  margin: 1.5rem 0 0;
+  color: var(--muted);
+  font-weight: 700;
+  text-align: center;
 }
 
 .gift-note-card {
@@ -2740,7 +2860,7 @@ h1 {
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-@media (max-width: 1120px) {
+@media (max-width: 860px) {
   .menu-toggle {
     display: inline-flex;
   }
@@ -2835,7 +2955,7 @@ h1 {
   .checkout-grid,
   .cart-page-grid,
   .category-grid,
-  .gift-ideas-grid,
+  .upcoming-grid,
   .contact-hero-grid,
   .quick-action-grid,
   .contact-brief-grid,
@@ -2952,7 +3072,7 @@ h1 {
   .story,
   .faq,
   .checkout,
-  .gift-ideas,
+  .upcoming-gifts,
   .gift-note-strip {
     padding: 3.4rem 0;
   }
@@ -2986,7 +3106,7 @@ h1 {
   .values-grid,
   .product-grid,
   .product-section-grid,
-  .gift-ideas-grid,
+  .upcoming-grid,
   .build-steps,
   .why-list,
   .gallery-grid,
