@@ -36,6 +36,16 @@ export const pages = [
     sitemap: true
   },
   {
+    key: "custom-packaging",
+    file: "custom-packaging.html",
+    path: "/custom-packaging.html",
+    title: "Custom Packaging | Nana's Mama",
+    description: "Plan custom packaging with Nana's Mama for branded gifts, wedding boxes, client gifts, team appreciation, events, and personalized gift presentations.",
+    changefreq: "monthly",
+    priority: "0.8",
+    sitemap: true
+  },
+  {
     key: "about",
     file: "AboutUs.html",
     path: "/AboutUs.html",
@@ -53,6 +63,16 @@ export const pages = [
     description: "Find answers about Nana's Mama orders, custom gifts, packaging, shipping, returns, and beauty products.",
     changefreq: "monthly",
     priority: "0.6",
+    sitemap: true
+  },
+  {
+    key: "refund-policy",
+    file: "refund-policy.html",
+    path: "/refund-policy.html",
+    title: "Return & Refund Policy | Nana's Mama",
+    description: "Review Nana's Mama return and refund policy for unopened products, damaged orders, incorrect items, and custom gift packaging.",
+    changefreq: "monthly",
+    priority: "0.5",
     sitemap: true
   },
   {

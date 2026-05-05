@@ -26,40 +26,151 @@ const reviewShippingCost = document.querySelector("[data-review-shipping-cost]")
 const reviewTotal = document.querySelector("[data-review-total]");
 const paymentStartButton = document.querySelector("[data-payment-start]");
 const paymentMessage = document.querySelector("[data-payment-message]");
+const contactBriefForm = document.querySelector("[data-contact-brief-form]");
+const contactBriefMessage = document.querySelector("[data-contact-brief-message]");
 const checkoutItems = document.querySelector("[data-checkout-items]");
 const checkoutSubtotal = document.querySelector("[data-checkout-subtotal]");
 const checkoutShipping = document.querySelector("[data-checkout-shipping]");
 const checkoutTotal = document.querySelector("[data-checkout-total]");
 const checkoutForm = document.querySelector("[data-checkout-form]");
 const checkoutMessage = document.querySelector("[data-checkout-message]");
-const favoriteModal = document.querySelector("[data-favorite-modal]");
-const favoriteProductName = document.querySelector("[data-favorite-product-name]");
-const favoriteLoginForm = document.querySelector("[data-favorite-login-form]");
-const favoritesLoginForm = document.querySelector("[data-favorites-login-form]");
 const favoritesAuthCard = document.querySelector("[data-favorites-auth-card]");
 const favoritesBoard = document.querySelector("[data-favorites-board]");
 const favoritesGrid = document.querySelector("[data-favorites-grid]");
 const favoritesEmpty = document.querySelector("[data-favorites-empty]");
 const favoritesGreeting = document.querySelector("[data-favorites-greeting]");
-const favoritesAccountNote = document.querySelector("[data-favorites-account-note]");
-const favoritesSignoutButton = document.querySelector("[data-favorites-signout]");
 const workGalleryCards = document.querySelectorAll("[data-work-category]");
 const workLightbox = document.querySelector("[data-work-lightbox]");
 const workLightboxImage = document.querySelector("[data-work-lightbox-image]");
 const workLightboxTitle = document.querySelector("[data-work-lightbox-title]");
 const workLightboxCategory = document.querySelector("[data-work-lightbox-category]");
 const workLightboxCount = document.querySelector("[data-work-lightbox-count]");
+const collectionCarousel = document.querySelector("[data-collection-carousel]");
+const collectionCarouselImage = document.querySelector("[data-collection-carousel-image]");
+const collectionCarouselTitle = document.querySelector("[data-collection-carousel-title]");
+const collectionCarouselCategory = document.querySelector("[data-collection-carousel-category]");
+const collectionCarouselCaption = document.querySelector("[data-collection-carousel-caption]");
+const collectionCarouselCount = document.querySelector("[data-collection-carousel-count]");
+const collectionCarouselStrip = document.querySelector("[data-collection-carousel-strip]");
 const upcomingEventCards = document.querySelectorAll("[data-upcoming-event]");
 const upcomingEmpty = document.querySelector("[data-upcoming-empty]");
 const SHIPPING_COST = 7;
 const FREE_SHIPPING_THRESHOLD = 75;
+const CONTACT_FUNCTION_URL = "/api/send-email";
+const CONTACT_ERROR_MESSAGE = "Unable to send your message right now. Please email Nanasmamashea@gmail.com directly or try again in a moment.";
 const CART_STORAGE_KEY = "nanasmama-cart";
 const FAVORITES_STORAGE_KEY = "nanasmama-favorites";
-const FAVORITES_USER_STORAGE_KEY = "nanasmama-favorites-user";
 const basket = new Map();
-let pendingFavorite = null;
 let checkoutDetails = null;
 let activeWorkGalleryIndex = 0;
+let activeCollectionKey = "";
+let activeCollectionImageIndex = 0;
+
+const featuredCollections = {
+  "self-care": {
+    category: "Self-care",
+    title: "Wellness Gift Sets",
+    images: [
+      {
+        src: "./assets/gifts-home-page/gift-home-1-relaxing-shea.jpg",
+        alt: "Relaxing Shea self-care gift product",
+        caption: "Relaxing Shea for calm evening rituals and thoughtful care packages."
+      },
+      {
+        src: "./assets/gifts-home-page/gift-home-2-shea-butter.jpg",
+        alt: "Shea Butter self-care product",
+        caption: "Organic Shea Butter as a simple, useful anchor for everyday wellness gifts."
+      },
+      {
+        src: "./assets/gifts-home-page/gift-home-3-hair-shea.jpg",
+        alt: "Hair Shea self-care product",
+        caption: "Hair Shea for textured hair care, protective styles, and scalp comfort."
+      },
+      {
+        src: "./assets/gifts-home-page/gift-home-4-clearing-lifestyle.jpg",
+        alt: "Clearing Shea lifestyle product",
+        caption: "Clearing Shea brings a focused skin-care option into the gift mix."
+      },
+      {
+        src: "./assets/gifts-home-page/gift-home-5-black-soap.webp",
+        alt: "African Black Soap self-care product",
+        caption: "African Black Soap rounds out cleansing and moisture routines."
+      },
+      {
+        src: "./assets/gifts-home-page/gift-home-6-hair-lifestyle.jpg",
+        alt: "Hair care lifestyle self-care product",
+        caption: "Lifestyle product shots help recipients imagine the full self-care routine."
+      }
+    ]
+  },
+  wedding: {
+    category: "Wedding",
+    title: "Wedding & Bridal Gifts",
+    images: [
+      {
+        src: "./assets/custom-gifting/hero/pink-wedding-gift-hamper.jpg",
+        alt: "Pink floral wedding gift hamper",
+        caption: "A soft floral hamper direction for bridal parties and wedding thank-you gifts."
+      },
+      {
+        src: "./assets/custom-gifting/collections/pink-floral-wedding-hamper.jpg",
+        alt: "Pink floral wedding hamper collection",
+        caption: "Curated wedding packaging with romantic colors and layered finishing."
+      },
+      {
+        src: "./assets/custom-gifting/gallery/outdoor-pink-tulle-wide.jpg",
+        alt: "Outdoor pink tulle wedding gift basket",
+        caption: "Outdoor styling gives wedding gifts a bright, keepsake-ready look."
+      },
+      {
+        src: "./assets/custom-gifting/gallery/pink-tulle-outdoor-detail.jpg",
+        alt: "Pink tulle wedding gift detail",
+        caption: "Close-up ribbon and tulle details make the presentation feel personal."
+      },
+      {
+        src: "./assets/custom-gifting/hero/outdoor-butterfly-gift-box.jpg",
+        alt: "Outdoor butterfly gift box",
+        caption: "Butterfly accents add a graceful finish for special-occasion gifting."
+      }
+    ]
+  },
+  business: {
+    category: "Business",
+    title: "Client & Team Gifts",
+    images: [
+      {
+        src: "./assets/custom-gifting/packaging/gold-butterfly-package-detail.jpg",
+        alt: "Gold butterfly custom packaging detail",
+        caption: "Brand-forward packaging details for events, clients, and campaign gifts."
+      },
+      {
+        src: "./assets/custom-gifting/packaging/green-bow-butterfly-detail.jpg",
+        alt: "Green bow custom packaging detail",
+        caption: "Green ribbon and butterfly styling creates a refined client gift direction."
+      },
+      {
+        src: "./assets/custom-gifting/packaging/wrapped-basket-tulle-detail.jpg",
+        alt: "Wrapped custom gift basket with tulle",
+        caption: "Wrapped baskets can support welcome boxes, event gifts, and team surprises."
+      },
+      {
+        src: "./assets/custom-gifting/collections/yellow-bee-floral-basket.jpg",
+        alt: "Yellow custom gifting basket",
+        caption: "Bright custom baskets help business gifting feel warm rather than generic."
+      },
+      {
+        src: "./assets/custom-gifting/source-sheets/batch-aa.jpg",
+        alt: "Custom packaging batch reference sheet",
+        caption: "Batch views show how larger custom orders can still feel consistent."
+      },
+      {
+        src: "./assets/custom-gifting/source-sheets/batch-ad.jpg",
+        alt: "Custom packaging source sheet",
+        caption: "Reference sheets help plan a polished series of client or team gifts."
+      }
+    ]
+  }
+};
 
 if (menuToggle && siteNav) {
   menuToggle.addEventListener("click", () => {
@@ -109,15 +220,6 @@ const readStoredList = (key) => {
   }
 };
 
-const readStoredObject = (key) => {
-  try {
-    const rawValue = window.localStorage.getItem(key);
-    return rawValue ? JSON.parse(rawValue) : null;
-  } catch {
-    return null;
-  }
-};
-
 const writeStoredValue = (key, value) => {
   window.localStorage.setItem(key, JSON.stringify(value));
 };
@@ -130,12 +232,6 @@ const renderFavoritesCount = () => {
   }
 
   favoritesCount.textContent = String(getFavorites().length);
-};
-
-const getFavoriteUser = () => readStoredObject(FAVORITES_USER_STORAGE_KEY);
-
-const saveFavoriteUser = (user) => {
-  writeStoredValue(FAVORITES_USER_STORAGE_KEY, user);
 };
 
 const saveFavorites = (favorites) => {
@@ -232,21 +328,21 @@ const removeFavorite = (productId) => {
   renderFavoritesPage();
 };
 
-const setFavoriteModalOpen = (isOpen) => {
-  if (!favoriteModal) {
-    return;
-  }
-
-  favoriteModal.hidden = !isOpen;
-  document.body.classList.toggle("modal-open", isOpen);
-};
-
 const setWorkLightboxOpen = (isOpen) => {
   if (!workLightbox) {
     return;
   }
 
   workLightbox.hidden = !isOpen;
+  document.body.classList.toggle("modal-open", isOpen);
+};
+
+const setCollectionCarouselOpen = (isOpen) => {
+  if (!collectionCarousel) {
+    return;
+  }
+
+  collectionCarousel.hidden = !isOpen;
   document.body.classList.toggle("modal-open", isOpen);
 };
 
@@ -312,46 +408,80 @@ const openWorkLightbox = (card) => {
   setWorkLightboxOpen(true);
 };
 
-const handleFavoriteIntent = (product) => {
-  const currentUser = getFavoriteUser();
-  if (currentUser) {
-    storeFavorite(product);
-    window.location.href = "./favorites.html";
+const renderCollectionCarousel = (index) => {
+  const collection = featuredCollections[activeCollectionKey];
+
+  if (!collection || !collection.images.length || !collectionCarouselImage) {
     return;
   }
 
-  pendingFavorite = product;
-  if (favoriteProductName) {
-    favoriteProductName.textContent = product.name;
+  activeCollectionImageIndex = (index + collection.images.length) % collection.images.length;
+  const image = collection.images[activeCollectionImageIndex];
+
+  collectionCarouselImage.setAttribute("src", image.src);
+  collectionCarouselImage.setAttribute("alt", image.alt);
+  if (collectionCarouselTitle) {
+    collectionCarouselTitle.textContent = collection.title;
   }
-  setFavoriteModalOpen(true);
+  if (collectionCarouselCategory) {
+    collectionCarouselCategory.textContent = collection.category;
+  }
+  if (collectionCarouselCaption) {
+    collectionCarouselCaption.textContent = image.caption;
+  }
+  if (collectionCarouselCount) {
+    collectionCarouselCount.textContent = `${activeCollectionImageIndex + 1} of ${collection.images.length}`;
+  }
+  if (collectionCarouselStrip) {
+    collectionCarouselStrip.innerHTML = collection.images.map((item, thumbIndex) => `
+      <button class="collection-carousel-thumb${thumbIndex === activeCollectionImageIndex ? " is-active" : ""}" type="button" data-collection-carousel-thumb="${thumbIndex}" aria-label="Show ${item.alt}">
+        <img src="${item.src}" alt="">
+      </button>
+    `).join("");
+  }
+};
+
+const showAdjacentCollectionImage = (direction) => {
+  if (!collectionCarousel || collectionCarousel.hidden) {
+    return;
+  }
+
+  renderCollectionCarousel(activeCollectionImageIndex + direction);
+};
+
+const openCollectionCarousel = (collectionKey) => {
+  if (!featuredCollections[collectionKey]) {
+    return;
+  }
+
+  activeCollectionKey = collectionKey;
+  renderCollectionCarousel(0);
+  setCollectionCarouselOpen(true);
+};
+
+const handleFavoriteIntent = (product) => {
+  if (isFavorite(product.id)) {
+    removeFavorite(product.id);
+    return;
+  }
+
+  storeFavorite(product);
 };
 
 const renderFavoritesPage = () => {
-  if (!favoritesGrid || !favoritesBoard || !favoritesAuthCard || !favoritesEmpty) {
+  if (!favoritesGrid || !favoritesBoard || !favoritesEmpty) {
     return;
   }
 
-  const currentUser = getFavoriteUser();
   const favorites = getFavorites();
-  const isSignedIn = Boolean(currentUser);
 
-  favoritesAuthCard.hidden = isSignedIn;
-  favoritesBoard.hidden = !isSignedIn;
-  favoritesSignoutButton?.toggleAttribute("hidden", !isSignedIn);
-
-  if (favoritesAccountNote) {
-    favoritesAccountNote.innerHTML = isSignedIn
-      ? `<p>Signed in as <strong>${currentUser.name}</strong> (${currentUser.email}). Your saved favorites stay available on this browser for easy return visits.</p>`
-      : `<p>Your favorites list is saved to this browser after sign-in, making it easy to bring interested visitors back to the products they were considering.</p>`;
+  if (favoritesAuthCard) {
+    favoritesAuthCard.hidden = true;
   }
-
-  if (!isSignedIn) {
-    return;
-  }
+  favoritesBoard.hidden = false;
 
   if (favoritesGreeting) {
-    favoritesGreeting.textContent = currentUser?.name ? `${currentUser.name}'s favorites` : "Your favorites";
+    favoritesGreeting.textContent = "Your favorites";
   }
 
   favoritesGrid.innerHTML = "";
@@ -765,9 +895,37 @@ document.addEventListener("click", (event) => {
     return;
   }
 
-  if (target.hasAttribute("data-favorite-close")) {
-    setFavoriteModalOpen(false);
-    pendingFavorite = null;
+  if (target.closest("[data-collection-carousel-close]")) {
+    setCollectionCarouselOpen(false);
+    return;
+  }
+
+  if (target.closest("[data-collection-carousel-prev]")) {
+    showAdjacentCollectionImage(-1);
+    return;
+  }
+
+  if (target.closest("[data-collection-carousel-next]")) {
+    showAdjacentCollectionImage(1);
+    return;
+  }
+
+  const collectionThumb = target.closest("[data-collection-carousel-thumb]");
+  if (collectionThumb instanceof HTMLElement) {
+    const thumbIndex = Number(collectionThumb.getAttribute("data-collection-carousel-thumb"));
+    if (!Number.isNaN(thumbIndex)) {
+      renderCollectionCarousel(thumbIndex);
+    }
+    return;
+  }
+
+  const featuredCollectionCard = target.closest("[data-featured-collection]");
+  if (featuredCollectionCard instanceof HTMLElement) {
+    const collectionKey = featuredCollectionCard.getAttribute("data-featured-collection");
+    if (collectionKey) {
+      openCollectionCarousel(collectionKey);
+    }
+    return;
   }
 
   if (target.closest("[data-work-lightbox-close]")) {
@@ -967,6 +1125,78 @@ if (paymentStartButton) {
   });
 }
 
+if (contactBriefForm) {
+  contactBriefForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const submitButton = contactBriefForm.querySelector("[type='submit']");
+    const formData = new FormData(contactBriefForm);
+    const payload = {
+      name: String(formData.get("name") ?? "").trim(),
+      phone: String(formData.get("phone") ?? "").trim(),
+      email: String(formData.get("email") ?? "").trim(),
+      requestType: String(formData.get("requestType") ?? "").trim(),
+      occasion: String(formData.get("occasion") ?? "").trim(),
+      budget: String(formData.get("budget") ?? "").trim(),
+      message: String(formData.get("message") ?? "").trim()
+    };
+
+    if (!payload.name || !payload.email || !payload.message) {
+      if (contactBriefMessage) {
+        contactBriefMessage.hidden = false;
+        contactBriefMessage.textContent = "Please add your name, email, and message before sending.";
+      }
+      return;
+    }
+
+    if (submitButton) {
+      submitButton.setAttribute("aria-busy", "true");
+      submitButton.textContent = "Sending...";
+    }
+    if (contactBriefMessage) {
+      contactBriefMessage.hidden = true;
+      contactBriefMessage.textContent = "";
+    }
+
+    try {
+      const response = await fetch(CONTACT_FUNCTION_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          ...payload,
+          subject: `Nana's Mama ${payload.requestType || "Website"} Inquiry`
+        })
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok || result.success === false) {
+        throw new Error(result.error || CONTACT_ERROR_MESSAGE);
+      }
+
+      contactBriefForm.reset();
+      if (contactBriefMessage) {
+        contactBriefMessage.hidden = false;
+        contactBriefMessage.textContent = "Thanks. Your gift brief has been sent.";
+      }
+    } catch (error) {
+      if (contactBriefMessage) {
+        contactBriefMessage.hidden = false;
+        const message = error.message || CONTACT_ERROR_MESSAGE;
+        contactBriefMessage.textContent = message.includes("testing emails")
+          ? CONTACT_ERROR_MESSAGE
+          : message;
+      }
+    } finally {
+      if (submitButton) {
+        submitButton.removeAttribute("aria-busy");
+        submitButton.textContent = "Send Gift Brief";
+      }
+    }
+  });
+}
+
 if (checkoutForm && checkoutMessage) {
   checkoutForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -989,66 +1219,7 @@ if (checkoutForm && checkoutMessage) {
   });
 }
 
-if (favoriteLoginForm) {
-  favoriteLoginForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    if (!pendingFavorite) {
-      setFavoriteModalOpen(false);
-      return;
-    }
-
-    const formData = new FormData(favoriteLoginForm);
-    const user = {
-      name: String(formData.get("name") ?? "").trim(),
-      email: String(formData.get("email") ?? "").trim()
-    };
-
-    if (!user.name || !user.email) {
-      return;
-    }
-
-    saveFavoriteUser(user);
-    storeFavorite(pendingFavorite);
-    pendingFavorite = null;
-    favoriteLoginForm.reset();
-    setFavoriteModalOpen(false);
-    window.location.href = "./favorites.html";
-  });
-}
-
-if (favoritesLoginForm) {
-  favoritesLoginForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(favoritesLoginForm);
-    const user = {
-      name: String(formData.get("name") ?? "").trim(),
-      email: String(formData.get("email") ?? "").trim()
-    };
-
-    if (!user.name || !user.email) {
-      return;
-    }
-
-    saveFavoriteUser(user);
-    favoritesLoginForm.reset();
-    renderFavoritesPage();
-  });
-}
-
-if (favoritesSignoutButton) {
-  favoritesSignoutButton.addEventListener("click", () => {
-    window.localStorage.removeItem(FAVORITES_USER_STORAGE_KEY);
-    renderFavoritesPage();
-  });
-}
-
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && favoriteModal && !favoriteModal.hidden) {
-    setFavoriteModalOpen(false);
-    pendingFavorite = null;
-  }
   if (event.key === "Escape" && checkoutPanel && !checkoutPanel.hidden) {
     setCheckoutPanelOpen(false);
   }
@@ -1058,6 +1229,9 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && workLightbox && !workLightbox.hidden) {
     setWorkLightboxOpen(false);
   }
+  if (event.key === "Escape" && collectionCarousel && !collectionCarousel.hidden) {
+    setCollectionCarouselOpen(false);
+  }
   if (event.key === "ArrowLeft" && workLightbox && !workLightbox.hidden) {
     event.preventDefault();
     showAdjacentWorkImage(-1);
@@ -1065,6 +1239,14 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "ArrowRight" && workLightbox && !workLightbox.hidden) {
     event.preventDefault();
     showAdjacentWorkImage(1);
+  }
+  if (event.key === "ArrowLeft" && collectionCarousel && !collectionCarousel.hidden) {
+    event.preventDefault();
+    showAdjacentCollectionImage(-1);
+  }
+  if (event.key === "ArrowRight" && collectionCarousel && !collectionCarousel.hidden) {
+    event.preventDefault();
+    showAdjacentCollectionImage(1);
   }
 });
 

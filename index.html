@@ -28,8 +28,8 @@
         </a>
 
         <nav id="site-nav" class="site-nav" aria-label="Primary">
-          <a href="./index.html#hero">Home</a>
-          <a href="./index.html#custom-packaging">Custom Packaging</a>
+          <a href="./index.html#home-welcome">Home</a>
+          <a href="./custom-packaging.html">Custom Packaging</a>
           <a href="./gifts.html#upcoming">Upcoming</a>
           <a href="./products.html">The Shop</a>
           <a href="./our-work.html">Our Work</a>
@@ -109,7 +109,7 @@
         <div class="home-hero-media">
           <img src="./assets/custom-gifting/hero/pink-wedding-gift-hamper.jpg" alt="Nana's Mama pink floral wedding gift hamper">
         </div>
-        <div class="container home-hero-content">
+        <div id="home-welcome" class="container home-hero-content">
           <p class="eyebrow">Welcome to Nana's Mama </p>
           <h1>Meaningful Gifts, Beautifully Packaged</h1>
           
@@ -117,7 +117,7 @@
             We help you create thoughtful custom packaging, curated gifts, personal care gift boxes for weddings, family moments, and beauty rituals, with packaging that feels personal from the first look.
           </p>
           <div class="hero-actions">
-            <a class="button button-secondary" href="#custom-packaging">Explore custom packaging</a>
+            <a class="button button-secondary" href="./custom-packaging.html">Explore custom packaging</a>
           </div>
         </div>
       </section>
@@ -129,33 +129,29 @@
               <p class="eyebrow">Start here</p>
               <h2>Choose Your Gifting Approach</h2>
             </div>
-            <p class="section-kicker">Pick a ready collection, request a custom package, or build a box around your recipient.</p>
           </div>
           <div class="approach-grid">
-            <a class="approach-card" href="./gifts.html">
+            <article class="approach-card">
               <img src="./assets/custom-gifting/collections/pink-floral-wedding-hamper.jpg" alt="Curated pink floral gift hamper">
               <div>
                 <h3>Shop Curated Gifts</h3>
                 <p>Ready-to-gift bundles for birthdays, thank-yous, care packages, and everyday love.</p>
-                <span>Shop gifts</span>
               </div>
-            </a>
-            <a class="approach-card" href="#custom-packaging">
+            </article>
+            <article class="approach-card">
               <img src="./assets/custom-gifting/packaging/gold-butterfly-package-detail.jpg" alt="Gold butterfly custom packaging detail">
               <div>
                 <h3>Custom Packaging</h3>
                 <p>Brand-forward packaging for events, business gifts, welcome boxes, and special campaigns.</p>
-                <span>Plan packaging</span>
               </div>
-            </a>
-            <a class="approach-card" href="#build-gift-box">
+            </article>
+            <article class="approach-card">
               <img src="./assets/custom-gifting/baby-gifts/daisy-baby-gift-basket.jpg" alt="Personalized Daisy baby gift basket">
               <div>
                 <h3>Build Your Own Box</h3>
                 <p>Select the products, note, and finishing touches that make the gift feel unmistakably personal.</p>
-                <span>Build a box</span>
               </div>
-            </a>
+            </article>
           </div>
         </div>
       </section>
@@ -169,48 +165,27 @@
             </div>
           </div>
           <div class="collection-grid">
-            <a class="collection-card" href="./gifts.html">
+            <button class="collection-card" type="button" data-featured-collection="self-care">
               <img src="./assets/custom-gifting/hero/outdoor-butterfly-gift-box.jpg" alt="Outdoor butterfly gift box collection">
               <div>
                 <p>Self-care</p>
                 <h3>Wellness Gift Sets</h3>
               </div>
-            </a>
-            <a class="collection-card" href="./gifts.html#upcoming">
+            </button>
+            <button class="collection-card" type="button" data-featured-collection="wedding">
               <img src="./assets/custom-gifting/collections/pink-floral-wedding-hamper.jpg" alt="Pink wedding gift hamper collection">
               <div>
                 <p>Wedding</p>
                 <h3>Wedding &amp; Bridal Gifts</h3>
               </div>
-            </a>
-            <a class="collection-card" href="#custom-packaging">
+            </button>
+            <button class="collection-card" type="button" data-featured-collection="business">
               <img src="./assets/custom-gifting/collections/yellow-bee-floral-basket.jpg" alt="Yellow custom gifting basket collection">
               <div>
                 <p>Business</p>
                 <h3>Client &amp; Team Gifts</h3>
               </div>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section id="custom-packaging" class="home-section service-feature">
-        <div class="container service-feature-grid">
-          <div class="service-copy">
-            <p class="eyebrow">Custom packaging service</p>
-            <h2>Packaging that carries the message before the box is opened</h2>
-            <p>
-              We help shape branded, seasonal, and personal gift packaging for businesses, weddings, events, and special deliveries. From the outside presentation to the inside product mix, every detail can feel intentional.
-            </p>
-            <ul class="service-list">
-              <li>Personalized gift notes and branded inserts</li>
-              <li>Custom box styling for small or larger orders</li>
-              <li>Beauty, wellness, and curated product pairings</li>
-            </ul>
-            <a class="button button-primary" href="./contact.html#contact-brief">Start a custom order</a>
-          </div>
-          <div class="service-media">
-            <img src="./assets/custom-gifting/packaging/wrapped-basket-tulle-detail.jpg" alt="Wrapped custom gift basket with tulle">
+            </button>
           </div>
         </div>
       </section>
@@ -243,60 +218,6 @@
         </div>
       </section>
 
-      <section id="bestsellers" class="home-section products">
-        <div class="container">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">Bestsellers</p>
-              <h2>Beauty favorites for every box</h2>
-            </div>
-            <a class="button button-secondary" href="./products.html">Shop beauty products</a>
-          </div>
-          <div class="product-grid bestseller-grid">
-            <article class="product-card" data-product-id="hair-shea" data-product-name="Hair Shea" data-product-price="15.99">
-              <button class="favorite-button" type="button" aria-label="Add Hair Shea to favorites">♡</button>
-              <img src="./assets/Nanas%20Mama/hair-shea-jar-4.jpg" alt="Hair Shea">
-              <div class="product-copy">
-                <p class="product-brand">Nana's Mama</p>
-                <h3>Hair Shea</h3>
-                <strong class="product-price">$15.99</strong>
-                <button class="button add-to-basket add-to-bag" type="button">Add to Cart</button>
-              </div>
-            </article>
-            <article class="product-card" data-product-id="shea-butter" data-product-name="Shea Butter" data-product-price="15.99">
-              <button class="favorite-button" type="button" aria-label="Add Shea Butter to favorites">♡</button>
-              <img src="./assets/Nanas%20Mama/shea-butter-jar-2.jpg" alt="Shea butter">
-              <div class="product-copy">
-                <p class="product-brand">Nana's Mama</p>
-                <h3>Shea Butter</h3>
-                <strong class="product-price">$15.99</strong>
-                <button class="button add-to-basket add-to-bag" type="button">Add to Cart</button>
-              </div>
-            </article>
-            <article class="product-card" data-product-id="relaxing-shea" data-product-name="Relaxing Shea" data-product-price="15.99">
-              <button class="favorite-button" type="button" aria-label="Add Relaxing Shea to favorites">♡</button>
-              <img src="./assets/Nanas%20Mama/relaxing-shea-jar-3.jpg" alt="Relaxing Shea">
-              <div class="product-copy">
-                <p class="product-brand">Nana's Mama</p>
-                <h3>Relaxing Shea</h3>
-                <strong class="product-price">$15.99</strong>
-                <button class="button add-to-basket add-to-bag" type="button">Add to Cart</button>
-              </div>
-            </article>
-            <article class="product-card" data-product-id="african-black-soap" data-product-name="African Black Soap" data-product-price="16.00">
-              <button class="favorite-button" type="button" aria-label="Add African Black Soap to favorites">♡</button>
-              <img src="./assets/Nanas%20Mama/african-black-soap.webp" alt="African Black Soap">
-              <div class="product-copy">
-                <p class="product-brand">Nana's Mama</p>
-                <h3>African Black Soap</h3>
-                <strong class="product-price">$16.00</strong>
-                <button class="button add-to-basket add-to-bag" type="button">Add to Cart</button>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
       <section id="testimonials" class="home-section testimonials">
         <div class="container">
           <div class="section-heading">
@@ -305,19 +226,65 @@
               <h2>Thoughtful words from happy recipients</h2>
             </div>
           </div>
-          <div class="testimonial-grid">
-            <article>
-              <p>"The packaging made the gift feel so personal. It looked beautiful before it was even opened."</p>
-              <strong>Corporate gift customer</strong>
-            </article>
-            <article>
-              <p>"Everything felt carefully chosen, from the shea butter to the note. It was simple, warm, and memorable."</p>
-              <strong>Curated gift customer</strong>
-            </article>
-            <article>
-              <p>"The beauty products were practical and the presentation was lovely. It felt like a real treat."</p>
-              <strong>Beauty gift customer</strong>
-            </article>
+          <div class="testimonial-scroll" aria-label="Customer testimonials">
+            <div class="testimonial-grid">
+              <article>
+                <p>"My wife loves your product!!"</p>
+                <strong>Fassil Tsegaye</strong>
+              </article>
+              <article>
+                <p>"My wife ordered this for our family and it has worked wonders."</p>
+                <strong>Justin Buchanan</strong>
+              </article>
+              <article>
+                <p>"I really love it and the packaging is excellent."</p>
+                <strong>Awurama Gibson</strong>
+              </article>
+              <article>
+                <p>"The best sheabutter i have used."</p>
+                <strong>Esther Ezirim</strong>
+              </article>
+              <article>
+                <p>"This is soooo uniquely done...."</p>
+                <strong>Success Eidon</strong>
+              </article>
+              <article>
+                <p>"Good products, I really love it."</p>
+                <strong>Awurama Gibson</strong>
+              </article>
+              <article>
+                <p>"Great quality and quantity."</p>
+                <strong>Justin Buchanan</strong>
+              </article>
+              <article aria-hidden="true">
+                <p>"My wife loves your product!!"</p>
+                <strong>Fassil Tsegaye</strong>
+              </article>
+              <article aria-hidden="true">
+                <p>"My wife ordered this for our family and it has worked wonders."</p>
+                <strong>Justin Buchanan</strong>
+              </article>
+              <article aria-hidden="true">
+                <p>"I really love it and the packaging is excellent."</p>
+                <strong>Awurama Gibson</strong>
+              </article>
+              <article aria-hidden="true">
+                <p>"The best sheabutter i have used."</p>
+                <strong>Esther Ezirim</strong>
+              </article>
+              <article aria-hidden="true">
+                <p>"This is soooo uniquely done...."</p>
+                <strong>Success Eidon</strong>
+              </article>
+              <article aria-hidden="true">
+                <p>"Good products, I really love it."</p>
+                <strong>Awurama Gibson</strong>
+              </article>
+              <article aria-hidden="true">
+                <p>"Great quality and quantity."</p>
+                <strong>Justin Buchanan</strong>
+              </article>
+            </div>
           </div>
         </div>
       </section>
@@ -325,21 +292,43 @@
       <section id="connect" class="home-section connect-cta">
         <div class="container connect-panel">
           <div>
-            <p class="eyebrow">Text / newsletter</p>
+            <p class="eyebrow">Text</p>
             <h2>Need help choosing the right gift?</h2>
-            <p>Text us for custom packaging, gift ideas, wedding orders, and beauty bundle support, or join the list for new collections.</p>
+            <p>Text us for custom packaging, gift ideas, wedding orders, and beauty bundle support.</p>
           </div>
           <div class="connect-actions">
-            <a class="button button-primary" href="sms:+16156935409">Text us for gift help</a>
-            <form class="newsletter-form">
-              <label class="sr-only" for="newsletter-email">Email address</label>
-              <input id="newsletter-email" type="email" placeholder="Email address">
-              <button class="button button-secondary" type="submit">Join newsletter</button>
-            </form>
+            <a class="button button-primary" href="sms:+16159682293">Text us for gift help</a>
+            <a class="button button-primary" href="mailto:Nanasmamashea@gmail.com">Email us for gift help</a>
+
           </div>
         </div>
       </section>
     </main>
+
+    <div class="collection-carousel" data-collection-carousel hidden>
+      <button class="collection-carousel-backdrop" type="button" data-collection-carousel-close aria-label="Close collection gallery"></button>
+      <section class="collection-carousel-dialog" role="dialog" aria-modal="true" aria-labelledby="collection-carousel-title">
+        <button class="collection-carousel-close" type="button" data-collection-carousel-close>Close</button>
+        <div class="collection-carousel-stage">
+          <button class="collection-carousel-nav collection-carousel-prev" type="button" data-collection-carousel-prev aria-label="Show previous collection image">
+            <span aria-hidden="true">&larr;</span>
+          </button>
+          <figure class="collection-carousel-figure">
+            <img src="" alt="" data-collection-carousel-image>
+            <figcaption>
+              <p class="eyebrow" data-collection-carousel-category>Featured collection</p>
+              <h2 id="collection-carousel-title" data-collection-carousel-title>Collection gallery</h2>
+              <p data-collection-carousel-caption></p>
+              <p class="collection-carousel-count" data-collection-carousel-count>1 of 1</p>
+            </figcaption>
+          </figure>
+          <button class="collection-carousel-nav collection-carousel-next" type="button" data-collection-carousel-next aria-label="Show next collection image">
+            <span aria-hidden="true">&rarr;</span>
+          </button>
+        </div>
+        <div class="collection-carousel-strip" data-collection-carousel-strip aria-label="Collection gallery thumbnails"></div>
+      </section>
+    </div>
 
     <footer id="contact" class="site-footer">
       <div class="container footer-grid">
@@ -349,25 +338,25 @@
         </div>
         <div>
           <h2>Site Map</h2>
-          <a href="./index.html#hero">Home</a>
+          <a href="./index.html#home-welcome">Home</a>
           <a href="./gifts.html">Shop Gifts</a>
-          <a href="./index.html#custom-packaging">Custom Packaging</a>
+          <a href="./custom-packaging.html">Custom Packaging</a>
           <a href="./gifts.html#upcoming">Upcoming</a>
           <a href="./products.html">The Shop</a>
           <a href="./our-work.html">Our Work</a>
           <a href="./AboutUs.html">About Us</a>
           <a href="./contact.html">Contact</a>
           <a href="./faq.html">FAQ</a>
+          <a href="./refund-policy.html">Return &amp; Refund Policy</a>
         </div>
         <div>
           <h2>Contact</h2>
-          <a href="tel:+16156935409">+1 (615) 693-5409</a>
           <a href="tel:+16159682293">+1 (615) 968-2293</a>
           <a href="mailto:Nanasmamashea@gmail.com">Nanasmamashea@gmail.com</a>
-          <a href="sms:+16156935409">Text Nana's Mama</a>
+          <a href="sms:+16159682293">Text Nana's Mama</a>
           <div class="footer-icon-row">
             <div class="social-links" aria-label="Social media links">
-              <a class="social-link" href="tel:+16156935409" title="Call +1 (615) 693-5409" aria-label="Call +1 (615) 693-5409">
+              <a class="social-link" href="tel:+16159682293" title="Call +1 (615) 968-2293" aria-label="Call +1 (615) 968-2293">
                 <span class="social-icon" aria-hidden="true"><i class="fa-solid fa-phone"></i></span>
                 <span class="sr-only">Phone</span>
               </a>
@@ -384,7 +373,7 @@
               <a class="social-link" href="https://www.snapchat.com/add/nanasmamahse?" target="_blank" rel="noreferrer noopener" aria-label="Snapchat">
                 <span class="social-icon" aria-hidden="true"><i class="fa-brands fa-snapchat"></i></span>
               </a>
-              <a class="social-link" href="sms:+16156935409" aria-label="Text Nana's Mama support">
+              <a class="social-link" href="sms:+16159682293" aria-label="Text Nana's Mama support">
                 <span class="social-icon" aria-hidden="true"><i class="fa-regular fa-comment-dots"></i></span>
               </a>
             </div>
@@ -396,7 +385,7 @@
       </div>
     </footer>
   </div>
-  <a class="floating-sms-chat" href="sms:+16156935409" aria-label="Text Nana's Mama support">
+  <a class="floating-sms-chat" href="sms:+16159682293" aria-label="Text Nana's Mama support">
     <i class="fa-regular fa-comment-dots" aria-hidden="true"></i>
     <span class="sr-only">Text Nana's Mama support</span>
   </a>
