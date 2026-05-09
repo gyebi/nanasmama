@@ -127,11 +127,16 @@ button:disabled,
 
 .site-nav a:hover,
 .site-nav a:focus-visible,
+.site-nav a[aria-current="page"],
 .nav-dropdown:hover .nav-dropdown-trigger,
 .nav-dropdown:focus-within .nav-dropdown-trigger {
   color: var(--accent-dark);
   background: rgba(139, 94, 60, 0.12);
   box-shadow: inset 0 0 0 1px rgba(95, 60, 34, 0.08);
+}
+
+.site-nav a[aria-current="page"] {
+  font-weight: 800;
 }
 
 .site-nav a[href="./gifts.html#upcoming"] {
@@ -519,6 +524,31 @@ button:disabled,
   color: var(--muted);
 }
 
+.cart-toast {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 80;
+  max-width: min(340px, calc(100vw - 2rem));
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(67, 43, 23, 0.12);
+  border-radius: var(--radius-sm);
+  background: rgba(50, 34, 22, 0.96);
+  color: #fffaf4;
+  box-shadow: var(--shadow);
+  font-weight: 700;
+  line-height: 1.4;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(0.75rem);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.cart-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .basket-item-controls {
   justify-content: flex-end;
 }
@@ -732,6 +762,10 @@ button:disabled,
   padding: 1rem 0 4.5rem;
 }
 
+.cart-payment-section {
+  padding: 1rem 0 4.5rem;
+}
+
 .cart-checkout-grid {
   display: grid;
   gap: 1.25rem;
@@ -807,6 +841,45 @@ button:disabled,
 
 .cart-page-summary h2 {
   font-size: 1.25rem;
+}
+
+.checkout-payment-card {
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 1px solid rgba(67, 43, 23, 0.08);
+  border-radius: var(--radius-md);
+  background: rgba(255, 250, 244, 0.98);
+  box-shadow: var(--shadow);
+}
+
+.checkout-payment-card h3 {
+  margin-bottom: 0.35rem;
+  font-size: 1.2rem;
+}
+
+.checkout-order-reference {
+  display: grid;
+  gap: 0.45rem;
+  padding: 1rem;
+  border: 1px solid rgba(139, 94, 60, 0.2);
+  border-radius: var(--radius-sm);
+  background: rgba(239, 227, 210, 0.38);
+}
+
+.checkout-order-reference[hidden] {
+  display: none;
+}
+
+.checkout-order-reference strong {
+  color: var(--accent-dark);
+  font-size: 1.3rem;
+}
+
+.checkout-order-reference p:not(.eyebrow) {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
 }
 
 .hero,
@@ -2060,6 +2133,33 @@ button:disabled,
 .contact-brief-form textarea {
   resize: vertical;
   line-height: 1.6;
+}
+
+.contact-order-success {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1.15rem;
+  border: 1px solid rgba(139, 94, 60, 0.2);
+  border-radius: var(--radius-md);
+  background: rgba(239, 227, 210, 0.38);
+}
+
+.contact-order-success[hidden] {
+  display: none;
+}
+
+.contact-order-success h3 {
+  font-size: 1.15rem;
+}
+
+.contact-order-success h3 span {
+  color: var(--accent-dark);
+}
+
+.contact-order-success p:not(.eyebrow) {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
 }
 
 .contact-submit {

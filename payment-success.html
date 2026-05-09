@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact | Nana's Mama</title>
+  <title>Payment Received | Nana's Mama</title>
   <link rel="icon" type="image/png" href="./assets/nanasmama-logo.png">
+  <meta name="robots" content="noindex">
   <meta
     name="description"
-    content="Contact Nana's Mama for custom gifts, personalized gift boxes, custom packaging, wedding gifts, corporate gifting, and beauty product requests."
+    content="Nana's Mama payment confirmation page for custom package deposits."
   >
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,7 +41,7 @@
               <a href="./AboutUs.html#african-connection">African Connection</a>
             </div>
           </div>
-          <a href="./contact.html" aria-current="page">Contact</a>
+          <a href="./contact.html">Contact</a>
         </nav>
         <div class="header-actions">
           <a class="favorites-link icon-link" href="./favorites.html" aria-label="View favorites">
@@ -77,135 +78,17 @@
     </header>
 
     <main id="top">
-      <section class="contact-page-hero">
-        <div class="container contact-hero-grid">
-          <div class="contact-hero-copy">
-            <p class="eyebrow">Contact Nana's Mama</p>
-            <h1>Let’s Create Something Special for You</h1>
-            <p class="lede">Have a gift in mind? Need custom packaging or a personalized box? We’re here to help bring your idea to life.</p>
+      <section class="page-intro">
+        <div class="container page-intro-grid">
+          <div class="page-intro-panel">
+            <p class="eyebrow">Payment confirmation</p>
+            <h1>Thank you. Your deposit payment has been received.</h1>
+            <p class="lede">Nana's Mama will match your Square payment to your custom package request using the order reference you entered.</p>
             <div class="hero-actions">
-              <a class="button button-primary" href="sms:+16159682293?body=Hi%20Nana%27s%20Mama%2C%20I%27d%20like%20help%20with%20a%20gift%20request.">Text Us</a>
-              <a class="button button-secondary" href="#contact-brief">Send a Gift Brief</a>
+              <a class="button button-primary" href="./contact.html#contact-brief" data-return-previous>Return to previous page</a>
+              <a class="button button-secondary" href="./products.html">Continue shopping</a>
             </div>
           </div>
-          <div class="contact-hero-media">
-            <img src="./assets/custom-gifting/hero/outdoor-butterfly-gift-box.jpg" alt="Custom Nana's Mama gift box with butterfly detail">
-          </div>
-        </div>
-      </section>
-
-      <section class="home-section contact-quick-actions" aria-labelledby="quick-actions-title">
-        <div class="container">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">Quick actions</p>
-              <h2 id="quick-actions-title">Choose the fastest way to start.</h2>
-            </div>
-          </div>
-          <div class="quick-action-grid">
-            <a class="quick-action-card" href="sms:+16159682293?body=Hi%20Nana%27s%20Mama%2C%20I%27d%20like%20to%20discuss%20a%20gift%20idea.">
-              <span class="quick-action-icon" aria-hidden="true"><i class="fa-regular fa-comment-dots"></i></span>
-              <h3>Text Us</h3>
-              <p>Get a quick response and discuss your gift directly.</p>
-            </a>
-            <a class="quick-action-card" href="#contact-brief">
-              <span class="quick-action-icon" aria-hidden="true"><i class="fa-solid fa-toolbox"></i></span>
-              <h3>Request a Custom Gift</h3>
-              <p>For curated gift boxes, events, or special requests.</p>
-            </a>
-            <a class="quick-action-card" href="#contact-brief">
-              <span class="quick-action-icon" aria-hidden="true"><i class="fa-solid fa-box-open"></i></span>
-              <h3>Corporate / Bulk Orders</h3>
-              <p>For companies, events, and large quantity gifting.</p>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact-brief" class="home-section contact-form-section">
-        <div class="container contact-brief-grid">
-          <div class="contact-brief-intro">
-            <p class="eyebrow">Mini brief</p>
-            <h2>Tell us what you have in mind.</h2>
-            <p>
-              Share the occasion, budget, and type of request so we can recommend the right gift box, packaging approach, or bulk order option quickly.
-            </p>
-            <div class="contact-support-note">
-              <p><strong>Prefer a direct chat?</strong></p>
-              <a href="sms:+16159682293">Text +1 (615) 968-2293</a>
-              <a href="tel:+16159682293">Call +1 (615) 968-2293</a>
-              <a href="mailto:Nanasmamashea@gmail.com">Nanasmamashea@gmail.com</a>
-            </div>
-          </div>
-          <form class="contact-brief-form" data-contact-brief-form>
-            <label>
-              Name
-              <input type="text" name="name" autocomplete="name" required>
-            </label>
-            <div class="checkout-field-row">
-              <label>
-                Phone number
-                <input type="tel" name="phone" autocomplete="tel" required>
-              </label>
-              <label>
-                Email
-                <input type="email" name="email" autocomplete="email" required>
-              </label>
-            </div>
-            <div class="checkout-field-row">
-              <label>
-                Type of request
-                <select name="requestType" required>
-                  <option value="">Select one</option>
-                  <option value="Gift box">Gift box</option>
-                  <option value="Custom packaging">Custom packaging</option>
-                  <option value="Corporate order">Corporate order</option>
-                  <option value="General inquiry">General inquiry</option>
-                </select>
-              </label>
-              <label>
-                Occasion
-                <select name="occasion" required>
-                  <option value="">Select one</option>
-                  <option value="Birthday">Birthday</option>
-                  <option value="Wedding">Wedding</option>
-                  <option value="Corporate">Corporate</option>
-                  <option value="Other">Other</option>
-                </select>
-              </label>
-            </div>
-            <label>
-              Budget range
-              <select name="budget" required>
-                <option value="">Select budget</option>
-                <option value="$20-$50">$20–$50</option>
-                <option value="$50-$100">$50–$100</option>
-                <option value="$100+">$100+</option>
-              </select>
-            </label>
-            <label>
-              Message
-              <textarea name="message" rows="6" placeholder="Tell us what you have in mind" required></textarea>
-            </label>
-            <button class="button button-primary contact-submit" type="submit">Send Gift Brief</button>
-            <p class="checkout-message" data-contact-brief-message hidden></p>
-            <div class="contact-order-success" data-contact-order-success hidden>
-              <p class="eyebrow">Request sent</p>
-              <h3>Your order reference is <span data-contact-order-reference></span></h3>
-              <p>
-                Use this exact reference in the Square note or custom field when paying your deposit so Nana's Mama can match your payment to your request.
-              </p>
-              <a
-                class="button button-primary"
-                href="https://square.link/u/vBOFopQD"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-contact-deposit-link
-              >
-                Pay Deposit
-              </a>
-            </div>
-          </form>
         </div>
       </section>
     </main>
@@ -265,7 +148,6 @@
       </div>
     </footer>
   </div>
-
   <a class="floating-sms-chat" href="sms:+16159682293" aria-label="Text Nana's Mama support">
     <i class="fa-regular fa-comment-dots" aria-hidden="true"></i>
     <span class="sr-only">Text Nana's Mama support</span>

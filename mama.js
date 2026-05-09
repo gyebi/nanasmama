@@ -28,6 +28,10 @@ const paymentStartButton = document.querySelector("[data-payment-start]");
 const paymentMessage = document.querySelector("[data-payment-message]");
 const contactBriefForm = document.querySelector("[data-contact-brief-form]");
 const contactBriefMessage = document.querySelector("[data-contact-brief-message]");
+const contactOrderSuccess = document.querySelector("[data-contact-order-success]");
+const contactOrderReference = document.querySelector("[data-contact-order-reference]");
+const contactDepositLink = document.querySelector("[data-contact-deposit-link]");
+const previousPageLinks = document.querySelectorAll("[data-return-previous]");
 const checkoutItems = document.querySelector("[data-checkout-items]");
 const checkoutSubtotal = document.querySelector("[data-checkout-subtotal]");
 const checkoutShipping = document.querySelector("[data-checkout-shipping]");
@@ -54,14 +58,20 @@ const collectionCarouselCount = document.querySelector("[data-collection-carouse
 const collectionCarouselStrip = document.querySelector("[data-collection-carousel-strip]");
 const upcomingEventCards = document.querySelectorAll("[data-upcoming-event]");
 const upcomingEmpty = document.querySelector("[data-upcoming-empty]");
+const cartOrderReferenceCard = document.querySelector("[data-cart-order-reference-card]");
+const cartOrderReference = document.querySelector("[data-cart-order-reference]");
 const SHIPPING_COST = 7;
 const FREE_SHIPPING_THRESHOLD = 75;
 const CONTACT_FUNCTION_URL = "/api/send-email";
+const CUSTOM_PACKAGE_DEPOSIT_URL = "https://square.link/u/cHWh3RVb";
+const GIFT_BRIEF_DEPOSIT_URL = "https://square.link/u/vBOFopQD";
 const CONTACT_ERROR_MESSAGE = "Unable to send your message right now. Please email Nanasmamashea@gmail.com directly or try again in a moment.";
 const CART_STORAGE_KEY = "nanasmama-cart";
 const FAVORITES_STORAGE_KEY = "nanasmama-favorites";
+const PREVIOUS_PAGE_STORAGE_KEY = "nanasmama-previous-page";
 const basket = new Map();
 let checkoutDetails = null;
+let cartOrderReferenceValue = "";
 let activeWorkGalleryIndex = 0;
 let activeCollectionKey = "";
 let activeCollectionImageIndex = 0;
@@ -186,7 +196,90 @@ if (menuToggle && siteNav) {
   });
 }
 
+const setActiveNavigationLink = () => {
+  if (!siteNav) {
+    return;
+  }
+
+  const currentPath = window.location.pathname.split("/").pop() || "index.html";
+  const currentHash = window.location.hash;
+
+  siteNav.querySelectorAll("a[aria-current='page']").forEach((link) => {
+    link.removeAttribute("aria-current");
+  });
+
+  let activeLink = null;
+  siteNav.querySelectorAll("a[href]").forEach((link) => {
+    if (!(link instanceof HTMLAnchorElement)) {
+      return;
+    }
+
+    const linkPath = link.pathname.split("/").pop() || "index.html";
+    const linkHash = link.hash;
+    const isExactHashMatch = currentHash && linkHash && currentHash === linkHash && currentPath === linkPath;
+    const isPageMatch = !activeLink && currentPath === linkPath && !linkHash;
+    if (isExactHashMatch || isPageMatch) {
+      activeLink = link;
+    }
+  });
+
+  activeLink?.setAttribute("aria-current", "page");
+};
+
+setActiveNavigationLink();
+
 const formatMoney = (value) => `$${value.toFixed(2)}`;
+
+let cartToastTimeoutId = 0;
+
+const showCartToast = (message) => {
+  let toast = document.querySelector("[data-cart-toast]");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.className = "cart-toast";
+    toast.setAttribute("data-cart-toast", "");
+    toast.setAttribute("role", "status");
+    toast.setAttribute("aria-live", "polite");
+    document.body.appendChild(toast);
+  }
+
+  toast.textContent = message;
+  toast.classList.add("is-visible");
+  window.clearTimeout(cartToastTimeoutId);
+  cartToastTimeoutId = window.setTimeout(() => {
+    toast.classList.remove("is-visible");
+  }, 3200);
+};
+
+const generateOrderReference = () => {
+  const now = new Date();
+  const dateStamp = [
+    now.getFullYear(),
+    String(now.getMonth() + 1).padStart(2, "0"),
+    String(now.getDate()).padStart(2, "0")
+  ].join("");
+  const randomPart = Math.random().toString(36).slice(2, 6).toUpperCase();
+  return `NM-${dateStamp}-${randomPart}`;
+};
+
+const rememberCurrentPage = () => {
+  try {
+    const currentPage = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+    window.localStorage.setItem(PREVIOUS_PAGE_STORAGE_KEY, currentPage || "/");
+  } catch (error) {
+    // Storage may be unavailable in private browsing; the fallback links still work.
+  }
+};
+
+const setCartOrderReference = (reference) => {
+  cartOrderReferenceValue = reference;
+  if (cartOrderReference) {
+    cartOrderReference.textContent = reference;
+  }
+  if (cartOrderReferenceCard) {
+    cartOrderReferenceCard.hidden = false;
+  }
+};
 
 const hidePastUpcomingEvents = () => {
   if (!upcomingEventCards.length) {
@@ -255,6 +348,27 @@ const loadCart = () => {
 
 const saveCart = () => {
   writeStoredValue(CART_STORAGE_KEY, Array.from(basket.values()));
+};
+
+const updateSquarePaymentButton = (card) => {
+  const buyNowButton = card.querySelector("[data-buy-now]");
+  if (!(buyNowButton instanceof HTMLElement)) {
+    return;
+  }
+
+  const selectedVariant = card.querySelector("[data-product-variant].is-selected");
+  if (!selectedVariant) {
+    return;
+  }
+
+  const paymentLink = selectedVariant?.getAttribute("data-square-payment-link");
+  if (paymentLink) {
+    buyNowButton.textContent = "Buy Now";
+    buyNowButton.setAttribute("data-square-payment-link", paymentLink);
+  } else {
+    buyNowButton.textContent = "Buy Now";
+    buyNowButton.removeAttribute("data-square-payment-link");
+  }
 };
 
 const getProductData = (card) => {
@@ -795,6 +909,7 @@ document.addEventListener("click", (event) => {
     if (favoriteButton && productName && variantLabel) {
       favoriteButton.setAttribute("aria-label", `Add ${productName} ${variantLabel} to favorites`);
     }
+    updateSquarePaymentButton(card);
     syncFavoriteButtons();
     return;
   }
@@ -831,6 +946,12 @@ document.addEventListener("click", (event) => {
       return;
     }
 
+    const squarePaymentLink = purchaseButton.getAttribute("data-square-payment-link");
+    if (squarePaymentLink) {
+      window.open(squarePaymentLink, "_blank", "noopener,noreferrer");
+      return;
+    }
+
     const existingItem = basket.get(product.id);
     if (existingItem) {
       existingItem.quantity += quantity;
@@ -847,6 +968,7 @@ document.addEventListener("click", (event) => {
 
     saveCart();
     renderBasket();
+    showCartToast(`${product.name} added to cart.`);
     if (purchaseButton.hasAttribute("data-buy-now")) {
       window.location.href = "./cart.html";
     }
@@ -1052,17 +1174,20 @@ if (shippingForm) {
     }
 
     checkoutDetails = getShippingDetailsFromForm(shippingForm);
+    setCartOrderReference(generateOrderReference());
     if (shippingMessage) {
       shippingMessage.hidden = false;
-      shippingMessage.textContent = "Shipping details saved. Next step: Payment.";
+      shippingMessage.textContent = `Shipping details saved. Your order reference is ${cartOrderReferenceValue}. Continue to payment.`;
     }
+    document.querySelector("#payment")?.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 }
 
 if (paymentStartButton) {
-  paymentStartButton.addEventListener("click", async () => {
+  paymentStartButton.addEventListener("click", (event) => {
     const totals = getBasketTotals();
     if (!checkoutDetails || totals.itemCount === 0) {
+      event.preventDefault();
       if (paymentMessage) {
         paymentMessage.hidden = false;
         paymentMessage.textContent = "Review your cart and shipping details before payment.";
@@ -1070,57 +1195,48 @@ if (paymentStartButton) {
       return;
     }
 
+    if (!cartOrderReferenceValue) {
+      setCartOrderReference(generateOrderReference());
+    }
+    rememberCurrentPage();
     paymentStartButton.setAttribute("aria-busy", "true");
-    paymentStartButton.textContent = "Opening secure payment...";
+    paymentStartButton.textContent = "Opening Square checkout...";
     if (paymentMessage) {
-      paymentMessage.hidden = true;
-      paymentMessage.textContent = "";
+      paymentMessage.hidden = false;
+      paymentMessage.textContent = "Square checkout is opening in a new tab.";
     }
 
-    try {
-      const response = await fetch("/api/create-checkout-session", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          items: getBasketLineItems(),
-          customer: {
-            email: checkoutDetails.email,
-            phone: checkoutDetails.phone,
-            name: `${checkoutDetails.firstName} ${checkoutDetails.lastName}`.trim()
-          },
-          shippingAddress: {
-            line1: checkoutDetails.street,
-            line2: checkoutDetails.apartment,
-            city: checkoutDetails.city,
-            state: checkoutDetails.state,
-            postal_code: checkoutDetails.zip,
-            country: "US"
-          },
-          shippingMethod: checkoutDetails.shippingMethod,
-          successUrl: `${window.location.origin}/products.html?checkout=success`,
-          cancelUrl: `${window.location.origin}/products.html?checkout=cancelled`
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error("Payment endpoint unavailable");
-      }
-
-      const session = await response.json();
-      if (!session.url) {
-        throw new Error("Payment endpoint did not return a checkout URL");
-      }
-
-      window.location.href = session.url;
-    } catch (error) {
-      if (paymentMessage) {
-        paymentMessage.hidden = false;
-        paymentMessage.textContent = "Secure payment is ready in the UI, but the Stripe checkout endpoint still needs to be connected.";
-      }
-      paymentStartButton.textContent = "Place Order & Pay Securely";
+    if (paymentStartButton instanceof HTMLAnchorElement) {
+      paymentStartButton.href = CUSTOM_PACKAGE_DEPOSIT_URL;
+      window.setTimeout(() => {
+        paymentStartButton.textContent = "Pay Custom Package Deposit";
+        paymentStartButton.removeAttribute("aria-busy");
+      }, 1200);
+    } else {
+      window.open(CUSTOM_PACKAGE_DEPOSIT_URL, "_blank", "noopener,noreferrer");
+      paymentStartButton.textContent = "Pay Custom Package Deposit";
       paymentStartButton.removeAttribute("aria-busy");
+    }
+  });
+}
+
+if (contactDepositLink) {
+  contactDepositLink.addEventListener("click", () => {
+    rememberCurrentPage();
+  });
+}
+
+if (previousPageLinks.length) {
+  let previousPage = "";
+  try {
+    previousPage = window.localStorage.getItem(PREVIOUS_PAGE_STORAGE_KEY) || "";
+  } catch (error) {
+    previousPage = "";
+  }
+
+  previousPageLinks.forEach((link) => {
+    if (link instanceof HTMLAnchorElement && previousPage) {
+      link.href = previousPage;
     }
   });
 }
@@ -1131,6 +1247,7 @@ if (contactBriefForm) {
 
     const submitButton = contactBriefForm.querySelector("[type='submit']");
     const formData = new FormData(contactBriefForm);
+    const orderReference = generateOrderReference();
     const payload = {
       name: String(formData.get("name") ?? "").trim(),
       phone: String(formData.get("phone") ?? "").trim(),
@@ -1138,7 +1255,8 @@ if (contactBriefForm) {
       requestType: String(formData.get("requestType") ?? "").trim(),
       occasion: String(formData.get("occasion") ?? "").trim(),
       budget: String(formData.get("budget") ?? "").trim(),
-      message: String(formData.get("message") ?? "").trim()
+      message: String(formData.get("message") ?? "").trim(),
+      orderReference
     };
 
     if (!payload.name || !payload.email || !payload.message) {
@@ -1156,6 +1274,9 @@ if (contactBriefForm) {
     if (contactBriefMessage) {
       contactBriefMessage.hidden = true;
       contactBriefMessage.textContent = "";
+    }
+    if (contactOrderSuccess) {
+      contactOrderSuccess.hidden = true;
     }
 
     try {
@@ -1178,7 +1299,16 @@ if (contactBriefForm) {
       contactBriefForm.reset();
       if (contactBriefMessage) {
         contactBriefMessage.hidden = false;
-        contactBriefMessage.textContent = "Thanks. Your gift brief has been sent.";
+        contactBriefMessage.textContent = `Thanks. Your gift brief has been sent. Order Reference: ${orderReference}.`;
+      }
+      if (contactOrderReference) {
+        contactOrderReference.textContent = orderReference;
+      }
+      if (contactDepositLink instanceof HTMLAnchorElement) {
+        contactDepositLink.href = GIFT_BRIEF_DEPOSIT_URL;
+      }
+      if (contactOrderSuccess) {
+        contactOrderSuccess.hidden = false;
       }
     } catch (error) {
       if (contactBriefMessage) {
@@ -1303,6 +1433,7 @@ document.querySelectorAll(".value-card, .product-card, .category-card, .story-me
 
 loadCart();
 hidePastUpcomingEvents();
+document.querySelectorAll(".product-card").forEach(updateSquarePaymentButton);
 renderBasket();
 renderCartPage();
 renderFavoritesCount();

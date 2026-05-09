@@ -105,6 +105,15 @@ export const pages = [
     sitemap: false
   },
   {
+    key: "payment-success",
+    file: "payment-success.html",
+    path: "/payment-success.html",
+    title: "Payment Received | Nana's Mama",
+    description: "Nana's Mama payment confirmation page for custom package deposits.",
+    noindex: true,
+    sitemap: false
+  },
+  {
     key: "favorites",
     file: "favorites.html",
     path: "/favorites.html",

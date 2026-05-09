@@ -38,6 +38,7 @@ exports.sendNanasMamaEmail = onRequest(
         occasion,
         budget,
         message,
+        orderReference,
       } = req.body || {};
 
       if (!name || !email || !message) {
@@ -55,14 +56,19 @@ exports.sendNanasMamaEmail = onRequest(
       const safeOccasion = escapeHtml(occasion || "Not provided");
       const safeBudget = escapeHtml(budget || "Not provided");
       const safeMessage = escapeHtml(message).replace(/\n/g, "<br>");
+      const safeOrderReference = escapeHtml(orderReference || "Not provided");
 
       const subject = `New NanasMama Inquiry: ${
         requestType || "Website Contact"
-      }`;
+      }${orderReference ? ` (${orderReference})` : ""}`;
 
       const html = `
         <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #222;">
           <h2>New NanasMama Website Inquiry</h2>
+
+          <p style="padding: 12px 14px; background: #fff4df; border: 1px solid #e3c790; border-radius: 8px;">
+            <strong>Order Reference:</strong> ${safeOrderReference}
+          </p>
 
           <p><strong>Name:</strong> ${safeName}</p>
           <p><strong>Email:</strong> ${safeEmail}</p>
