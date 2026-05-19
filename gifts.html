@@ -175,7 +175,7 @@
     <header class="site-header">
       <div class="container nav-wrap">
         <a class="brand" href="./index.html#top" aria-label="Nana's Mama home">
-          <img src="./assets/nanasmama-logo.png" alt="Nana's Mama logo">
+          <img decoding="async" src="./assets/nanasmama-logo.png" alt="Nana's Mama logo">
         </a>
 
         <nav id="site-nav" class="site-nav" aria-label="Primary">
@@ -251,14 +251,14 @@
           <span>Total</span>
           <strong data-basket-total>$0.00</strong>
         </div>
-        <a class="button button-primary basket-checkout-link" href="./index.html#checkout">Proceed to checkout</a>
+        <a class="button button-primary basket-checkout-link" href="./cart.html">Proceed to checkout</a>
       </div>
     </aside>
 
     <main id="top">
       <section class="gifts-hero-section">
         <aside class="gifts-hero-card" aria-label="Featured Nana's Mama gift image">
-          <img src="./assets/gifts/gift-hero-3.png" alt="Nana's Mama gift set styled for gifting">
+          <img decoding="async" fetchpriority="high" src="./assets/gifts/gift-hero-3.webp" alt="Nana's Mama gift set styled for gifting">
           <div class="gifts-hero-overlay">
             <div class="gifts-hero-content">
               <h1 class="gifts-hero-title">Plan Events with Gifts That Feel Personal</h1>
@@ -283,12 +283,6 @@
             </div>
           </div>
           <div class="upcoming-grid">
-            <article class="upcoming-card" data-upcoming-event data-event-date="2026-05-10">
-              <p class="upcoming-date">May 10, 2026</p>
-              <h3>Mother's Day</h3>
-              <p>Thoughtful self-care bundles, handwritten notes, and soft gift packaging for moms, aunties, grandmothers, and mother figures.</p>
-              <a class="gift-idea-link" href="./contact.html#contact-brief">Plan Mother's Day gifts</a>
-            </article>
             <article class="upcoming-card" data-upcoming-event data-event-date="2026-05-25">
               <p class="upcoming-date">May 25, 2026</p>
               <h3>Memorial Day</h3>
@@ -403,7 +397,7 @@
     <footer id="contact" class="site-footer">
       <div class="container footer-grid">
         <div>
-          <img class="footer-logo" src="./assets/nanasmama-logo.png" alt="Nana's Mama logo">
+          <img loading="lazy" decoding="async" class="footer-logo" src="./assets/nanasmama-logo.png" alt="Nana's Mama logo">
           <p>Pure, handcrafted care rooted in Ghanaian heritage.</p>
         </div>
         <div>

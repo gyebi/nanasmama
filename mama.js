@@ -63,7 +63,7 @@ const cartOrderReference = document.querySelector("[data-cart-order-reference]")
 const SHIPPING_COST = 7;
 const FREE_SHIPPING_THRESHOLD = 75;
 const CONTACT_FUNCTION_URL = "/api/send-email";
-const CUSTOM_PACKAGE_DEPOSIT_URL = "https://square.link/u/cHWh3RVb";
+const CART_PAYMENT_URL = "https://square.link/u/8Ps1cUHZ";
 const GIFT_BRIEF_DEPOSIT_URL = "https://square.link/u/vBOFopQD";
 const CONTACT_ERROR_MESSAGE = "Unable to send your message right now. Please email Nanasmamashea@gmail.com directly or try again in a moment.";
 const CART_STORAGE_KEY = "nanasmama-cart";
@@ -549,7 +549,7 @@ const renderCollectionCarousel = (index) => {
   if (collectionCarouselStrip) {
     collectionCarouselStrip.innerHTML = collection.images.map((item, thumbIndex) => `
       <button class="collection-carousel-thumb${thumbIndex === activeCollectionImageIndex ? " is-active" : ""}" type="button" data-collection-carousel-thumb="${thumbIndex}" aria-label="Show ${item.alt}">
-        <img src="${item.src}" alt="">
+        <img loading="lazy" decoding="async" src="${item.src}" alt="">
       </button>
     `).join("");
   }
@@ -609,7 +609,7 @@ const renderFavoritesPage = () => {
     card.dataset.productPrice = String(item.price);
     card.innerHTML = `
       <button class="favorite-button is-active" type="button" aria-label="Saved in favorites">♥</button>
-      <img src="${item.image}" alt="${item.imageAlt}">
+      <img loading="lazy" decoding="async" src="${item.image}" alt="${item.imageAlt}">
       <div class="product-copy">
         <p class="product-brand">Nana's Mama</p>
         <h3>${item.name}</h3>
@@ -861,7 +861,7 @@ const renderCartPage = () => {
     const cartItem = document.createElement("article");
     cartItem.className = "cart-page-item";
     cartItem.innerHTML = `
-      <img src="${item.image}" alt="${item.imageAlt}">
+      <img loading="lazy" decoding="async" src="${item.image}" alt="${item.imageAlt}">
       <div>
         <h2>${item.name}</h2>
         <p>${formatMoney(item.price)} each</p>
@@ -1207,14 +1207,14 @@ if (paymentStartButton) {
     }
 
     if (paymentStartButton instanceof HTMLAnchorElement) {
-      paymentStartButton.href = CUSTOM_PACKAGE_DEPOSIT_URL;
+      paymentStartButton.href = CART_PAYMENT_URL;
       window.setTimeout(() => {
-        paymentStartButton.textContent = "Pay Custom Package Deposit";
+        paymentStartButton.textContent = "Pay for Cart Items";
         paymentStartButton.removeAttribute("aria-busy");
       }, 1200);
     } else {
-      window.open(CUSTOM_PACKAGE_DEPOSIT_URL, "_blank", "noopener,noreferrer");
-      paymentStartButton.textContent = "Pay Custom Package Deposit";
+      window.open(CART_PAYMENT_URL, "_blank", "noopener,noreferrer");
+      paymentStartButton.textContent = "Pay for Cart Items";
       paymentStartButton.removeAttribute("aria-busy");
     }
   });
